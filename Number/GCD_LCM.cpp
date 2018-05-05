@@ -4,6 +4,7 @@ ll gcd(ll a,ll b){
     while(r)a=b,b=r,r=a%b;
     return b;
 }
+
 ll lcm(ll a,ll b){
     return (a*b)/gcd(a,b);
 }
