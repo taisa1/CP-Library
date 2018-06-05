@@ -23,10 +23,14 @@ void fact(ll n){
 }
 
 
-ll ncr(ll n,ll r){
-	if(r==0){
+ll nck(ll n,ll k){
+	if(k==0){
 		return 1;
 	}else{
-		return ((f[n]*fi[r])%MOD*fi[n-r])%MOD;
+		return f[n]*fi[k]%MOD*fi[n-k]%MOD;
 	}
+}
+
+ll hck(ll n,ll k){
+    return f[n+k-1]*fi[k]%MOD*fi[n-1]%MOD;   
 }
