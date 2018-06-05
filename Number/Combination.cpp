@@ -1,4 +1,4 @@
-ll f[300010],fi[300010];
+ll f[2000010],fi[2000010];
 ll mod_pow(ll x,ll n,ll mod){
     ll ret=1;
     while(n>0){
@@ -22,8 +22,8 @@ void fact(ll n){
 	}
 }
 
-
 ll nck(ll n,ll k){
+	if(n<k)return 0;
 	if(k==0){
 		return 1;
 	}else{
@@ -32,5 +32,6 @@ ll nck(ll n,ll k){
 }
 
 ll hck(ll n,ll k){
+	if(n==0&&k==0)return 1;
     return f[n+k-1]*fi[k]%MOD*fi[n-1]%MOD;   
 }
