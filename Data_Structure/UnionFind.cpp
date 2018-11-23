@@ -38,3 +38,36 @@ struct UnionFind{
         return find(x)==find(y);
     }
 };
+vector<P> tree;
+vector<P> siz[100010];
+struct PartiallyPersistentUnionFind{
+    int t=0;
+    int find(int v,int x){
+        while(tree[x].second<=v){
+            x=tree[x].first;
+        }
+        return x;
+    }
+    bool unite(int x,int y){
+        t++;
+        x=find(t,x);
+        y=find(t,y);
+        if(x==y){
+            return false;
+        }
+        if(tree[x].first<tree[y].first){
+            swap(x,y);
+        }
+        tree[x].first+=tree[y].first;
+        siz[x].push_back(P(t,tree[x].first));
+        tree[y]=P(x,t);
+        return true;
+    }
+    int size(int v,int x){
+        x=find(v,x);
+        return (lower_bound(all(siz[x]),P(v+1,0))-1)->second;
+    }
+    bool same(int v,int x,int y){
+        return find(v,x)==find(v,y);
+    }
+};
