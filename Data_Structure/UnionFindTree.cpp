@@ -9,7 +9,6 @@ struct UnionFind{
             par[i]=i;
         }
     };
-
     int find(int x){
         if(par[x]==x){
             return x;
@@ -17,12 +16,11 @@ struct UnionFind{
             return par[x]=find(par[x]);
         }
     }
-
-    void unite(int x,int y){
+    bool unite(int x,int y){
         x=find(x);
         y=find(y);
         if(x==y){
-            return;
+            return false;
         }
         if(dep[x]<dep[y]){
             par[x]=y;
@@ -32,8 +30,8 @@ struct UnionFind{
                 dep[x]++;
             }
         }
+        return true;
     }
-
     bool same(int x,int y){
         return find(x)==find(y);
     }

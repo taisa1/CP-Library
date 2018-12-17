@@ -1,12 +1,10 @@
-#include <bits/stdc++.h>
-using namespace std;
-using ll=long long;
+template <ll mod>
 struct modint{
-    ll mod,val;
-    modint(ll mod):mod(mod){val=0;};
+    ll val;
+    modint():val(0){}
     modint mpow(ll n) const{
-        if(n==0)return 1;
-        ll x=val,ret=1;
+        ll x=val;
+        ret=1;
         while(n>1){
             if(n&1)ret=ret*x%mod;
             x=x*x%mod;
@@ -14,26 +12,33 @@ struct modint{
         }
         return ret;
     }
-    modint operator+(const motint& to) const{
-        return (val+to.val%mod)%mod;
+    template<class T>
+    explicit operator T(){
+        return T(val);
+    }
+    modint tomod(const T& to) const{
+        modint m;m.val=to;return m;
+    }
+    modint operator+(const modint& to) const{
+        return tomod((val+to.val%mod)%mod);
     }
     modint operator-(const modint& to) const{
-        return (val-to.val%mod+mod)%mod;
+        return tomod((val-to.val%mod+mod)%mod);
     }
     modint operator*(const modint& to) const{
-        return (val*to.val%mod)%mod;
+        return tomod((val*to.val%mod)%mod);
     }
     modint operator/(const modint& to) const{
-        return (val*to.mpow(mod-2))%mod;
+        return tomod((val*to.mpow(mod-2))%mod);
     }
     modint operator-() const{
-        return (mod-val+mod)%mod;
+        return tomod((mod-val+mod)%mod);
     }
     modint operator++() const{
-        return (val+1)%mod;
+        return tomod((val+1)%mod);
     }
     modint operator--() const{
-        return (val-1+mod)%mod;
+        return tomod((val-1+mod)%mod);
     }
     modint& operator+=(const modint& to){
         return  *this=*this+to;
@@ -47,22 +52,22 @@ struct modint{
     modint& operator/=(const modint& to){
         return  *this=*this/to;
     }
-    bool operator==(const modint& to){
+    bool operator==(const modint& to) const{
         return val==to.val;
     }
-    bool operator!=(const modint& to){
+    bool operator!=(const modint& to) const{
         return val!=to.val;
     }
-    bool operator>(const modint& to){
+    bool operator>(const modint& to) const{
         return val>to.val;
     }
-    bool operator>=(const modint& to){
+    bool operator>=(const modint& to) const{
         return val>=to.val;
     }
-    bool operator<(const modint& to){
+    bool operator<(const modint& to) const{
         return val<to.val;
     }
-    bool operator<=(const modint& to){
+    bool operator<=(const modint& to) const{
         return val<=to.val;
     }
 };
