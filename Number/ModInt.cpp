@@ -4,8 +4,8 @@ struct modint{
     modint():val(0){}
     modint mpow(ll n) const{
         ll x=val;
-        ret=1;
-        while(n>1){
+        ll ret=1;
+        while(n>0){
             if(n&1)ret=ret*x%mod;
             x=x*x%mod;
             n>>=1;
