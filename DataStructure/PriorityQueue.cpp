@@ -1,7 +1,7 @@
 template<typename T>
 struct PriorityQueue{
     using F=function<bool(T,T)>;
-    i32 n;
+    int n;
     vector<T> node;
     F f;
     PriorityQueue(F f):n(0),f(f){node.resize(1);};
@@ -12,7 +12,7 @@ struct PriorityQueue{
         }else{
             node.emplace_back(x);
         }
-        i32 k=n;
+        int k=n;
         while(k>1){
             if(f(node[k],node[k>>1])){
                 swap(node[k],node[k>>1]);
@@ -25,7 +25,7 @@ struct PriorityQueue{
     void pop(){
         node[1]=node[n];
         --n;
-        i32 k=1;
+        int k=1;
         while((k<<1)<=n){
             if((k<<1|1)>n){
                 if(f(node[k<<1],node[k]))swap(node[k],node[k<<1]);
