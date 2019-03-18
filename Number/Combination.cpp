@@ -1,18 +1,27 @@
-using long long=ll;
-using mint=modint<ll,MOD>;
-void fact(int n,vector<mint>& f,vector<mint>& fi){
-	f.resize(n+1);
-	fi.resize(n+1);
-	f[0]=1;
-	for(mint i=1;i<=n;i++)f[i]=f[i-1]*i;
-	fi[n]=f[n].mpow(MOD-2);
-	for(mint i=n-1;i>=0;i--)fi[i]=fi[i+1]*(i+1);
+ll mpow(ll x, ll n) {
+    ll res = 1;
+    while(n > 0) {
+        if(n & 1) {
+            res = res * x % MOD;
+        }
+        n >>= 1;
+        x = x * x % MOD;
+    }
+    return res;
 }
-mint ncr(mint n,mint r){
-	if(n<r)return 0;
-	if(r==0){
-		return 1;
-	}else{
-		return f[n]*fi[k]*fi[n-k];
-	}
+vector<ll> f, fi;
+void comb(int n) {
+    f.resize(n + 10);
+    fi.resize(n + 10);
+    f[0] = 1;
+    for(ll i = 1; i <= n; i++) {
+        f[i] = f[i - 1] * i;
+        f[i] %= MOD;
+    }
+    fi[n] = mpow(f[n], MOD - 2);
+    for(ll i = n - 1; i >= 0; i--) {
+        fi[i] = fi[i + 1] * (i + 1LL);
+        fi[i] %= MOD;
+    }
 }
+ll ncr(ll n, ll r) { return f[n] * fi[r] % MOD * fi[n - r] % MOD; }
