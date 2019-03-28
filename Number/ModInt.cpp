@@ -1,16 +1,15 @@
 template <ll mod>
 struct modint {
     ll val;
-    ll extgcd(ll a, ll b, ll& x, ll& y) {
+    inline ll extgcd(ll a, ll b, ll& x, ll& y) {
         if(b == 0) {
             x = 1, y = 0;
             return a;
         }
         ll d = extgcd(b, a % b, y, x);
         y -= a / b * x;
-        return d;
     }
-    ll minv(ll k) {
+    inline ll minv(ll k) {
         ll x = 0, y = 0;
         extgcd(k, mod, x, y);
         if(x < 0) {
@@ -20,19 +19,20 @@ struct modint {
         }
         return x;
     }
-    modint() : val(0) {}
-    modint(ll x) { val = (x + mod) % mod; }
-    modint mpow(ll n) const {
-        ll x = val;
-        ll ret = 1;
+    inline ll mpow(ll n) {
+        ll res = 1, x = val;
         while(n > 0) {
-            if(n & 1)
-                ret = ret * x % mod;
+            if(n & 1) {
+                res *= x;
+                res % mod;
+            }
             x = x * x % mod;
             n >>= 1;
         }
-        return ret;
+        return res;
     }
+    constexpr modint() : val(0) {}
+    constexpr modint(ll x) { val = (x + mod) % mod; }
     modint inv() { return modint(minv(val)); }
     modint operator+(const modint& to) const { return modint(val + to.val); }
     modint operator-(const modint& to) const { return modint(val - to.val); }
