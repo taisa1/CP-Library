@@ -1,87 +1,88 @@
-template <ll mod>
-struct modint {
-    ll val;
-    inline ll extgcd(ll a, ll b, ll& x, ll& y) {
-        if(b == 0) {
-            x = 1, y = 0;
-            return a;
-        }
-        ll d = extgcd(b, a % b, y, x);
-        y -= a / b * x;
+template <std::uint_fast64_t Modulus> class modint {
+    using u64 = std::uint_fast64_t;
+
+  public:
+    u64 a;
+    constexpr modint(const u64 x = 0) noexcept : a(x % Modulus) {}
+    constexpr u64 &value() noexcept { return a; }
+    constexpr const u64 &value() const noexcept { return a; }
+    constexpr modint operator+(const modint rhs) const noexcept {
+        return modint(*this) += rhs;
     }
-    inline ll minv(ll k) {
-        ll x = 0, y = 0;
-        extgcd(k, mod, x, y);
-        if(x < 0) {
-            x += mod;
-        } else if(x == mod) {
-            x = 0;
-        }
-        return x;
+    constexpr modint operator-(const modint rhs) const noexcept {
+        return modint(*this) -= rhs;
     }
-    inline ll mpow(ll n) {
-        ll res = 1, x = val;
-        while(n > 0) {
-            if(n & 1) {
-                res *= x;
-                res % mod;
+    constexpr modint operator*(const modint rhs) const noexcept {
+        return modint(*this) *= rhs;
+    }
+    constexpr modint operator/(const modint rhs) const noexcept {
+        return modint(*this) /= rhs;
+    }
+    constexpr modint operator^(const u64 rhs) const noexcept {
+        return modint(*this) ^= rhs;
+    }
+    constexpr modint &operator+=(const modint rhs) noexcept {
+        a += rhs.a;
+        if (a >= Modulus) {
+            a -= Modulus;
+        }
+        return *this;
+    }
+    constexpr modint &operator-=(const modint rhs) noexcept {
+        if (a < rhs.a) {
+            a += Modulus;
+        }
+        a -= rhs.a;
+        return *this;
+    }
+    constexpr modint &operator*=(const modint rhs) noexcept {
+        a = a * rhs.a % Modulus;
+        return *this;
+    }
+    constexpr modint &operator/=(modint rhs) noexcept {
+        u64 exp = Modulus - 2;
+        while (exp) {
+            if (exp % 2) {
+                *this *= rhs;
             }
-            x = x * x % mod;
-            n >>= 1;
+            rhs *= rhs;
+            exp /= 2;
         }
-        return res;
+        return *this;
     }
-    constexpr modint() : val(0) {}
-    constexpr modint(ll x) { val = (x + mod) % mod; }
-    modint inv() { return modint(minv(val)); }
-    modint operator+(const modint& to) const { return modint(val + to.val); }
-    modint operator-(const modint& to) const { return modint(val - to.val); }
-    modint operator*(const modint& to) const { return modint(val * to.val); }
-    modint operator/(const modint& to) const {
-        return modint(val * minv(to.val));
+    constexpr modint &operator^=(u64 exp) {
+        modint rhs = modint(*this);
+        a = 1;
+        while (exp) {
+            if (exp % 2) {
+                *this *= rhs;
+            }
+            rhs *= rhs;
+            exp /= 2;
+        }
+        return *this;
     }
-    template <class T>
-    explicit operator T() {
-        return T(val);
-    }
-    template <typename T>
-    modint operator+(const T& to) const {
-        return modint(val + to);
-    }
-    template <typename T>
-    modint operator-(const T& to) const {
-        return modint(val - to);
-    }
-    template <typename T>
-    modint operator*(const T& to) const {
-        return modint(val * to);
-    }
-    template <typename T>
-    modint operator/(const T& to) const {
-        return modint(val * minv(to));
-    }
-    modint& operator++() { return *this = modint(val + 1); }
-    modint& operator--() { return *this = modint(val - 1); }
-    template <typename T>
-    modint& operator+=(const T& to) {
-        return *this = *this + to;
-    }
-    template <typename T>
-    modint& operator-=(const T& to) {
-        return *this = *this - to;
-    }
-    template <typename T>
-    modint& operator*=(const T& to) {
-        return *this = *this * to;
-    }
-    template <typename T>
-    modint& operator/=(const T& to) {
-        return *this = *this / to;
-    }
-    bool operator==(const modint& to) const { return val == to.val; }
-    bool operator!=(const modint& to) const { return val != to.val; }
-    bool operator>(const modint& to) const { return val > to.val; }
-    bool operator>=(const modint& to) const { return val >= to.val; }
-    bool operator<(const modint& to) const { return val < to.val; }
-    bool operator<=(const modint& to) const { return val <= to.val; }
 };
+using mint = modint<MOD>;
+vector<mint> f, fi;
+void comb(int n) {
+    f.resize(n + 1);
+    fi.resize(n + 1);
+    f[0] = 1;
+    for (ll i = 1; i <= n; i++) {
+        f[i] = f[i - 1] * mint(i);
+    }
+    fi[n] = mint(1) / f[n];
+    for (ll i = n - 1; i >= 0; i--) {
+        fi[i] = fi[i + 1] * mint(i + 1LL);
+    }
+}
+mint ncr(ll n, ll r) {
+    if (n < r) {
+        return mint(0);
+    }
+    if (r == 0) {
+        return mint(1);
+    }
+    return f[n] * fi[n - r] * fi[r];
+}

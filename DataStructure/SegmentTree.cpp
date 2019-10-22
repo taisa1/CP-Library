@@ -1,34 +1,58 @@
-template <class Monoid>
-struct Segtree {
+template <typename T> struct Segtree {
+    inline T merge(const T &a, const T &b) { return min(a, b); }
+    inline void act(T &a, const T &b) { a = b; }
     int n;
+    T e;
     vector<T> dat;
-    Segtree(int n_) {
+    Segtree(int n_, T e) : e(e) {
         n = 1;
-        while(n < n_) n <<= 1;
-        dat.resize(2 * n, Monoid::id());
+        while (n < n_) {
+            n <<= 1;
+        }
+        dat.resize(2 * n);
     }
-    T get(int k) {
-        assert(k < n);
-        return dat[k + n];
-    }
-    void set(int k, const T& x) {
-        assert(k < n);
+    void upd(int k, const T &x) {
         k += n;
-        dat[k] = x;
-        for(k >>= 1; k > 0; k >>= 1) {
-            dat[k] = Monoid::op(dat[k << 1], dat[k << 1 | 1]);
+        act(dat[k], x);
+        k >>= 1;
+        while (k > 0) {
+            dat[k] = merge(dat[k << 1], dat[k << 1 | 1]);
+            k >>= 1;
         }
     }
-    T query(int a, int b) {  //[a,b]->[a,b)
-        if(a < 0) a = 0;
-        if(a > b) return Monoid::id();
-        if(b > n) b = n;
-        T vl = Monoid::id(), vr = Monoid::id();
-        int l = a + n, r = b + n + 1;
-        for(; l < r; l >>= 1, r >>= 1) {
-            if(l & 1) vl = Monoid::op(vl, dat[l++]);
-            if(r & 1) vr = Monoid::op(dat[--r], vr);
+    T get(const int &a, const int &b, int k, int l, int r) {
+        if (b <= l || r <= a) {
+            return e;
         }
-        return Monoid::op(vl, vr);
+        if (a <= l && r <= b) {
+            return dat[k];
+        }
+        return merge(get(a, b, k << 1, l, (l + r) >> 1),
+                     get(a, b, k << 1 | 1, (l + r) >> 1, r));
+    }
+    inline void get(const int &a, const int &b) { //[a,b)
+        if (a >= b) {
+            return e;
+        }
+        return get(a, b, 1, 0, n);
+    }
+    int find(const int &a, const int &b, const T &x, int k, int l, int r) {
+        if (b <= l || r <= a || dat[k] > x) {
+            return -1;
+        }
+        if (k >= n) {
+            return k - n;
+        }
+        int il = find(a, b, x, k << 1, l, (l + r) >> 1);
+        if (il != -1) {
+            return il;
+        }
+        return find(a, b, x, k << 1 | 1, (l + r) >> 1, r);
+    }
+    inline int find(const int &a, const int &b, const T &x) {
+        if (a >= b) {
+            return -1;
+        }
+        return find(a, b, x, 1, 0, n);
     }
 };
