@@ -1,27 +1,22 @@
-struct UnionFind {
-    vector<int> par, siz;
-    UnionFind(int n) {
+struct UF {
+    vector<int> par, sz;
+    UF(int n) {
         par.resize(n);
-        siz.resize(n, 1);
-        for (int i = 0; i < n; i++)
-            par[i] = i;
+        sz.resize(n, 1);
+        iota(all(par), 0);
     }
-    int find(int x) {
-        if (par[x] == x) {
-            return x;
-        } else {
-            return par[x] = find(par[x]);
-        }
+    inline int find(int x) {
+        if (x == par[x]) return x;
+        return par[x] = find(par[x]);
     }
-    bool unite(int u, int v) {
+    void unite(int u, int v) {
         u = find(u), v = find(v);
-        if (u == v)
-            return false;
-        if (siz[u] < siz[v])
-            swap(u, v);
+        if (u == v) return;
+        if (sz[u] < sz[v]) swap(u, v);
         par[v] = u;
-        siz[u] += siz[v];
-        return true;
+        sz[u] += sz[v];
     }
-    bool same(int u, int v) { return find(u) == find(v); }
+    inline bool same(int u, int v) {
+        return find(u) == find(v);
+    }
 };

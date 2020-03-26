@@ -1,15 +1,18 @@
-template <typename T> struct Segtree {
+template <class T>
+class Segtree {
     inline T merge(const T &a, const T &b) { return min(a, b); }
     inline void act(T &a, const T &b) { a = b; }
     int n;
     T e;
     vector<T> dat;
+
+  public:
     Segtree(int n_, T e) : e(e) {
         n = 1;
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n);
+        dat.resize(2 * n, e);
     }
     void upd(int k, const T &x) {
         k += n;
@@ -30,7 +33,7 @@ template <typename T> struct Segtree {
         return merge(get(a, b, k << 1, l, (l + r) >> 1),
                      get(a, b, k << 1 | 1, (l + r) >> 1, r));
     }
-    inline void get(const int &a, const int &b) { //[a,b)
+    inline T get(const int &a, const int &b) { //[a,b)
         if (a >= b) {
             return e;
         }
@@ -49,7 +52,7 @@ template <typename T> struct Segtree {
         }
         return find(a, b, x, k << 1 | 1, (l + r) >> 1, r);
     }
-    inline int find(const int &a, const int &b, const T &x) {
+    inline int find(const int &a, const int &b, const T &x) { //[a,b)における、値<=x なる最左のindexを求める
         if (a >= b) {
             return -1;
         }

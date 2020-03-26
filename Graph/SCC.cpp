@@ -1,31 +1,44 @@
-struct SCComponents {
+vector<vector<int>> G;
+struct SCC {
     int n;
-    Graph G, rG;
-    vector<int> order, vis, cmp;
-    SCComponents(int n) : n(n), vis(n), cmp(n, -1) {
-        G.resize(n, true);
-        rG.resize(n, true);
-    }
-    void add_edge(int u, int v) {
-        G.add_edge(u, v);
-        rG.add_edge(v, u);
-    }
+    vector<int> ord, vis, cm;
+    vector<vector<int>> bl, rG;
+    SCC(int n) : n(n), bl(n), rG(n), cm(n) {}
     void dfs(int i) {
-        if(vis[i]) return;
         vis[i] = 1;
-        for(auto e : G[i]) dfs(e.to);
-        order.push_back(i);
+        for (auto &e : G[i]) {
+            if (vis[e]) continue;
+            dfs(e);
+        }
+        ord.eb(i);
     }
-    void rdfs(int i, int k) {
-        if(cmp[i] != -1) return;
-        cmp[i] = k;
-        for(auto e : rG[i]) rdfs(e.to, k);
+    void rdfs(int i, int c) {
+        vis[i] = 1;
+        bl[c].eb(i);
+        cm[i] = c;
+        for (auto &e : rG[i]) {
+            if (vis[e]) continue;
+            rdfs(e, c);
+        }
     }
     void build() {
-        for(int i = 0; i < n; i++) dfs(i);
-        reverse(order.begin(), order.end());
-        int idx = 0;
-        for(auto i : order) 
-            if(cmp[i] == -1) rdfs(i, idx++);
+        for (int i = 0; i < n; i++) {
+            for (auto &e : G[i]) {
+                rG[e].eb(i);
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            if (!vis[i]) dfs(i);
+        }
+        reverse(all(ord));
+        vis.assign(n, 0);
+        int k = 0;
+        for (auto &e : ord) {
+            if (!vis[e]) {
+                bl.eb(vector<int>());
+                rdfs(e, k);
+                k++;
+            }
+        }
     }
 };

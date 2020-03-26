@@ -1,7 +1,8 @@
-template <typename T, typename E> struct Segtree {
-    inline T merge(const T &a, const T &b) { return min(a, b); }
-    inline void act(E &a, const E &b) { a = b; }
-    inline void comb(T &a, const E &b) { a = b; }
+template <class T, class E>
+struct Segtree {
+    inline T merge(const T &a, const T &b) { return min(a, b); } //要素同士のマージ
+    inline void act(E &a, const E &b) { a = b; }                 //作用素同士のマージ
+    inline void comb(T &a, const E &b) { a = b; }                //要素への作用素のマージ
     int n;
     T et;
     E ee;
@@ -15,7 +16,7 @@ template <typename T, typename E> struct Segtree {
         dat.resize(2 * n, et);
         laz.resize(2 * n, ee);
     }
-    void eval(int k) {
+    inline void eval(int k) {
         if (laz[k] == ee) {
             return;
         }
@@ -27,12 +28,13 @@ template <typename T, typename E> struct Segtree {
         laz[k] = ee;
     }
     void upd(const int &a, const int &b, const E &x, int k, int l, int r) {
+        eval(k);
         if (b <= l || r <= a) {
             return;
         }
-        eval(k);
         if (a <= l && r <= b) {
             act(laz[k], x);
+            eval(k);
             return;
         }
         upd(a, b, x, k << 1, l, (l + r) >> 1);
