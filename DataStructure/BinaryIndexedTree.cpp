@@ -1,3 +1,4 @@
+//Point Add Range Sum
 template <typename T> struct BinaryIndexedTree {
     vector<T> node;
     int n;

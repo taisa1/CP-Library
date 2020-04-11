@@ -1,8 +1,9 @@
+//Range Update Range Get
 template <class T, class E>
 struct Segtree {
-    inline T merge(const T &a, const T &b) { return min(a, b); } //要素同士のマージ
-    inline void act(E &a, const E &b) { a = b; }                 //作用素同士のマージ
-    inline void comb(T &a, const E &b) { a = b; }                //要素への作用素のマージ
+    inline T merge(const T &a, const T &b) { return min(a, b); }
+    inline void act(E &a, const E &b) { a = b; }
+    inline void comb(T &a, const E &b) { a = b; }
     int n;
     T et;
     E ee;
@@ -63,5 +64,25 @@ struct Segtree {
             return et;
         }
         return get(a, b, 1, 0, n);
+    }
+    int find(const int &a, const int &b, const T &x, int k, int l, int r) {
+        eval(k);
+        if (b <= l || r <= a || dat[k] > x) {
+            return -1;
+        }
+        if (k >= n) {
+            return k - n;
+        }
+        int il = find(a, b, x, k << 1, l, (l + r) >> 1);
+        if (il != -1) {
+            return il;
+        }
+        return find(a, b, x, k << 1 | 1, (l + r) >> 1, r);
+    }
+    inline int find(const int &a, const int &b, const T &x) { //[a,b)における、値<=x なる最左のindexを求める
+        if (a >= b) {
+            return -1;
+        }
+        return find(a, b, x, 1, 0, n);
     }
 };

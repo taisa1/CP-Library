@@ -1,6 +1,6 @@
-struct UF {
+struct UnionFind {
     vector<int> par, sz;
-    UF(int n) {
+    UnionFind(int n) {
         par.resize(n);
         sz.resize(n, 1);
         iota(all(par), 0);

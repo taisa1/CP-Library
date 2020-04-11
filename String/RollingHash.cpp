@@ -1,3 +1,4 @@
+//from https://github.com/tatyam-prime/kyopro_library/blob/master/RollingHash.cpp
 using ull = unsigned long long;
 const int bases[64] = {257, 262, 266, 275, 276, 281, 285, 290, 296, 302, 306,
                        310, 311, 313, 323, 333, 344, 345, 350, 357, 367, 370,

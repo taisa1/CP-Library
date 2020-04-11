@@ -1,4 +1,6 @@
-template <typename T> struct Segtree {
+//Range Update Point Get
+template <typename T>
+struct Segtree {
     inline T merge(T a, T b) { return a + b; }
     inline void act(T &a, T b) { a += b; }
     vector<T> dat;
@@ -11,7 +13,7 @@ template <typename T> struct Segtree {
         }
         dat.resize(2 * n, e);
     }
-    void set(const int &a, const int &b, const T &x, int k, int l, int r) {
+    void upd(const int &a, const int &b, const T &x, int k, int l, int r) {
         if (b <= l || r <= a) {
             return;
         }
@@ -22,7 +24,7 @@ template <typename T> struct Segtree {
         set(a, b, x, k << 1, l, (l + r) >> 1);
         set(a, b, x, k << 1 | 1, (l + r) >> 1, r);
     }
-    inline void set(const int &a, const int &b, const T &x) {
+    inline void upd(const int &a, const int &b, const T &x) {
         if (a >= b) {
             return;
         }

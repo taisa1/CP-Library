@@ -1,3 +1,4 @@
+//from http://noshi91.hatenablog.com/entry/2019/03/31/174006
 template <std::uint_fast64_t Modulus> class modint {
     using u64 = std::uint_fast64_t;
 

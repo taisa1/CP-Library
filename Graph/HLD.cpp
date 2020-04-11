@@ -1,3 +1,4 @@
+//Path Sum and Subtree Sum
 struct HLD {
     int n;
     vector<vector<int>> G;
@@ -41,7 +42,7 @@ struct HLD {
         out[i] = pos;
     }
     inline ll f(int a, int b) { return 0; } //[a,b]
-    ll get_v(int u, int v) {                //可換クエリ
+    ll get_v(int u, int v) {
         ll res = 0;
         while (1) {
             if (id[u] > id[v]) swap(u, v);

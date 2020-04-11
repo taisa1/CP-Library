@@ -1,19 +1,17 @@
-struct edge {
-    ll to, cost;
-};
-vector<ll> d(n, LINF);
-priority_queue<P, vector<P>, greater<P>> q;
-d[s] = 0;
-q.push(P(0, s));
-while (!q.empty()) {
-    int v = q.top().second;
-    q.pop();
-    for (auto e : G[v]) {
-        if (d[e.to] <= d[v] + e.cost) {
-            continue;
+int n;
+vector<vector<P>> G;
+vector<ll> dijkstra(int st) {
+    priority_queue<P, vector<P>, greater<P>> q;
+    vector<ll> d(n, INF);
+    while (!q.empty()) {
+        int v = q.top().second;
+        q.pop();
+        for (auto &e : G[v]) {
+            if (d[e.first] > d[v] + e.second) {
+                d[e.first] = d[v] + e.second;
+                q.emplace(d[e.first], e.first);
+            }
         }
-        d[e.to] = d[v] + e.cost;
-        q.push(P(d[e.to], e.to));
     }
+    return d;
 }
-return d;
