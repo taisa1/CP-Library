@@ -1,4 +1,3 @@
-
 template <class T>
 struct Dinic {
     struct edge {
