@@ -149,3 +149,4 @@ struct Matrix : array<array<T, N>, M> {
         return Matrix(*this) ^= rhs;
     }
 };
+//mod 2

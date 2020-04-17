@@ -1,9 +1,8 @@
 struct UnionFind {
     vector<int> par, sz;
-    UnionFind(int n) {
-        par.resize(n);
+    UnionFind(int n) : par(n) {
         sz.resize(n, 1);
-        iota(all(par), 0);
+        iota(par.begin(), par.end(), 0);
     }
     inline int find(int x) {
         if (x == par[x]) return x;
