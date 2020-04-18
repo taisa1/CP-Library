@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Test/SegmentTree.test.cpp
+# :x: Test/SegmentTree.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/SegmentTree.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 12:56:31+09:00
+    - Last commit date: 2020-04-18 13:22:22+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/point_set_range_composite">https://judge.yosupo.jp/problem/point_set_range_composite</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/DataStructure/SegmentTree.cpp.html">DataStructure/SegmentTree.cpp</a>
-* :heavy_check_mark: <a href="../../library/Math/ModInt.cpp.html">Math/ModInt.cpp</a>
+* :x: <a href="../../library/DataStructure/SegmentTree.cpp.html">DataStructure/SegmentTree.cpp</a>
+* :question: <a href="../../library/Math/ModInt.cpp.html">Math/ModInt.cpp</a>
 
 
 ## Code
@@ -84,10 +84,9 @@ struct T {
     inline static void g(T &a, const T &b) {
         a = b;
     }
-    T(const mint &aa, const mint &bb) : a(aa), b(bb) {}
     static T e;
 };
-T T::e = T(1, 0);
+T T::e = T{1, 0};
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(0);
@@ -97,7 +96,7 @@ int main() {
     for (int i = 0; i < n; i++) {
         ll a, b;
         cin >> a >> b;
-        seg.upd(i, T(a, b));
+        seg.upd(i, T{a, b});
     }
     while (q--) {
         int t;
@@ -105,7 +104,7 @@ int main() {
         if (t == 0) {
             int p, c, d;
             cin >> p >> c >> d;
-            seg.upd(p, T(c, d));
+            seg.upd(p, T{c, d});
         } else {
             int l, r;
             cin >> l >> r;
@@ -302,10 +301,9 @@ struct T {
     inline static void g(T &a, const T &b) {
         a = b;
     }
-    T(const mint &aa, const mint &bb) : a(aa), b(bb) {}
     static T e;
 };
-T T::e = T(1, 0);
+T T::e = T{1, 0};
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(0);
@@ -315,7 +313,7 @@ int main() {
     for (int i = 0; i < n; i++) {
         ll a, b;
         cin >> a >> b;
-        seg.upd(i, T(a, b));
+        seg.upd(i, T{a, b});
     }
     while (q--) {
         int t;
@@ -323,7 +321,7 @@ int main() {
         if (t == 0) {
             int p, c, d;
             cin >> p >> c >> d;
-            seg.upd(p, T(c, d));
+            seg.upd(p, T{c, d});
         } else {
             int l, r;
             cin >> l >> r;

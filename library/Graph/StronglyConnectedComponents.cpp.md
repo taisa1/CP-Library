@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Graph/StronglyConnectedComponents.cpp
+# :heavy_check_mark: Graph/StronglyConnectedComponents.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/StronglyConnectedComponents.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-15 13:25:24+09:00
+    - Last commit date: 2020-04-18 13:22:22+09:00
 
 
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/Test/SCC.test.cpp.html">Test/SCC.test.cpp</a>
 
 
 ## Code
@@ -41,12 +46,15 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-vector<vector<int>> G;
 struct SCC {
     int n;
     vector<int> ord, vis, cm;
-    vector<vector<int>> bl, rG;
-    SCC(int n) : n(n), bl(n), rG(n), cm(n) {}
+    vector<vector<int>> bl, G, rG;
+    SCC(int n) : n(n), bl(n), G(n), rG(n), cm(n), vis(n) {}
+    void addedge(int u, int v) {
+        G[u].emplace_back(v);
+        rG[v].emplace_back(u);
+    }
     void dfs(int i) {
         vis[i] = 1;
         for (auto &e : G[i]) {
@@ -57,32 +65,30 @@ struct SCC {
     }
     void rdfs(int i, int c) {
         vis[i] = 1;
-        bl[c].eb(i);
+        bl[c].emplace_back(i);
         cm[i] = c;
         for (auto &e : rG[i]) {
             if (vis[e]) continue;
             rdfs(e, c);
         }
     }
-    void build() {
-        for (int i = 0; i < n; i++) {
-            for (auto &e : G[i]) {
-                rG[e].eb(i);
-            }
-        }
+    //強連結成分分解し、成分数を返す bl[i]:i番目の成分に属する頂点集合、cm[i]:頂点iの成分
+    //成分はトポロジカル順に並ぶ
+    int scc() {
         for (int i = 0; i < n; i++) {
             if (!vis[i]) dfs(i);
         }
-        reverse(all(ord));
+        reverse(ord.begin(), ord.end());
         vis.assign(n, 0);
         int k = 0;
         for (auto &e : ord) {
             if (!vis[e]) {
-                bl.eb(vector<int>());
+                bl.emplace_back(vector<int>());
                 rdfs(e, k);
                 k++;
             }
         }
+        return k;
     }
 };
 ```
@@ -92,12 +98,15 @@ struct SCC {
 {% raw %}
 ```cpp
 #line 1 "Graph/StronglyConnectedComponents.cpp"
-vector<vector<int>> G;
 struct SCC {
     int n;
     vector<int> ord, vis, cm;
-    vector<vector<int>> bl, rG;
-    SCC(int n) : n(n), bl(n), rG(n), cm(n) {}
+    vector<vector<int>> bl, G, rG;
+    SCC(int n) : n(n), bl(n), G(n), rG(n), cm(n), vis(n) {}
+    void addedge(int u, int v) {
+        G[u].emplace_back(v);
+        rG[v].emplace_back(u);
+    }
     void dfs(int i) {
         vis[i] = 1;
         for (auto &e : G[i]) {
@@ -108,32 +117,30 @@ struct SCC {
     }
     void rdfs(int i, int c) {
         vis[i] = 1;
-        bl[c].eb(i);
+        bl[c].emplace_back(i);
         cm[i] = c;
         for (auto &e : rG[i]) {
             if (vis[e]) continue;
             rdfs(e, c);
         }
     }
-    void build() {
-        for (int i = 0; i < n; i++) {
-            for (auto &e : G[i]) {
-                rG[e].eb(i);
-            }
-        }
+    //強連結成分分解し、成分数を返す bl[i]:i番目の成分に属する頂点集合、cm[i]:頂点iの成分
+    //成分はトポロジカル順に並ぶ
+    int scc() {
         for (int i = 0; i < n; i++) {
             if (!vis[i]) dfs(i);
         }
-        reverse(all(ord));
+        reverse(ord.begin(), ord.end());
         vis.assign(n, 0);
         int k = 0;
         for (auto &e : ord) {
             if (!vis[e]) {
-                bl.eb(vector<int>());
+                bl.emplace_back(vector<int>());
                 rdfs(e, k);
                 k++;
             }
         }
+        return k;
     }
 };
 
