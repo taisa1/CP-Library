@@ -29,7 +29,7 @@ void printv(const vector<T> &v) {
 struct T {
     mint a, b;
     inline static T f(const T &a, const T &b) {
-        return T(a.a * b.a, b.a * a.b + b.b);
+        return T{a.a * b.a, b.a * a.b + b.b};
     }
     inline static void g(T &a, const T &b) {
         a = b;
