@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/SWAG.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 12:56:31+09:00
+    - Last commit date: 2020-04-18 13:33:28+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/queue_operate_all_composite">https://judge.yosupo.jp/problem/queue_operate_all_composite</a>
@@ -79,18 +79,17 @@ void printv(const vector<T> &v) {
 struct T {
     mint a, b;
     inline static T f(const T &a, const T &b) {
-        T res;
-        res.a = a.a * b.a;
-        res.b = b.a * a.b + b.b;
-        return res;
+        return T{a.a * b.a, b.a * a.b + b.b};
     }
+    static T e;
 };
+T T::e = T{1, 0};
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(0);
     int t;
     cin >> t;
-    SWAG<T> q(T{1, 0});
+    SWAG<T> q;
     while (t--) {
         int ty;
         cin >> ty;
@@ -143,8 +142,7 @@ void printv(const vector<T> &v) {
 #line 1 "DataStructure/SlidingWindowAggregation.cpp"
 template <class T>
 struct SWAG {
-    T e;
-    SWAG(const T &e) : e(e) {}
+    SWAG() {}
     stack<pair<T, T>> frontst, backst;
     void push(const T &x) {
         if (backst.empty()) {
@@ -168,7 +166,7 @@ struct SWAG {
     }
     T fold() {
         if (frontst.empty() && backst.empty()) {
-            return e;
+            return T::e;
         }
         if (frontst.empty()) {
             return backst.top().second;
@@ -256,18 +254,17 @@ using mint = modint<MOD>;
 struct T {
     mint a, b;
     inline static T f(const T &a, const T &b) {
-        T res;
-        res.a = a.a * b.a;
-        res.b = b.a * a.b + b.b;
-        return res;
+        return T{a.a * b.a, b.a * a.b + b.b};
     }
+    static T e;
 };
+T T::e = T{1, 0};
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(0);
     int t;
     cin >> t;
-    SWAG<T> q(T{1, 0});
+    SWAG<T> q;
     while (t--) {
         int ty;
         cin >> ty;
