@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: DataStructure/BinaryIndexedTree.cpp
+# :x: DataStructure/BinaryIndexedTree.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/BinaryIndexedTree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-11 21:47:05+09:00
+    - Last commit date: 2020-04-18 10:49:59+09:00
 
 
+
+
+## Verified with
+
+* :x: <a href="../../verify/Tests/BinaryIndexedTree.test.cpp.html">Tests/BinaryIndexedTree.test.cpp</a>
 
 
 ## Code
@@ -42,7 +47,8 @@ layout: default
 {% raw %}
 ```cpp
 //Point Add Range Sum
-template <typename T> struct BinaryIndexedTree {
+template <typename T>
+struct BinaryIndexedTree {
     vector<T> node;
     int n;
     BinaryIndexedTree(int n) : n(n) { node.assign(++n, 0); }
@@ -51,7 +57,7 @@ template <typename T> struct BinaryIndexedTree {
             node[k] += x;
         }
     }
-    T sum(int k) {
+    T get(int k) {
         T res = 0;
         for (++k; k > 0; k -= k & -k) {
             res += node[k];
@@ -67,7 +73,8 @@ template <typename T> struct BinaryIndexedTree {
 ```cpp
 #line 1 "DataStructure/BinaryIndexedTree.cpp"
 //Point Add Range Sum
-template <typename T> struct BinaryIndexedTree {
+template <typename T>
+struct BinaryIndexedTree {
     vector<T> node;
     int n;
     BinaryIndexedTree(int n) : n(n) { node.assign(++n, 0); }
@@ -76,7 +83,7 @@ template <typename T> struct BinaryIndexedTree {
             node[k] += x;
         }
     }
-    T sum(int k) {
+    T get(int k) {
         T res = 0;
         for (++k; k > 0; k -= k & -k) {
             res += node[k];

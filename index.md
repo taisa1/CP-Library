@@ -38,7 +38,7 @@ layout: default
 
 ### DataStructure
 
-* :warning: <a href="library/DataStructure/BinaryIndexedTree.cpp.html">DataStructure/BinaryIndexedTree.cpp</a>
+* :x: <a href="library/DataStructure/BinaryIndexedTree.cpp.html">DataStructure/BinaryIndexedTree.cpp</a>
 * :warning: <a href="library/DataStructure/BinaryTrie.cpp.html">DataStructure/BinaryTrie.cpp</a>
 * :warning: <a href="library/DataStructure/DualSegmentTree.cpp.html">DataStructure/DualSegmentTree.cpp</a>
 * :warning: <a href="library/DataStructure/LazySegmentTree.cpp.html">DataStructure/LazySegmentTree.cpp</a>
@@ -104,5 +104,10 @@ layout: default
 * :warning: <a href="library/Utility/Random.cpp.html">Utility/Random.cpp</a>
 * :warning: <a href="library/Utility/Template.cpp.html">Utility/Template.cpp</a>
 * :warning: <a href="library/Utility/TernarySearch.cpp.html">Utility/TernarySearch.cpp</a>
+
+
+## Verify Files
+
+* :x: <a href="verify/Tests/BinaryIndexedTree.test.cpp.html">Tests/BinaryIndexedTree.test.cpp</a>
 
 
