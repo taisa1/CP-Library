@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: DataStructure/SlidingWindowAggregation.cpp
+# :heavy_check_mark: DataStructure/SlidingWindowAggregation.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/SlidingWindowAggregation.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-15 13:25:24+09:00
+    - Last commit date: 2020-04-18 12:41:49+09:00
 
 
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/Test/SWAG.test.cpp.html">Test/SWAG.test.cpp</a>
 
 
 ## Code
@@ -43,7 +48,6 @@ layout: default
 ```cpp
 template <class T>
 struct SWAG {
-    inline T f(const T &a, const T &b) {}
     T e;
     SWAG(const T &e) : e(e) {}
     stack<pair<T, T>> frontst, backst;
@@ -51,7 +55,7 @@ struct SWAG {
         if (backst.empty()) {
             backst.emplace(x, x);
         } else {
-            backst.emplace(x, f(backst.top().second, x));
+            backst.emplace(x, T::f(backst.top().second, x));
         }
     }
     void pop() {
@@ -60,7 +64,7 @@ struct SWAG {
                 if (frontst.empty()) {
                     frontst.emplace(backst.top().first, backst.top().first);
                 } else {
-                    frontst.emplace(backst.top().first, f(backst.top().first, frontst.top().second));
+                    frontst.emplace(backst.top().first, T::f(backst.top().first, frontst.top().second));
                 }
                 backst.pop();
             }
@@ -76,7 +80,7 @@ struct SWAG {
         } else if (backst.empty()) {
             return frontst.top().second;
         }
-        return f(frontst.top().second, backst.top().second);
+        return T::f(frontst.top().second, backst.top().second);
     }
 };
 ```
@@ -88,7 +92,6 @@ struct SWAG {
 #line 1 "DataStructure/SlidingWindowAggregation.cpp"
 template <class T>
 struct SWAG {
-    inline T f(const T &a, const T &b) {}
     T e;
     SWAG(const T &e) : e(e) {}
     stack<pair<T, T>> frontst, backst;
@@ -96,7 +99,7 @@ struct SWAG {
         if (backst.empty()) {
             backst.emplace(x, x);
         } else {
-            backst.emplace(x, f(backst.top().second, x));
+            backst.emplace(x, T::f(backst.top().second, x));
         }
     }
     void pop() {
@@ -105,7 +108,7 @@ struct SWAG {
                 if (frontst.empty()) {
                     frontst.emplace(backst.top().first, backst.top().first);
                 } else {
-                    frontst.emplace(backst.top().first, f(backst.top().first, frontst.top().second));
+                    frontst.emplace(backst.top().first, T::f(backst.top().first, frontst.top().second));
                 }
                 backst.pop();
             }
@@ -121,7 +124,7 @@ struct SWAG {
         } else if (backst.empty()) {
             return frontst.top().second;
         }
-        return f(frontst.top().second, backst.top().second);
+        return T::f(frontst.top().second, backst.top().second);
     }
 };
 

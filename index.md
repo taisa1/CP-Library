@@ -46,7 +46,7 @@ layout: default
 * :warning: <a href="library/DataStructure/Median.cpp.html">DataStructure/Median.cpp</a>
 * :warning: <a href="library/DataStructure/PartiallyPersistentUnionFind.cpp.html">DataStructure/PartiallyPersistentUnionFind.cpp</a>
 * :warning: <a href="library/DataStructure/SegmentTree.cpp.html">DataStructure/SegmentTree.cpp</a>
-* :warning: <a href="library/DataStructure/SlidingWindowAggregation.cpp.html">DataStructure/SlidingWindowAggregation.cpp</a>
+* :heavy_check_mark: <a href="library/DataStructure/SlidingWindowAggregation.cpp.html">DataStructure/SlidingWindowAggregation.cpp</a>
 * :heavy_check_mark: <a href="library/DataStructure/SparseTable.cpp.html">DataStructure/SparseTable.cpp</a>
 * :warning: <a href="library/DataStructure/Treap.cpp.html">DataStructure/Treap.cpp</a>
 * :warning: <a href="library/DataStructure/Trie.cpp.html">DataStructure/Trie.cpp</a>
@@ -86,7 +86,7 @@ layout: default
 
 * :warning: <a href="library/Math/GaussJordan.cpp.html">Math/GaussJordan.cpp</a>
 * :warning: <a href="library/Math/Matrix.cpp.html">Math/Matrix.cpp</a>
-* :warning: <a href="library/Math/ModInt.cpp.html">Math/ModInt.cpp</a>
+* :heavy_check_mark: <a href="library/Math/ModInt.cpp.html">Math/ModInt.cpp</a>
 
 
 <div id="27118326006d3829667a400ad23d5d98"></div>
@@ -110,6 +110,7 @@ layout: default
 
 * :heavy_check_mark: <a href="verify/Test/BinaryIndexedTree.test.cpp.html">Test/BinaryIndexedTree.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/LCA.test.cpp.html">Test/LCA.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Test/SWAG.test.cpp.html">Test/SWAG.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/SparseTable.test.cpp.html">Test/SparseTable.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/UnionFind.test.cpp.html">Test/UnionFind.test.cpp</a>
 
