@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Flow/FordFulkerson.cpp
+# :heavy_check_mark: Flow/FordFulkerson.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -34,6 +34,11 @@ layout: default
     - Last commit date: 2020-04-12 12:04:28+09:00
 
 
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/Test/FordFulkerson.test.cpp.html">Test/FordFulkerson.test.cpp</a>
 
 
 ## Code

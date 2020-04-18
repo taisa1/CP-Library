@@ -58,7 +58,7 @@ layout: default
 ### Flow
 
 * :heavy_check_mark: <a href="library/Flow/Dinic.cpp.html">Flow/Dinic.cpp</a>
-* :warning: <a href="library/Flow/FordFulkerson.cpp.html">Flow/FordFulkerson.cpp</a>
+* :heavy_check_mark: <a href="library/Flow/FordFulkerson.cpp.html">Flow/FordFulkerson.cpp</a>
 
 
 <div id="d9c6333623e6357515fcbf17be806273"></div>
@@ -111,6 +111,7 @@ layout: default
 
 * :heavy_check_mark: <a href="verify/Test/BinaryIndexedTree.test.cpp.html">Test/BinaryIndexedTree.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/Dinic.test.cpp.html">Test/Dinic.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Test/FordFulkerson.test.cpp.html">Test/FordFulkerson.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/LCA.test.cpp.html">Test/LCA.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/LineCHT.test.cpp.html">Test/LineCHT.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/SCC.test.cpp.html">Test/SCC.test.cpp</a>
