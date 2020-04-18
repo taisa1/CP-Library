@@ -1,19 +1,21 @@
-vector<vector<int>> G;
 struct LCA {
-    vector<vector<int>> par;
+    vector<vector<int>> G, par;
     vector<int> dep;
     int n;
+    LCA(int n) : n(n), G(n), par(30, vector<int>(n, -1)), dep(n) {}
+    void addedge(int u, int v) {
+        G[u].emplace_back(v);
+        G[v].emplace_back(u);
+    }
     void dfs(int i, int p) {
         par[0][i] = p;
         for (auto &e : G[i]) {
+            if (e == p) continue;
             dep[e] = dep[i] + 1;
-            dfs(e);
+            dfs(e, i);
         }
     }
-    void build(int n_, int rt = 0) {
-        n = n_;
-        dep.resize(n);
-        par.resize(30, vector<int>(n, -1));
+    void build(int rt = 0) {
         dfs(rt, -1);
         for (int i = 1; i < 30; i++) {
             for (int j = 0; j < n; j++) {
@@ -23,7 +25,7 @@ struct LCA {
             }
         }
     }
-    int get(int u, int v) {
+    int lca(int u, int v) {
         if (dep[u] > dep[v]) swap(u, v);
         for (int i = 19; i >= 0; i--) {
             if (((dep[v] - dep[u]) >> i) & 1) v = par[i][v];
