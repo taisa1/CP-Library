@@ -9,7 +9,7 @@ struct Dinic {
     vector<vector<edge>> G;
     vector<int> lev, itr;
     Dinic(int n) : n(n), G(n), lev(n), itr(n) {}
-    void add_edge(int u, int v, T cap) {
+    void addedge(int u, int v, T cap) {
         G[u].emplace_back(v, G[v].size(), cap);
         G[v].emplace_back(u, (int)G[u].size() - 1, 0);
     }

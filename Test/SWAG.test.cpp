@@ -29,18 +29,17 @@ void printv(const vector<T> &v) {
 struct T {
     mint a, b;
     inline static T f(const T &a, const T &b) {
-        T res;
-        res.a = a.a * b.a;
-        res.b = b.a * a.b + b.b;
-        return res;
+        return T{a.a * b.a, b.a * a.b + b.b};
     }
+    static T e;
 };
+T T::e = T{1, 0};
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(0);
     int t;
     cin >> t;
-    SWAG<T> q(T{1, 0});
+    SWAG<T> q;
     while (t--) {
         int ty;
         cin >> ty;

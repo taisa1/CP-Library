@@ -1,7 +1,6 @@
 template <class T>
 struct SWAG {
-    T e;
-    SWAG(const T &e) : e(e) {}
+    SWAG() {}
     stack<pair<T, T>> frontst, backst;
     void push(const T &x) {
         if (backst.empty()) {
@@ -25,7 +24,7 @@ struct SWAG {
     }
     T fold() {
         if (frontst.empty() && backst.empty()) {
-            return e;
+            return T::e;
         }
         if (frontst.empty()) {
             return backst.top().second;
