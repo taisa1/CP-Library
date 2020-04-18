@@ -1,5 +1,6 @@
 {
 "Test/BinaryIndexedTree.test.cpp": "2020-04-18 11:20:57 +0900",
+"Test/Dijkstra.test.cpp": "2020-04-18 17:02:08 +0900",
 "Test/Dinic.test.cpp": "2020-04-18 13:33:28 +0900",
 "Test/FordFulkerson.test.cpp": "2020-04-18 13:40:15 +0900",
 "Test/LCA.test.cpp": "2020-04-18 12:06:47 +0900",
