@@ -38,6 +38,7 @@ layout: default
 
 ## Verified with
 
+* :heavy_check_mark: <a href="../../verify/Test/DualSegmentTree.test.cpp.html">Test/DualSegmentTree.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Test/LazySegmentTree.test.cpp.html">Test/LazySegmentTree.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Test/SWAG.test.cpp.html">Test/SWAG.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Test/SegmentTree.test.cpp.html">Test/SegmentTree.test.cpp</a>

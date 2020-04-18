@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: DataStructure/DualSegmentTree.cpp
+# :heavy_check_mark: DataStructure/DualSegmentTree.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/DualSegmentTree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-11 21:47:05+09:00
+    - Last commit date: 2020-04-18 23:39:09+09:00
 
 
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/Test/DualSegmentTree.test.cpp.html">Test/DualSegmentTree.test.cpp</a>
 
 
 ## Code
@@ -44,41 +49,39 @@ layout: default
 //Range Update Point Get
 template <typename T>
 struct Segtree {
-    inline T merge(T a, T b) { return a + b; }
-    inline void act(T &a, T b) { a += b; }
     vector<T> dat;
     int n;
     T e;
-    Segtree(int n_, T e) : e(e) {
+    Segtree(int n_) {
         n = 1;
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, e);
+        dat.resize(2 * n, T::e);
     }
     void upd(const int &a, const int &b, const T &x, int k, int l, int r) {
         if (b <= l || r <= a) {
             return;
         }
         if (a <= l && r <= b) {
-            act(dat[k], x);
+            dat[k].g(x);
             return;
         }
-        set(a, b, x, k << 1, l, (l + r) >> 1);
-        set(a, b, x, k << 1 | 1, (l + r) >> 1, r);
+        upd(a, b, x, k << 1, l, (l + r) >> 1);
+        upd(a, b, x, k << 1 | 1, (l + r) >> 1, r);
     }
     inline void upd(const int &a, const int &b, const T &x) {
         if (a >= b) {
             return;
         }
-        set(a, b, x, 1, 0, n);
+        upd(a, b, x, 1, 0, n);
     }
     T get(int k) {
         k += n;
         T res = dat[k];
         k >>= 1;
         while (k > 0) {
-            res = merge(res, dat[k]);
+            res = T::f(res, dat[k]);
             k >>= 1;
         }
         return res;
@@ -95,41 +98,39 @@ struct Segtree {
 //Range Update Point Get
 template <typename T>
 struct Segtree {
-    inline T merge(T a, T b) { return a + b; }
-    inline void act(T &a, T b) { a += b; }
     vector<T> dat;
     int n;
     T e;
-    Segtree(int n_, T e) : e(e) {
+    Segtree(int n_) {
         n = 1;
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, e);
+        dat.resize(2 * n, T::e);
     }
     void upd(const int &a, const int &b, const T &x, int k, int l, int r) {
         if (b <= l || r <= a) {
             return;
         }
         if (a <= l && r <= b) {
-            act(dat[k], x);
+            dat[k].g(x);
             return;
         }
-        set(a, b, x, k << 1, l, (l + r) >> 1);
-        set(a, b, x, k << 1 | 1, (l + r) >> 1, r);
+        upd(a, b, x, k << 1, l, (l + r) >> 1);
+        upd(a, b, x, k << 1 | 1, (l + r) >> 1, r);
     }
     inline void upd(const int &a, const int &b, const T &x) {
         if (a >= b) {
             return;
         }
-        set(a, b, x, 1, 0, n);
+        upd(a, b, x, 1, 0, n);
     }
     T get(int k) {
         k += n;
         T res = dat[k];
         k >>= 1;
         while (k > 0) {
-            res = merge(res, dat[k]);
+            res = T::f(res, dat[k]);
             k >>= 1;
         }
         return res;
