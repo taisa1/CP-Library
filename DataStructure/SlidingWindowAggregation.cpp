@@ -1,6 +1,5 @@
 template <class T>
 struct SWAG {
-    inline T f(const T &a, const T &b) {}
     T e;
     SWAG(const T &e) : e(e) {}
     stack<pair<T, T>> frontst, backst;
@@ -8,7 +7,7 @@ struct SWAG {
         if (backst.empty()) {
             backst.emplace(x, x);
         } else {
-            backst.emplace(x, f(backst.top().second, x));
+            backst.emplace(x, T::f(backst.top().second, x));
         }
     }
     void pop() {
@@ -17,7 +16,7 @@ struct SWAG {
                 if (frontst.empty()) {
                     frontst.emplace(backst.top().first, backst.top().first);
                 } else {
-                    frontst.emplace(backst.top().first, f(backst.top().first, frontst.top().second));
+                    frontst.emplace(backst.top().first, T::f(backst.top().first, frontst.top().second));
                 }
                 backst.pop();
             }
@@ -33,6 +32,6 @@ struct SWAG {
         } else if (backst.empty()) {
             return frontst.top().second;
         }
-        return f(frontst.top().second, backst.top().second);
+        return T::f(frontst.top().second, backst.top().second);
     }
 };
