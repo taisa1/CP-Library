@@ -25,21 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Test/SWAG.test.cpp
+# :heavy_check_mark: Test/SegmentTree.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Test/SWAG.test.cpp">View this file on GitHub</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Test/SegmentTree.test.cpp">View this file on GitHub</a>
     - Last commit date: 2020-04-18 12:56:31+09:00
 
 
-* see: <a href="https://judge.yosupo.jp/problem/queue_operate_all_composite">https://judge.yosupo.jp/problem/queue_operate_all_composite</a>
+* see: <a href="https://judge.yosupo.jp/problem/point_set_range_composite">https://judge.yosupo.jp/problem/point_set_range_composite</a>
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/DataStructure/SlidingWindowAggregation.cpp.html">DataStructure/SlidingWindowAggregation.cpp</a>
+* :heavy_check_mark: <a href="../../library/DataStructure/SegmentTree.cpp.html">DataStructure/SegmentTree.cpp</a>
 * :heavy_check_mark: <a href="../../library/Math/ModInt.cpp.html">Math/ModInt.cpp</a>
 
 
@@ -48,7 +48,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "https://judge.yosupo.jp/problem/queue_operate_all_composite"
+#define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 #include <bits/stdc++.h>
 #define all(vec) vec.begin(), vec.end()
 #define pb push_back
@@ -73,38 +73,46 @@ void printv(const vector<T> &v) {
     for (int i = 0; i < v.size(); i++) cout << v[i] << (i + 1 == v.size() ? '\n' : ' ');
 }
 #define call_from_test
-#include "../DataStructure/SlidingWindowAggregation.cpp"
+#include "../DataStructure/SegmentTree.cpp"
 #include "../Math/ModInt.cpp"
 #undef call_from_test
 struct T {
     mint a, b;
     inline static T f(const T &a, const T &b) {
-        T res;
-        res.a = a.a * b.a;
-        res.b = b.a * a.b + b.b;
-        return res;
+        return T(a.a * b.a, b.a * a.b + b.b);
     }
+    inline static void g(T &a, const T &b) {
+        a = b;
+    }
+    T(const mint &aa, const mint &bb) : a(aa), b(bb) {}
+    static T e;
 };
+T T::e = T(1, 0);
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(0);
-    int t;
-    cin >> t;
-    SWAG<T> q(T{1, 0});
-    while (t--) {
-        int ty;
-        cin >> ty;
-        if (ty == 0) {
-            ll a, b;
-            cin >> a >> b;
-            q.push(T{mint(a), mint(b)});
-        } else if (ty == 1) {
-            q.pop();
+    int n, q;
+    cin >> n >> q;
+    Segtree<T> seg(n);
+    for (int i = 0; i < n; i++) {
+        ll a, b;
+        cin >> a >> b;
+        seg.upd(i, T(a, b));
+    }
+    while (q--) {
+        int t;
+        cin >> t;
+        if (t == 0) {
+            int p, c, d;
+            cin >> p >> c >> d;
+            seg.upd(p, T(c, d));
         } else {
+            int l, r;
+            cin >> l >> r;
+            T t = seg.get(l, r);
             ll x;
             cin >> x;
-            T r = q.fold();
-            cout << (r.a * x + r.b).a << '\n';
+            cout << (t.a * x + t.b) << '\n';
         }
     }
 }
@@ -114,8 +122,8 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Test/SWAG.test.cpp"
-#define PROBLEM "https://judge.yosupo.jp/problem/queue_operate_all_composite"
+#line 1 "Test/SegmentTree.test.cpp"
+#define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 #include <bits/stdc++.h>
 #define all(vec) vec.begin(), vec.end()
 #define pb push_back
@@ -140,42 +148,75 @@ void printv(const vector<T> &v) {
     for (int i = 0; i < v.size(); i++) cout << v[i] << (i + 1 == v.size() ? '\n' : ' ');
 }
 #define call_from_test
-#line 1 "DataStructure/SlidingWindowAggregation.cpp"
+#line 1 "DataStructure/SegmentTree.cpp"
+//Point Update Range Get
 template <class T>
-struct SWAG {
-    T e;
-    SWAG(const T &e) : e(e) {}
-    stack<pair<T, T>> frontst, backst;
-    void push(const T &x) {
-        if (backst.empty()) {
-            backst.emplace(x, x);
-        } else {
-            backst.emplace(x, T::f(backst.top().second, x));
+struct Segtree {
+    int n;
+    vector<T> dat;
+    Segtree(int n_) {
+        n = 1;
+        while (n < n_) {
+            n <<= 1;
+        }
+        dat.resize(2 * n, T::e);
+    }
+    Segtree(int n_, const vector<T> &a) {
+        n = 1;
+        while (n < n_) {
+            n <<= 1;
+        }
+        dat.resize(2 * n, T::e);
+        for (int i = 0; i < a.size(); i++) {
+            dat[i + n] = a[i];
+        }
+        for (int i = n - 1; i > 0; i--) {
+            dat[i] = T::f(dat[i << 1], dat[i << 1 | 1]);
         }
     }
-    void pop() {
-        if (frontst.empty()) {
-            while (!backst.empty()) {
-                if (frontst.empty()) {
-                    frontst.emplace(backst.top().first, backst.top().first);
-                } else {
-                    frontst.emplace(backst.top().first, T::f(backst.top().first, frontst.top().second));
-                }
-                backst.pop();
-            }
+    void upd(int k, const T &x) {
+        k += n;
+        T::g(dat[k], x);
+        k >>= 1;
+        while (k > 0) {
+            dat[k] = T::f(dat[k << 1], dat[k << 1 | 1]);
+            k >>= 1;
         }
-        frontst.pop();
     }
-    T fold() {
-        if (frontst.empty() && backst.empty()) {
-            return e;
+    T get(const int &a, const int &b, int k, int l, int r) {
+        if (b <= l || r <= a) {
+            return T::e;
         }
-        if (frontst.empty()) {
-            return backst.top().second;
-        } else if (backst.empty()) {
-            return frontst.top().second;
+        if (a <= l && r <= b) {
+            return dat[k];
         }
-        return T::f(frontst.top().second, backst.top().second);
+        return T::f(get(a, b, k << 1, l, (l + r) >> 1),
+                    get(a, b, k << 1 | 1, (l + r) >> 1, r));
+    }
+    inline T get(const int &a, const int &b) { //[a,b)
+        if (a >= b) {
+            return T::e;
+        }
+        return get(a, b, 1, 0, n);
+    }
+    int find(const int &a, const int &b, const T &x, int k, int l, int r) {
+        if (b <= l || r <= a || dat[k] > x) {
+            return -1;
+        }
+        if (k >= n) {
+            return k - n;
+        }
+        int il = find(a, b, x, k << 1, l, (l + r) >> 1);
+        if (il != -1) {
+            return il;
+        }
+        return find(a, b, x, k << 1 | 1, (l + r) >> 1, r);
+    }
+    inline int find(const int &a, const int &b, const T &x) { //[a,b)における、値<=x なる最左のindexを求める
+        if (a >= b) {
+            return -1;
+        }
+        return find(a, b, x, 1, 0, n);
     }
 };
 #line 1 "Math/ModInt.cpp"
@@ -251,37 +292,45 @@ class modint {
     }
 };
 using mint = modint<MOD>;
-#line 28 "Test/SWAG.test.cpp"
+#line 28 "Test/SegmentTree.test.cpp"
 #undef call_from_test
 struct T {
     mint a, b;
     inline static T f(const T &a, const T &b) {
-        T res;
-        res.a = a.a * b.a;
-        res.b = b.a * a.b + b.b;
-        return res;
+        return T(a.a * b.a, b.a * a.b + b.b);
     }
+    inline static void g(T &a, const T &b) {
+        a = b;
+    }
+    T(const mint &aa, const mint &bb) : a(aa), b(bb) {}
+    static T e;
 };
+T T::e = T(1, 0);
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(0);
-    int t;
-    cin >> t;
-    SWAG<T> q(T{1, 0});
-    while (t--) {
-        int ty;
-        cin >> ty;
-        if (ty == 0) {
-            ll a, b;
-            cin >> a >> b;
-            q.push(T{mint(a), mint(b)});
-        } else if (ty == 1) {
-            q.pop();
+    int n, q;
+    cin >> n >> q;
+    Segtree<T> seg(n);
+    for (int i = 0; i < n; i++) {
+        ll a, b;
+        cin >> a >> b;
+        seg.upd(i, T(a, b));
+    }
+    while (q--) {
+        int t;
+        cin >> t;
+        if (t == 0) {
+            int p, c, d;
+            cin >> p >> c >> d;
+            seg.upd(p, T(c, d));
         } else {
+            int l, r;
+            cin >> l >> r;
+            T t = seg.get(l, r);
             ll x;
             cin >> x;
-            T r = q.fold();
-            cout << (r.a * x + r.b).a << '\n';
+            cout << (t.a * x + t.b) << '\n';
         }
     }
 }

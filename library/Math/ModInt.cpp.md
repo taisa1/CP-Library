@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#a49950aa047c2292e989e368a97a3aae">Math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Math/ModInt.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 01:10:06+09:00
+    - Last commit date: 2020-04-18 12:56:31+09:00
 
 
 
@@ -39,6 +39,7 @@ layout: default
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/Test/SWAG.test.cpp.html">Test/SWAG.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Test/SegmentTree.test.cpp.html">Test/SegmentTree.test.cpp</a>
 
 
 ## Code
@@ -118,28 +119,6 @@ class modint {
     }
 };
 using mint = modint<MOD>;
-vector<mint> f, fi;
-void comb(int n) {
-    f.resize(n + 1);
-    fi.resize(n + 1);
-    f[0] = 1;
-    for (ll i = 1; i <= n; i++) {
-        f[i] = f[i - 1] * mint(i);
-    }
-    fi[n] = mint(1) / f[n];
-    for (ll i = n - 1; i >= 0; i--) {
-        fi[i] = fi[i + 1] * mint(i + 1LL);
-    }
-}
-mint ncr(ll n, ll r) {
-    if (n < r) {
-        return mint(0);
-    }
-    if (r == 0) {
-        return mint(1);
-    }
-    return f[n] * fi[n - r] * fi[r];
-}
 ```
 {% endraw %}
 
@@ -219,28 +198,6 @@ class modint {
     }
 };
 using mint = modint<MOD>;
-vector<mint> f, fi;
-void comb(int n) {
-    f.resize(n + 1);
-    fi.resize(n + 1);
-    f[0] = 1;
-    for (ll i = 1; i <= n; i++) {
-        f[i] = f[i - 1] * mint(i);
-    }
-    fi[n] = mint(1) / f[n];
-    for (ll i = n - 1; i >= 0; i--) {
-        fi[i] = fi[i + 1] * mint(i + 1LL);
-    }
-}
-mint ncr(ll n, ll r) {
-    if (n < r) {
-        return mint(0);
-    }
-    if (r == 0) {
-        return mint(1);
-    }
-    return f[n] * fi[n - r] * fi[r];
-}
 
 ```
 {% endraw %}

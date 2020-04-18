@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: DataStructure/SegmentTree.cpp
+# :heavy_check_mark: DataStructure/SegmentTree.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/SegmentTree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-11 21:47:05+09:00
+    - Last commit date: 2020-04-18 12:56:31+09:00
 
 
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/Test/SegmentTree.test.cpp.html">Test/SegmentTree.test.cpp</a>
 
 
 ## Code
@@ -44,53 +49,50 @@ layout: default
 //Point Update Range Get
 template <class T>
 struct Segtree {
-    inline T f(const T &a, const T &b) { return b * a; }
-    inline void act(T &a, const T &b) { a = b; }
     int n;
-    T e;
     vector<T> dat;
-    Segtree(int n_, T e) : e(e) {
+    Segtree(int n_) {
         n = 1;
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, e);
+        dat.resize(2 * n, T::e);
     }
-    Segtree(int n_, const T &e, const vector<T> &a) : e(e) {
+    Segtree(int n_, const vector<T> &a) {
         n = 1;
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, e);
+        dat.resize(2 * n, T::e);
         for (int i = 0; i < a.size(); i++) {
             dat[i + n] = a[i];
         }
         for (int i = n - 1; i > 0; i--) {
-            dat[i] = f(dat[i << 1], dat[i << 1 | 1]);
+            dat[i] = T::f(dat[i << 1], dat[i << 1 | 1]);
         }
     }
     void upd(int k, const T &x) {
         k += n;
-        act(dat[k], x);
+        T::g(dat[k], x);
         k >>= 1;
         while (k > 0) {
-            dat[k] = f(dat[k << 1], dat[k << 1 | 1]);
+            dat[k] = T::f(dat[k << 1], dat[k << 1 | 1]);
             k >>= 1;
         }
     }
     T get(const int &a, const int &b, int k, int l, int r) {
         if (b <= l || r <= a) {
-            return e;
+            return T::e;
         }
         if (a <= l && r <= b) {
             return dat[k];
         }
-        return f(get(a, b, k << 1, l, (l + r) >> 1),
-                 get(a, b, k << 1 | 1, (l + r) >> 1, r));
+        return T::f(get(a, b, k << 1, l, (l + r) >> 1),
+                    get(a, b, k << 1 | 1, (l + r) >> 1, r));
     }
     inline T get(const int &a, const int &b) { //[a,b)
         if (a >= b) {
-            return e;
+            return T::e;
         }
         return get(a, b, 1, 0, n);
     }
@@ -124,53 +126,50 @@ struct Segtree {
 //Point Update Range Get
 template <class T>
 struct Segtree {
-    inline T f(const T &a, const T &b) { return b * a; }
-    inline void act(T &a, const T &b) { a = b; }
     int n;
-    T e;
     vector<T> dat;
-    Segtree(int n_, T e) : e(e) {
+    Segtree(int n_) {
         n = 1;
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, e);
+        dat.resize(2 * n, T::e);
     }
-    Segtree(int n_, const T &e, const vector<T> &a) : e(e) {
+    Segtree(int n_, const vector<T> &a) {
         n = 1;
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, e);
+        dat.resize(2 * n, T::e);
         for (int i = 0; i < a.size(); i++) {
             dat[i + n] = a[i];
         }
         for (int i = n - 1; i > 0; i--) {
-            dat[i] = f(dat[i << 1], dat[i << 1 | 1]);
+            dat[i] = T::f(dat[i << 1], dat[i << 1 | 1]);
         }
     }
     void upd(int k, const T &x) {
         k += n;
-        act(dat[k], x);
+        T::g(dat[k], x);
         k >>= 1;
         while (k > 0) {
-            dat[k] = f(dat[k << 1], dat[k << 1 | 1]);
+            dat[k] = T::f(dat[k << 1], dat[k << 1 | 1]);
             k >>= 1;
         }
     }
     T get(const int &a, const int &b, int k, int l, int r) {
         if (b <= l || r <= a) {
-            return e;
+            return T::e;
         }
         if (a <= l && r <= b) {
             return dat[k];
         }
-        return f(get(a, b, k << 1, l, (l + r) >> 1),
-                 get(a, b, k << 1 | 1, (l + r) >> 1, r));
+        return T::f(get(a, b, k << 1, l, (l + r) >> 1),
+                    get(a, b, k << 1 | 1, (l + r) >> 1, r));
     }
     inline T get(const int &a, const int &b) { //[a,b)
         if (a >= b) {
-            return e;
+            return T::e;
         }
         return get(a, b, 1, 0, n);
     }
