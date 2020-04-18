@@ -1,11 +1,12 @@
+template <class T>
 struct Dijkstra {
     int n;
-    vector<vector<P>> G;
+    vector<vector<pair<T, T>>> G;
     Dijkstra(int n) : n(n), G(n) {}
-    void addedge(int u, int v, ll c) { G[u].emplace_back(v, c); }
-    vector<ll> dijkstra(int st) {
-        priority_queue<P, vector<P>, greater<P>> q;
-        vector<ll> d(n, INF);
+    void addedge(const int &u, const int &v, const T &c) { G[u].emplace_back(v, c); }
+    vector<T> dijkstra(const int &st) {
+        priority_queue<pair<T, int>, vector<pair<T, int>>, greater<pair<T, int>>> q;
+        vector<T> d(n, INF);
         d[st] = 0;
         q.emplace(0, st);
         while (!q.empty()) {
