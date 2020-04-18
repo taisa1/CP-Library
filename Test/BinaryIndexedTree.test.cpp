@@ -1,8 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 #include <bits/stdc++.h>
-#define call_fromm_test
-#include "../DataStructure/BinaryIndexedTree.cpp"
-#undef call_from_test
 #define all(vec) vec.begin(), vec.end()
 #define pb push_back
 #define eb emplace_back
@@ -25,16 +22,20 @@ template <class T>
 void printv(const vector<T> &v) {
     for (int i = 0; i < v.size(); i++) cout << v[i] << (i + 1 == v.size() ? '\n' : ' ');
 }
+
+#define call_from_test
+#include "../DataStructure/BinaryIndexedTree.cpp"
+#undef call_from_test
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
     int n, q;
     cin >> n >> q;
-    vector<ll> a(n);
     BinaryIndexedTree<ll> bit(n);
     for (int i = 0; i < n; i++) {
-        cin >> a[i];
-        bit.add(i, a[i]);
+        ll a;
+        cin >> a;
+        bit.add(i, a);
     }
     while (q--) {
         int t;
@@ -46,7 +47,7 @@ int main() {
         } else {
             int l, r;
             cin >> l >> r;
-            cout << bit.get(r - 1) - bit.get(l - 1) << '\n';
+            cout << bit.get(l, r) << '\n';
         }
     }
 }
