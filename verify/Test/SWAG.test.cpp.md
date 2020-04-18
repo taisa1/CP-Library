@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/SWAG.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 13:33:28+09:00
+    - Last commit date: 2020-04-18 23:30:40+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/queue_operate_all_composite">https://judge.yosupo.jp/problem/queue_operate_all_composite</a>
@@ -246,6 +246,10 @@ class modint {
     friend ostream &operator<<(ostream &os, const modint &x) {
         os << x.a;
         return os;
+    }
+    friend istream &operator>>(istream &is, modint &x) {
+        is >> x.a;
+        return is;
     }
 };
 using mint = modint<MOD>;

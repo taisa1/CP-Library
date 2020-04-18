@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/LowestCommonAncester.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 12:06:47+09:00
+    - Last commit date: 2020-04-18 23:30:40+09:00
 
 
 
@@ -49,11 +49,15 @@ layout: default
 struct LCA {
     vector<vector<int>> G, par;
     vector<int> dep;
-    int n;
-    LCA(int n) : n(n), G(n), par(30, vector<int>(n, -1)), dep(n) {}
+    int n, cnt;
+    LCA(int n) : n(n), G(n), par(30, vector<int>(n, -1)), dep(n), cnt(0) {}
     void addedge(int u, int v) {
         G[u].emplace_back(v);
         G[v].emplace_back(u);
+        cnt++;
+        if (cnt == n - 1) {
+            build();
+        }
     }
     void dfs(int i, int p) {
         par[0][i] = p;
@@ -63,8 +67,9 @@ struct LCA {
             dfs(e, i);
         }
     }
-    void build(int rt = 0) {
-        dfs(rt, -1);
+    //辺追加後に自動でbuild
+    void build() {
+        dfs(0, -1);
         for (int i = 1; i < 30; i++) {
             for (int j = 0; j < n; j++) {
                 if (par[i - 1][j] != -1) {
@@ -98,11 +103,15 @@ struct LCA {
 struct LCA {
     vector<vector<int>> G, par;
     vector<int> dep;
-    int n;
-    LCA(int n) : n(n), G(n), par(30, vector<int>(n, -1)), dep(n) {}
+    int n, cnt;
+    LCA(int n) : n(n), G(n), par(30, vector<int>(n, -1)), dep(n), cnt(0) {}
     void addedge(int u, int v) {
         G[u].emplace_back(v);
         G[v].emplace_back(u);
+        cnt++;
+        if (cnt == n - 1) {
+            build();
+        }
     }
     void dfs(int i, int p) {
         par[0][i] = p;
@@ -112,8 +121,9 @@ struct LCA {
             dfs(e, i);
         }
     }
-    void build(int rt = 0) {
-        dfs(rt, -1);
+    //辺追加後に自動でbuild
+    void build() {
+        dfs(0, -1);
         for (int i = 1; i < 30; i++) {
             for (int j = 0; j < n; j++) {
                 if (par[i - 1][j] != -1) {

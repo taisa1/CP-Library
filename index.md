@@ -41,7 +41,7 @@ layout: default
 * :heavy_check_mark: <a href="library/DataStructure/BinaryIndexedTree.cpp.html">DataStructure/BinaryIndexedTree.cpp</a>
 * :warning: <a href="library/DataStructure/BinaryTrie.cpp.html">DataStructure/BinaryTrie.cpp</a>
 * :warning: <a href="library/DataStructure/DualSegmentTree.cpp.html">DataStructure/DualSegmentTree.cpp</a>
-* :warning: <a href="library/DataStructure/LazySegmentTree.cpp.html">DataStructure/LazySegmentTree.cpp</a>
+* :heavy_check_mark: <a href="library/DataStructure/LazySegmentTree.cpp.html">DataStructure/LazySegmentTree.cpp</a>
 * :heavy_check_mark: <a href="library/DataStructure/LiChaoTree.cpp.html">DataStructure/LiChaoTree.cpp</a>
 * :warning: <a href="library/DataStructure/Median.cpp.html">DataStructure/Median.cpp</a>
 * :warning: <a href="library/DataStructure/PartiallyPersistentUnionFind.cpp.html">DataStructure/PartiallyPersistentUnionFind.cpp</a>
@@ -114,6 +114,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/Test/Dinic.test.cpp.html">Test/Dinic.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/FordFulkerson.test.cpp.html">Test/FordFulkerson.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/LCA.test.cpp.html">Test/LCA.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Test/LazySegmentTree.test.cpp.html">Test/LazySegmentTree.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/LineCHT.test.cpp.html">Test/LineCHT.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/SCC.test.cpp.html">Test/SCC.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/SWAG.test.cpp.html">Test/SWAG.test.cpp</a>

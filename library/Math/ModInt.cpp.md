@@ -31,13 +31,14 @@ layout: default
 
 * category: <a href="../../index.html#a49950aa047c2292e989e368a97a3aae">Math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Math/ModInt.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 12:56:31+09:00
+    - Last commit date: 2020-04-18 23:30:40+09:00
 
 
 
 
 ## Verified with
 
+* :heavy_check_mark: <a href="../../verify/Test/LazySegmentTree.test.cpp.html">Test/LazySegmentTree.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Test/SWAG.test.cpp.html">Test/SWAG.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Test/SegmentTree.test.cpp.html">Test/SegmentTree.test.cpp</a>
 
@@ -117,6 +118,10 @@ class modint {
         os << x.a;
         return os;
     }
+    friend istream &operator>>(istream &is, modint &x) {
+        is >> x.a;
+        return is;
+    }
 };
 using mint = modint<MOD>;
 ```
@@ -195,6 +200,10 @@ class modint {
     friend ostream &operator<<(ostream &os, const modint &x) {
         os << x.a;
         return os;
+    }
+    friend istream &operator>>(istream &is, modint &x) {
+        is >> x.a;
+        return is;
     }
 };
 using mint = modint<MOD>;
