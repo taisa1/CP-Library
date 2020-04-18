@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
+#define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
 #include <bits/stdc++.h>
 #define all(vec) vec.begin(), vec.end()
 #define pb push_back
@@ -23,45 +23,51 @@ void printv(const vector<T> &v) {
     for (int i = 0; i < v.size(); i++) cout << v[i] << (i + 1 == v.size() ? '\n' : ' ');
 }
 #define call_from_test
-#include "../DataStructure/SegmentTree.cpp"
+#include "../DataStructure/LazySegmentTree.cpp"
 #include "../Math/ModInt.cpp"
 #undef call_from_test
-struct T {
+struct E {
     mint a, b;
-    inline static T f(const T &x, const T &y) {
-        return T{x.a * y.a, y.a * x.b + y.b};
+    inline void h(const E &y) {
+        a = a * y.a;
+        b = y.a * b + y.b;
     }
-    inline static void g(T &a, const T &b) {
-        a = b;
+    static E e;
+};
+struct T {
+    mint a;
+    inline static T f(const T &x, const T &y) {
+        return T{x.a + y.a};
+    }
+    inline void g(const E &x, ll len) {
+        a = x.a * a + x.b * len;
     }
     static T e;
 };
-T T::e = T{1, 0};
+E E::e = E{1, 0};
+T T::e = T{0};
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(0);
     int n, q;
     cin >> n >> q;
-    Segtree<T> seg(n);
+    vector<T> a(n);
     for (int i = 0; i < n; i++) {
-        ll a, b;
-        cin >> a >> b;
-        seg.upd(i, T{a, b});
+        cin >> a[i].a;
     }
+    Segtree<T, E> seg(n, a);
     while (q--) {
         int t;
         cin >> t;
         if (t == 0) {
-            int p, c, d;
-            cin >> p >> c >> d;
-            seg.upd(p, T{c, d});
+            int l, r, c, d;
+            cin >> l >> r >> c >> d;
+            E x = E{c, d};
+            seg.upd(l, r, x);
         } else {
             int l, r;
             cin >> l >> r;
-            T t = seg.get(l, r);
-            ll x;
-            cin >> x;
-            cout << (t.a * x + t.b) << '\n';
+            cout << seg.get(l, r).a << '\n';
         }
     }
 }

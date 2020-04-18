@@ -1,11 +1,15 @@
 struct LCA {
     vector<vector<int>> G, par;
     vector<int> dep;
-    int n;
-    LCA(int n) : n(n), G(n), par(30, vector<int>(n, -1)), dep(n) {}
+    int n, cnt;
+    LCA(int n) : n(n), G(n), par(30, vector<int>(n, -1)), dep(n), cnt(0) {}
     void addedge(int u, int v) {
         G[u].emplace_back(v);
         G[v].emplace_back(u);
+        cnt++;
+        if (cnt == n - 1) {
+            build();
+        }
     }
     void dfs(int i, int p) {
         par[0][i] = p;
@@ -15,8 +19,9 @@ struct LCA {
             dfs(e, i);
         }
     }
-    void build(int rt = 0) {
-        dfs(rt, -1);
+    //辺追加後に自動でbuild
+    void build() {
+        dfs(0, -1);
         for (int i = 1; i < 30; i++) {
             for (int j = 0; j < n; j++) {
                 if (par[i - 1][j] != -1) {

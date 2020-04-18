@@ -36,7 +36,6 @@ int main() {
         cin >> p;
         g.addedge(p, i);
     }
-    g.build();
     while (q--) {
         int u, v;
         cin >> u >> v;

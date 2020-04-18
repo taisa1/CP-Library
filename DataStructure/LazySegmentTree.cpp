@@ -1,46 +1,53 @@
 //Range Update Range Get
 template <class T, class E>
 struct Segtree {
-    inline T merge(const T &a, const T &b) { return min(a, b); }
-    inline void act(E &a, const E &b) { a = b; }
-    inline void comb(T &a, const E &b) { a = b; }
     int n;
-    T et;
-    E ee;
     vector<T> dat;
     vector<E> laz;
-    Segtree(int n_, T et, E ee) : et(et), ee(ee) {
+    vector<ll> len;
+    Segtree(int n_) {
         n = 1;
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, et);
-        laz.resize(2 * n, ee);
+        dat.resize(2 * n, T::e);
+        laz.resize(2 * n, E::e);
+        len.resize(2 * n, 1);
+        for (int i = n - 1; i > 0; i--) len[i] = len[i << 1] + len[i << 1 | 1];
+    }
+    Segtree(int n_, const vector<T> &a) {
+        n = 1;
+        while (n < n_) {
+            n <<= 1;
+        }
+        dat.resize(2 * n, T::e);
+        laz.resize(2 * n, E::e);
+        len.resize(2 * n, 1);
+        for (int i = 0; i < a.size(); i++) dat[i + n] = a[i];
+        for (int i = n - 1; i > 0; i--) {
+            len[i] = len[i << 1] + len[i << 1 | 1];
+            dat[i] = T::f(dat[i << 1], dat[i << 1 | 1]);
+        }
     }
     inline void eval(int k) {
-        if (laz[k] == ee) {
-            return;
-        }
-        comb(dat[k], laz[k]);
+        dat[k].g(laz[k], len[k]);
         if (k < n) {
-            act(laz[k << 1], laz[k]);
-            act(laz[k << 1 | 1], laz[k]);
+            laz[k << 1].h(laz[k]);
+            laz[k << 1 | 1].h(laz[k]);
         }
-        laz[k] = ee;
+        laz[k] = E::e;
     }
     void upd(const int &a, const int &b, const E &x, int k, int l, int r) {
         eval(k);
-        if (b <= l || r <= a) {
-            return;
-        }
+        if (b <= l || r <= a) return;
         if (a <= l && r <= b) {
-            act(laz[k], x);
+            laz[k].h(x);
             eval(k);
             return;
         }
         upd(a, b, x, k << 1, l, (l + r) >> 1);
         upd(a, b, x, k << 1 | 1, (l + r) >> 1, r);
-        dat[k] = merge(dat[k << 1], dat[k << 1 | 1]);
+        dat[k] = T::f(dat[k << 1], dat[k << 1 | 1]);
     }
     inline void upd(const int &a, const int &b, const E &x) {
         if (a >= b) {
@@ -49,19 +56,18 @@ struct Segtree {
         upd(a, b, x, 1, 0, n);
     }
     T get(const int &a, const int &b, int k, int l, int r) {
-        if (b <= l || r <= a) {
-            return et;
-        }
         eval(k);
+        if (b <= l || r <= a) {
+            return T::e;
+        }
         if (a <= l && r <= b) {
             return dat[k];
         }
-        return merge(get(a, b, k << 1, l, (l + r) >> 1),
-                     get(a, b, k << 1 | 1, (l + r) >> 1, r));
+        return T::f(get(a, b, k << 1, l, (l + r) >> 1), get(a, b, k << 1 | 1, (l + r) >> 1, r));
     }
     inline T get(const int &a, const int &b) {
         if (a >= b) {
-            return et;
+            return T::e;
         }
         return get(a, b, 1, 0, n);
     }

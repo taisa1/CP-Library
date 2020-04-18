@@ -68,5 +68,9 @@ class modint {
         os << x.a;
         return os;
     }
+    friend istream &operator>>(istream &is, modint &x) {
+        is >> x.a;
+        return is;
+    }
 };
 using mint = modint<MOD>;
