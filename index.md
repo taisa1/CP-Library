@@ -38,7 +38,7 @@ layout: default
 
 ### DataStructure
 
-* :x: <a href="library/DataStructure/BinaryIndexedTree.cpp.html">DataStructure/BinaryIndexedTree.cpp</a>
+* :heavy_check_mark: <a href="library/DataStructure/BinaryIndexedTree.cpp.html">DataStructure/BinaryIndexedTree.cpp</a>
 * :warning: <a href="library/DataStructure/BinaryTrie.cpp.html">DataStructure/BinaryTrie.cpp</a>
 * :warning: <a href="library/DataStructure/DualSegmentTree.cpp.html">DataStructure/DualSegmentTree.cpp</a>
 * :warning: <a href="library/DataStructure/LazySegmentTree.cpp.html">DataStructure/LazySegmentTree.cpp</a>
@@ -50,7 +50,7 @@ layout: default
 * :warning: <a href="library/DataStructure/SparseTable.cpp.html">DataStructure/SparseTable.cpp</a>
 * :warning: <a href="library/DataStructure/Treap.cpp.html">DataStructure/Treap.cpp</a>
 * :warning: <a href="library/DataStructure/Trie.cpp.html">DataStructure/Trie.cpp</a>
-* :warning: <a href="library/DataStructure/UnionFind.cpp.html">DataStructure/UnionFind.cpp</a>
+* :heavy_check_mark: <a href="library/DataStructure/UnionFind.cpp.html">DataStructure/UnionFind.cpp</a>
 
 
 <div id="f1a76f66cca677c6e628d9ca58a6c8fc"></div>
@@ -108,6 +108,7 @@ layout: default
 
 ## Verify Files
 
-* :x: <a href="verify/Tests/BinaryIndexedTree.test.cpp.html">Tests/BinaryIndexedTree.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Test/BinaryIndexedTree.test.cpp.html">Test/BinaryIndexedTree.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Test/UnionFind.test.cpp.html">Test/UnionFind.test.cpp</a>
 
 

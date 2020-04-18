@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: DataStructure/BinaryIndexedTree.cpp
+# :heavy_check_mark: DataStructure/BinaryIndexedTree.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/BinaryIndexedTree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 10:49:59+09:00
+    - Last commit date: 2020-04-18 11:20:57+09:00
 
 
 
 
 ## Verified with
 
-* :x: <a href="../../verify/Tests/BinaryIndexedTree.test.cpp.html">Tests/BinaryIndexedTree.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Test/BinaryIndexedTree.test.cpp.html">Test/BinaryIndexedTree.test.cpp</a>
 
 
 ## Code
@@ -47,22 +47,21 @@ layout: default
 {% raw %}
 ```cpp
 //Point Add Range Sum
-template <typename T>
+template <class T>
 struct BinaryIndexedTree {
-    vector<T> node;
     int n;
-    BinaryIndexedTree(int n) : n(n) { node.assign(++n, 0); }
+    vector<T> dat;
+    BinaryIndexedTree(int n_) : n(n_ + 1), dat(n_ + 1) {}
     void add(int k, T x) {
-        for (++k; k < n; k += k & -k) {
-            node[k] += x;
-        }
+        for (++k; k < n; k += k & -k) dat[k] += x;
     }
     T get(int k) {
         T res = 0;
-        for (++k; k > 0; k -= k & -k) {
-            res += node[k];
-        }
+        for (++k; k > 0; k -= k & -k) res += dat[k];
         return res;
+    }
+    inline T get(int l, int r) { //0-indexed [l,r)
+        return get(r-1) - get(l-1);
     }
 };
 ```
@@ -73,22 +72,21 @@ struct BinaryIndexedTree {
 ```cpp
 #line 1 "DataStructure/BinaryIndexedTree.cpp"
 //Point Add Range Sum
-template <typename T>
+template <class T>
 struct BinaryIndexedTree {
-    vector<T> node;
     int n;
-    BinaryIndexedTree(int n) : n(n) { node.assign(++n, 0); }
+    vector<T> dat;
+    BinaryIndexedTree(int n_) : n(n_ + 1), dat(n_ + 1) {}
     void add(int k, T x) {
-        for (++k; k < n; k += k & -k) {
-            node[k] += x;
-        }
+        for (++k; k < n; k += k & -k) dat[k] += x;
     }
     T get(int k) {
         T res = 0;
-        for (++k; k > 0; k -= k & -k) {
-            res += node[k];
-        }
+        for (++k; k > 0; k -= k & -k) res += dat[k];
         return res;
+    }
+    inline T get(int l, int r) { //0-indexed [l,r)
+        return get(r-1) - get(l-1);
     }
 };
 

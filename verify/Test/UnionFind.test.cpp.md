@@ -25,21 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: Tests/BinaryIndexedTree.test.cpp
+# :heavy_check_mark: Test/UnionFind.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#90792de52961c34118f976ebe4af3a75">Tests</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Tests/BinaryIndexedTree.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 10:49:59+09:00
+* category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Test/UnionFind.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-04-18 11:20:57+09:00
 
 
-* see: <a href="https://judge.yosupo.jp/problem/point_add_range_sum">https://judge.yosupo.jp/problem/point_add_range_sum</a>
+* see: <a href="https://judge.yosupo.jp/problem/unionfind">https://judge.yosupo.jp/problem/unionfind</a>
 
 
 ## Depends on
 
-* :x: <a href="../../library/DataStructure/BinaryIndexedTree.cpp.html">DataStructure/BinaryIndexedTree.cpp</a>
+* :heavy_check_mark: <a href="../../library/DataStructure/UnionFind.cpp.html">DataStructure/UnionFind.cpp</a>
 
 
 ## Code
@@ -47,11 +47,8 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
+#define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
 #include <bits/stdc++.h>
-#define call_fromm_test
-#include "../DataStructure/BinaryIndexedTree.cpp"
-#undef call_from_test
 #define all(vec) vec.begin(), vec.end()
 #define pb push_back
 #define eb emplace_back
@@ -74,28 +71,26 @@ template <class T>
 void printv(const vector<T> &v) {
     for (int i = 0; i < v.size(); i++) cout << v[i] << (i + 1 == v.size() ? '\n' : ' ');
 }
+#define call_from_test
+#include "../DataStructure/UnionFind.cpp"
+#undef call_from_test
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
     int n, q;
     cin >> n >> q;
-    vector<ll> a(n);
-    BinaryIndexedTree<ll> bit(n);
-    for (int i = 0; i < n; i++) {
-        cin >> a[i];
-        bit.add(i, a[i]);
-    }
+    UnionFind uf(n);
     while (q--) {
-        int t;
-        cin >> t;
+        int t, u, v;
+        cin >> t >> u >> v;
         if (t == 0) {
-            int p, x;
-            cin >> p >> x;
-            bit.add(p, x);
+            uf.unite(u, v);
         } else {
-            int l, r;
-            cin >> l >> r;
-            cout << bit.get(r - 1) - bit.get(l - 1) << '\n';
+            if (uf.find(u) == uf.find(v)) {
+                cout << 1 << '\n';
+            } else {
+                cout << 0 << '\n';
+            }
         }
     }
 }
@@ -105,32 +100,9 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Tests/BinaryIndexedTree.test.cpp"
-#define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
+#line 1 "Test/UnionFind.test.cpp"
+#define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
 #include <bits/stdc++.h>
-#define call_fromm_test
-#line 1 "DataStructure/BinaryIndexedTree.cpp"
-//Point Add Range Sum
-template <typename T>
-struct BinaryIndexedTree {
-    vector<T> node;
-    int n;
-    BinaryIndexedTree(int n) : n(n) { node.assign(++n, 0); }
-    void add(int k, T x) {
-        for (++k; k < n; k += k & -k) {
-            node[k] += x;
-        }
-    }
-    T get(int k) {
-        T res = 0;
-        for (++k; k > 0; k -= k & -k) {
-            res += node[k];
-        }
-        return res;
-    }
-};
-#line 5 "Tests/BinaryIndexedTree.test.cpp"
-#undef call_from_test
 #define all(vec) vec.begin(), vec.end()
 #define pb push_back
 #define eb emplace_back
@@ -153,28 +125,48 @@ template <class T>
 void printv(const vector<T> &v) {
     for (int i = 0; i < v.size(); i++) cout << v[i] << (i + 1 == v.size() ? '\n' : ' ');
 }
+#define call_from_test
+#line 1 "DataStructure/UnionFind.cpp"
+struct UnionFind {
+    vector<int> par, sz;
+    UnionFind(int n) : par(n) {
+        sz.resize(n, 1);
+        iota(par.begin(), par.end(), 0);
+    }
+    inline int find(int x) {
+        if (x == par[x]) return x;
+        return par[x] = find(par[x]);
+    }
+    void unite(int u, int v) {
+        u = find(u), v = find(v);
+        if (u == v) return;
+        if (sz[u] < sz[v]) swap(u, v);
+        par[v] = u;
+        sz[u] += sz[v];
+    }
+    inline bool same(int u, int v) {
+        return find(u) == find(v);
+    }
+};
+#line 27 "Test/UnionFind.test.cpp"
+#undef call_from_test
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
     int n, q;
     cin >> n >> q;
-    vector<ll> a(n);
-    BinaryIndexedTree<ll> bit(n);
-    for (int i = 0; i < n; i++) {
-        cin >> a[i];
-        bit.add(i, a[i]);
-    }
+    UnionFind uf(n);
     while (q--) {
-        int t;
-        cin >> t;
+        int t, u, v;
+        cin >> t >> u >> v;
         if (t == 0) {
-            int p, x;
-            cin >> p >> x;
-            bit.add(p, x);
+            uf.unite(u, v);
         } else {
-            int l, r;
-            cin >> l >> r;
-            cout << bit.get(r - 1) - bit.get(l - 1) << '\n';
+            if (uf.find(u) == uf.find(v)) {
+                cout << 1 << '\n';
+            } else {
+                cout << 0 << '\n';
+            }
         }
     }
 }
