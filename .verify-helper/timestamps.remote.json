@@ -1,6 +1,7 @@
 {
 "Test/BinaryIndexedTree.test.cpp": "2020-04-18 11:20:57 +0900",
 "Test/LCA.test.cpp": "2020-04-18 12:06:47 +0900",
+"Test/SWAG.test.cpp": "2020-04-18 12:41:49 +0900",
 "Test/SparseTable.test.cpp": "2020-04-18 12:06:47 +0900",
 "Test/UnionFind.test.cpp": "2020-04-18 11:20:57 +0900"
 }
