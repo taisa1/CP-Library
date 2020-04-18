@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: DataStructure/SparseTable.cpp
+# :heavy_check_mark: DataStructure/SparseTable.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/SparseTable.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-15 13:25:24+09:00
+    - Last commit date: 2020-04-18 12:06:47+09:00
 
 
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/Test/SparseTable.test.cpp.html">Test/SparseTable.test.cpp</a>
 
 
 ## Code
@@ -46,12 +51,10 @@ struct SparseTable {
     int n;
     vector<vector<T>> dat;
     vector<int> lg, p;
-    ST(int n, T e) : n(n) {
-        dat.resize(30, vector<ll>(n, e));
-        lg.resize(n + 10);
-        p.resize(n + 10);
+    SparseTable(int n, T e) : n(n), lg(n + 1), p(30) {
+        dat.resize(30, vector<T>(n, e));
         for (int i = 1; i <= n; i++) {
-            lg[i] = log2(i);
+            lg[i] = 31 - __builtin_clz(i);
         }
         p[0] = 1;
         for (int i = 1; i < 30; i++) {
@@ -59,7 +62,7 @@ struct SparseTable {
         }
     }
     void build(const vector<T> &a) {
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < a.size(); i++) {
             dat[0][i] = a[i];
         }
         for (int i = 1; i <= lg[n]; i++) {
@@ -69,7 +72,7 @@ struct SparseTable {
             }
         }
     }
-    T get(int l, int r) {
+    T get(int l, int r) { //0-indexed [l,r)
         return min(dat[lg[r - l]][l], dat[lg[r - l]][r - p[lg[r - l]]]);
     }
 };
@@ -85,12 +88,10 @@ struct SparseTable {
     int n;
     vector<vector<T>> dat;
     vector<int> lg, p;
-    ST(int n, T e) : n(n) {
-        dat.resize(30, vector<ll>(n, e));
-        lg.resize(n + 10);
-        p.resize(n + 10);
+    SparseTable(int n, T e) : n(n), lg(n + 1), p(30) {
+        dat.resize(30, vector<T>(n, e));
         for (int i = 1; i <= n; i++) {
-            lg[i] = log2(i);
+            lg[i] = 31 - __builtin_clz(i);
         }
         p[0] = 1;
         for (int i = 1; i < 30; i++) {
@@ -98,7 +99,7 @@ struct SparseTable {
         }
     }
     void build(const vector<T> &a) {
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < a.size(); i++) {
             dat[0][i] = a[i];
         }
         for (int i = 1; i <= lg[n]; i++) {
@@ -108,7 +109,7 @@ struct SparseTable {
             }
         }
     }
-    T get(int l, int r) {
+    T get(int l, int r) { //0-indexed [l,r)
         return min(dat[lg[r - l]][l], dat[lg[r - l]][r - p[lg[r - l]]]);
     }
 };

@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Graph/LowestCommonAncester.cpp
+# :heavy_check_mark: Graph/LowestCommonAncester.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/LowestCommonAncester.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 01:10:06+09:00
+    - Last commit date: 2020-04-18 12:06:47+09:00
 
 
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/Test/LCA.test.cpp.html">Test/LCA.test.cpp</a>
 
 
 ## Code
@@ -41,22 +46,24 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-vector<vector<int>> G;
 struct LCA {
-    vector<vector<int>> par;
+    vector<vector<int>> G, par;
     vector<int> dep;
     int n;
+    LCA(int n) : n(n), G(n), par(30, vector<int>(n, -1)), dep(n) {}
+    void addedge(int u, int v) {
+        G[u].emplace_back(v);
+        G[v].emplace_back(u);
+    }
     void dfs(int i, int p) {
         par[0][i] = p;
         for (auto &e : G[i]) {
+            if (e == p) continue;
             dep[e] = dep[i] + 1;
-            dfs(e);
+            dfs(e, i);
         }
     }
-    void build(int n_, int rt = 0) {
-        n = n_;
-        dep.resize(n);
-        par.resize(30, vector<int>(n, -1));
+    void build(int rt = 0) {
         dfs(rt, -1);
         for (int i = 1; i < 30; i++) {
             for (int j = 0; j < n; j++) {
@@ -66,7 +73,7 @@ struct LCA {
             }
         }
     }
-    int get(int u, int v) {
+    int lca(int u, int v) {
         if (dep[u] > dep[v]) swap(u, v);
         for (int i = 19; i >= 0; i--) {
             if (((dep[v] - dep[u]) >> i) & 1) v = par[i][v];
@@ -88,22 +95,24 @@ struct LCA {
 {% raw %}
 ```cpp
 #line 1 "Graph/LowestCommonAncester.cpp"
-vector<vector<int>> G;
 struct LCA {
-    vector<vector<int>> par;
+    vector<vector<int>> G, par;
     vector<int> dep;
     int n;
+    LCA(int n) : n(n), G(n), par(30, vector<int>(n, -1)), dep(n) {}
+    void addedge(int u, int v) {
+        G[u].emplace_back(v);
+        G[v].emplace_back(u);
+    }
     void dfs(int i, int p) {
         par[0][i] = p;
         for (auto &e : G[i]) {
+            if (e == p) continue;
             dep[e] = dep[i] + 1;
-            dfs(e);
+            dfs(e, i);
         }
     }
-    void build(int n_, int rt = 0) {
-        n = n_;
-        dep.resize(n);
-        par.resize(30, vector<int>(n, -1));
+    void build(int rt = 0) {
         dfs(rt, -1);
         for (int i = 1; i < 30; i++) {
             for (int j = 0; j < n; j++) {
@@ -113,7 +122,7 @@ struct LCA {
             }
         }
     }
-    int get(int u, int v) {
+    int lca(int u, int v) {
         if (dep[u] > dep[v]) swap(u, v);
         for (int i = 19; i >= 0; i--) {
             if (((dep[v] - dep[u]) >> i) & 1) v = par[i][v];

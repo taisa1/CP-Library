@@ -47,7 +47,7 @@ layout: default
 * :warning: <a href="library/DataStructure/PartiallyPersistentUnionFind.cpp.html">DataStructure/PartiallyPersistentUnionFind.cpp</a>
 * :warning: <a href="library/DataStructure/SegmentTree.cpp.html">DataStructure/SegmentTree.cpp</a>
 * :warning: <a href="library/DataStructure/SlidingWindowAggregation.cpp.html">DataStructure/SlidingWindowAggregation.cpp</a>
-* :warning: <a href="library/DataStructure/SparseTable.cpp.html">DataStructure/SparseTable.cpp</a>
+* :heavy_check_mark: <a href="library/DataStructure/SparseTable.cpp.html">DataStructure/SparseTable.cpp</a>
 * :warning: <a href="library/DataStructure/Treap.cpp.html">DataStructure/Treap.cpp</a>
 * :warning: <a href="library/DataStructure/Trie.cpp.html">DataStructure/Trie.cpp</a>
 * :heavy_check_mark: <a href="library/DataStructure/UnionFind.cpp.html">DataStructure/UnionFind.cpp</a>
@@ -76,7 +76,7 @@ layout: default
 * :warning: <a href="library/Graph/CentroidDecomposition.cpp.html">Graph/CentroidDecomposition.cpp</a>
 * :warning: <a href="library/Graph/Dijkstra.cpp.html">Graph/Dijkstra.cpp</a>
 * :warning: <a href="library/Graph/HeavyLightDecomposition.cpp.html">Graph/HeavyLightDecomposition.cpp</a>
-* :warning: <a href="library/Graph/LowestCommonAncester.cpp.html">Graph/LowestCommonAncester.cpp</a>
+* :heavy_check_mark: <a href="library/Graph/LowestCommonAncester.cpp.html">Graph/LowestCommonAncester.cpp</a>
 * :warning: <a href="library/Graph/StronglyConnectedComponents.cpp.html">Graph/StronglyConnectedComponents.cpp</a>
 
 
@@ -109,6 +109,8 @@ layout: default
 ## Verify Files
 
 * :heavy_check_mark: <a href="verify/Test/BinaryIndexedTree.test.cpp.html">Test/BinaryIndexedTree.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Test/LCA.test.cpp.html">Test/LCA.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Test/SparseTable.test.cpp.html">Test/SparseTable.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/UnionFind.test.cpp.html">Test/UnionFind.test.cpp</a>
 
 
