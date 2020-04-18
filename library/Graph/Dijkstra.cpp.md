@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Graph/Dijkstra.cpp
+# :heavy_check_mark: Graph/Dijkstra.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/Dijkstra.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-15 13:25:24+09:00
+    - Last commit date: 2020-04-18 17:02:08+09:00
 
 
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/Test/Dijkstra.test.cpp.html">Test/Dijkstra.test.cpp</a>
 
 
 ## Code
@@ -41,14 +46,15 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+template <class T>
 struct Dijkstra {
     int n;
-    vector<vector<P>> G;
+    vector<vector<pair<T, T>>> G;
     Dijkstra(int n) : n(n), G(n) {}
-    void addedge(int u, int v, ll c) { G[u].emplace_back(v, c); }
-    vector<ll> dijkstra(int st) {
-        priority_queue<P, vector<P>, greater<P>> q;
-        vector<ll> d(n, INF);
+    void addedge(const int &u, const int &v, const T &c) { G[u].emplace_back(v, c); }
+    vector<T> dijkstra(const int &st) {
+        priority_queue<pair<T, int>, vector<pair<T, int>>, greater<pair<T, int>>> q;
+        vector<T> d(n, INF);
         d[st] = 0;
         q.emplace(0, st);
         while (!q.empty()) {
@@ -71,14 +77,15 @@ struct Dijkstra {
 {% raw %}
 ```cpp
 #line 1 "Graph/Dijkstra.cpp"
+template <class T>
 struct Dijkstra {
     int n;
-    vector<vector<P>> G;
+    vector<vector<pair<T, T>>> G;
     Dijkstra(int n) : n(n), G(n) {}
-    void addedge(int u, int v, ll c) { G[u].emplace_back(v, c); }
-    vector<ll> dijkstra(int st) {
-        priority_queue<P, vector<P>, greater<P>> q;
-        vector<ll> d(n, INF);
+    void addedge(const int &u, const int &v, const T &c) { G[u].emplace_back(v, c); }
+    vector<T> dijkstra(const int &st) {
+        priority_queue<pair<T, int>, vector<pair<T, int>>, greater<pair<T, int>>> q;
+        vector<T> d(n, INF);
         d[st] = 0;
         q.emplace(0, st);
         while (!q.empty()) {

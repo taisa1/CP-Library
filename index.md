@@ -74,7 +74,7 @@ layout: default
 ### Graph
 
 * :warning: <a href="library/Graph/CentroidDecomposition.cpp.html">Graph/CentroidDecomposition.cpp</a>
-* :warning: <a href="library/Graph/Dijkstra.cpp.html">Graph/Dijkstra.cpp</a>
+* :heavy_check_mark: <a href="library/Graph/Dijkstra.cpp.html">Graph/Dijkstra.cpp</a>
 * :warning: <a href="library/Graph/HeavyLightDecomposition.cpp.html">Graph/HeavyLightDecomposition.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/LowestCommonAncester.cpp.html">Graph/LowestCommonAncester.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/StronglyConnectedComponents.cpp.html">Graph/StronglyConnectedComponents.cpp</a>
@@ -110,6 +110,7 @@ layout: default
 ## Verify Files
 
 * :heavy_check_mark: <a href="verify/Test/BinaryIndexedTree.test.cpp.html">Test/BinaryIndexedTree.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Test/Dijkstra.test.cpp.html">Test/Dijkstra.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/Dinic.test.cpp.html">Test/Dinic.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/FordFulkerson.test.cpp.html">Test/FordFulkerson.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/LCA.test.cpp.html">Test/LCA.test.cpp</a>
