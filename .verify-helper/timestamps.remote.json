@@ -1,9 +1,10 @@
 {
 "Test/BinaryIndexedTree.test.cpp": "2020-04-18 11:20:57 +0900",
+"Test/Dinic.test.cpp": "2020-04-18 13:33:28 +0900",
 "Test/LCA.test.cpp": "2020-04-18 12:06:47 +0900",
 "Test/LineCHT.test.cpp": "2020-04-18 13:22:22 +0900",
 "Test/SCC.test.cpp": "2020-04-18 13:22:22 +0900",
-"Test/SWAG.test.cpp": "2020-04-18 12:56:31 +0900",
+"Test/SWAG.test.cpp": "2020-04-18 13:33:28 +0900",
 "Test/SegmentTree.test.cpp": "2020-04-18 13:26:43 +0900",
 "Test/SparseTable.test.cpp": "2020-04-18 12:06:47 +0900",
 "Test/UnionFind.test.cpp": "2020-04-18 11:20:57 +0900"
