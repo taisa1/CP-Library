@@ -15,6 +15,9 @@ struct UnionFind {
         par[v] = u;
         sz[u] += sz[v];
     }
+    inline int size(int x) {
+        return sz[find(x)];
+    }
     inline bool same(int u, int v) {
         return find(u) == find(v);
     }
