@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/UnionFind.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 11:20:57+09:00
+    - Last commit date: 2020-04-19 16:34:59+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/unionfind">https://judge.yosupo.jp/problem/unionfind</a>
@@ -143,6 +143,9 @@ struct UnionFind {
         if (sz[u] < sz[v]) swap(u, v);
         par[v] = u;
         sz[u] += sz[v];
+    }
+    inline int size(int x) {
+        return sz[find(x)];
     }
     inline bool same(int u, int v) {
         return find(u) == find(v);

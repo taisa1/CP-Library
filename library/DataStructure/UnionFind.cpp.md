@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/UnionFind.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 01:10:06+09:00
+    - Last commit date: 2020-04-19 16:34:59+09:00
 
 
 
@@ -63,6 +63,9 @@ struct UnionFind {
         par[v] = u;
         sz[u] += sz[v];
     }
+    inline int size(int x) {
+        return sz[find(x)];
+    }
     inline bool same(int u, int v) {
         return find(u) == find(v);
     }
@@ -91,6 +94,9 @@ struct UnionFind {
         if (sz[u] < sz[v]) swap(u, v);
         par[v] = u;
         sz[u] += sz[v];
+    }
+    inline int size(int x) {
+        return sz[find(x)];
     }
     inline bool same(int u, int v) {
         return find(u) == find(v);
