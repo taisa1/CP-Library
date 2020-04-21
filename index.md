@@ -118,6 +118,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/Test/LCA.test.cpp.html">Test/LCA.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/LazySegmentTree.test.cpp.html">Test/LazySegmentTree.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/LineCHT.test.cpp.html">Test/LineCHT.test.cpp</a>
+* :x: <a href="verify/Test/PartiallyPersistentUF.test.cpp.html">Test/PartiallyPersistentUF.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/QuickFind.test.cpp.html">Test/QuickFind.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/SCC.test.cpp.html">Test/SCC.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/SWAG.test.cpp.html">Test/SWAG.test.cpp</a>

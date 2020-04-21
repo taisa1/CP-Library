@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/Dijkstra.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 17:02:08+09:00
+    - Last commit date: 2020-04-21 15:29:15+09:00
 
 
 
@@ -59,7 +59,9 @@ struct Dijkstra {
         q.emplace(0, st);
         while (!q.empty()) {
             int v = q.top().second;
+            ll dd = q.top().first;
             q.pop();
+            if (d[v] < dd) continue;
             for (auto &e : G[v]) {
                 if (d[e.first] > d[v] + e.second) {
                     d[e.first] = d[v] + e.second;
@@ -90,7 +92,9 @@ struct Dijkstra {
         q.emplace(0, st);
         while (!q.empty()) {
             int v = q.top().second;
+            ll dd = q.top().first;
             q.pop();
+            if (d[v] < dd) continue;
             for (auto &e : G[v]) {
                 if (d[e.first] > d[v] + e.second) {
                     d[e.first] = d[v] + e.second;
