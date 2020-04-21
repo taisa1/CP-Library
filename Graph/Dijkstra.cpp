@@ -11,7 +11,9 @@ struct Dijkstra {
         q.emplace(0, st);
         while (!q.empty()) {
             int v = q.top().second;
+            ll dd = q.top().first;
             q.pop();
+            if (d[v] < dd) continue;
             for (auto &e : G[v]) {
                 if (d[e.first] > d[v] + e.second) {
                     d[e.first] = d[v] + e.second;
