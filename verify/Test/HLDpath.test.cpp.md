@@ -25,21 +25,22 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: Test/HLDpath.test.cpp
+# :heavy_check_mark: Test/HLDpath.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/HLDpath.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-23 01:30:59+09:00
+    - Last commit date: 2020-04-23 01:33:59+09:00
 
 
+* see: <a href="https://judge.yosupo.jp/problem/vertex_add_path_sum">https://judge.yosupo.jp/problem/vertex_add_path_sum</a>
 
 
 ## Depends on
 
-* :question: <a href="../../library/DataStructure/BinaryIndexedTree.cpp.html">DataStructure/BinaryIndexedTree.cpp</a>
-* :x: <a href="../../library/Graph/HeavyLightDecomposition.cpp.html">Graph/HeavyLightDecomposition.cpp</a>
+* :heavy_check_mark: <a href="../../library/DataStructure/BinaryIndexedTree.cpp.html">DataStructure/BinaryIndexedTree.cpp</a>
+* :heavy_check_mark: <a href="../../library/Graph/HeavyLightDecomposition.cpp.html">Graph/HeavyLightDecomposition.cpp</a>
 
 
 ## Code
@@ -47,6 +48,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_path_sum"
 #include <bits/stdc++.h>
 #define all(vec) vec.begin(), vec.end()
 #define pb push_back
@@ -115,6 +117,7 @@ int main() {
 {% raw %}
 ```cpp
 #line 1 "Test/HLDpath.test.cpp"
+#define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_path_sum"
 #include <bits/stdc++.h>
 #define all(vec) vec.begin(), vec.end()
 #define pb push_back
@@ -231,7 +234,7 @@ struct HLD {
         return id[i];
     }
 };
-#line 31 "Test/HLDpath.test.cpp"
+#line 32 "Test/HLDpath.test.cpp"
 #undef call_from_test
 int main() {
     ios::sync_with_stdio(0);

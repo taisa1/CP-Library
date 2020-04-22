@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: Graph/HeavyLightDecomposition.cpp
+# :heavy_check_mark: Graph/HeavyLightDecomposition.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,8 +38,8 @@ layout: default
 
 ## Verified with
 
-* :x: <a href="../../verify/Test/HLDpath.test.cpp.html">Test/HLDpath.test.cpp</a>
-* :x: <a href="../../verify/Test/HLDsubtree.test.cpp.html">Test/HLDsubtree.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Test/HLDpath.test.cpp.html">Test/HLDpath.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Test/HLDsubtree.test.cpp.html">Test/HLDsubtree.test.cpp</a>
 
 
 ## Code
