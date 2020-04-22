@@ -3,11 +3,15 @@ struct HLD {
     int n;
     vector<vector<int>> G;
     vector<int> sz, rt, id, par, out;
-    int pos;
-    HLD(int n) : n(n), G(n), sz(n, 1), rt(n, -1), id(n), par(n, -1), out(n) {}
-    void addedge(int u, int v) {
-        G[u].eb(v);
-        G[v].eb(u);
+    int pos, cnt;
+    HLD(int n) : n(n), G(n), sz(n, 1), rt(n, -1), id(n), par(n, -1), out(n), cnt(0) {}
+    void addedge(const int &u, const int &v) {
+        G[u].emplace_back(v);
+        G[v].emplace_back(u);
+        cnt++;
+        if (cnt == n - 1) {
+            build();
+        }
     }
     void build() {
         szdfs(0, -1);
@@ -41,22 +45,24 @@ struct HLD {
         }
         out[i] = pos;
     }
-    inline ll f(int a, int b) { return 0; } //[a,b]
-    ll get_v(int u, int v) {
-        ll res = 0;
+    template <class F>
+    void getpath(int u, int v, const F &f) { //f:[a,b)
         while (1) {
             if (id[u] > id[v]) swap(u, v);
             if (rt[u] == rt[v]) {
-                res += f(id[u], id[v]);
+                f(id[u], id[v] + 1);
                 break;
             } else {
-                res += f(id[rt[v]], id[v]);
+                f(id[rt[v]], id[v] + 1);
                 v = par[rt[v]];
             }
         }
-        return res;
     }
-    ll subtree(int u) {
-        return f(id[u], out[u]);
+    template <class F>
+    void getsubtree(const int &u, const F &f) { //f:[a,b)
+        f(id[u], out[u]);
+    }
+    inline int index(const int &i) {
+        return id[i];
     }
 };
