@@ -25,21 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Test/BinaryIndexedTree.test.cpp
+# :x: Test/HLDsubtree.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Test/BinaryIndexedTree.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 11:20:57+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Test/HLDsubtree.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-04-23 01:30:59+09:00
 
 
-* see: <a href="https://judge.yosupo.jp/problem/point_add_range_sum">https://judge.yosupo.jp/problem/point_add_range_sum</a>
 
 
 ## Depends on
 
 * :question: <a href="../../library/DataStructure/BinaryIndexedTree.cpp.html">DataStructure/BinaryIndexedTree.cpp</a>
+* :x: <a href="../../library/Graph/HeavyLightDecomposition.cpp.html">Graph/HeavyLightDecomposition.cpp</a>
 
 
 ## Code
@@ -47,13 +47,12 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 #include <bits/stdc++.h>
 #define all(vec) vec.begin(), vec.end()
 #define pb push_back
 #define eb emplace_back
-#define fs first
-#define sc second
+#define fi first
+#define se second
 using namespace std;
 using ll = long long;
 using P = pair<ll, ll>;
@@ -71,32 +70,42 @@ template <class T>
 void printv(const vector<T> &v) {
     for (int i = 0; i < v.size(); i++) cout << v[i] << (i + 1 == v.size() ? '\n' : ' ');
 }
-
+template <class T>
+void readv(vector<T> &v) {
+    for (int i = 0; i < v.size(); i++) cin >> v[i];
+}
 #define call_from_test
 #include "../DataStructure/BinaryIndexedTree.cpp"
+#include "../Graph/HeavyLightDecomposition.cpp"
 #undef call_from_test
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
     int n, q;
     cin >> n >> q;
+    V<ll> a(n);
+    readv(a);
+    HLD g(n);
+    for (int i = 1; i < n; i++) {
+        int p;
+        cin >> p;
+        g.addedge(p, i);
+    }
     BinaryIndexedTree<ll> bit(n);
     for (int i = 0; i < n; i++) {
-        ll a;
-        cin >> a;
-        bit.add(i, a);
+        bit.add(g.index(i), a[i]);
     }
     while (q--) {
-        int t;
-        cin >> t;
+        int t, u, v;
+        cin >> t >> u;
         if (t == 0) {
-            int p, x;
-            cin >> p >> x;
-            bit.add(p, x);
+            cin >> v;
+            bit.add(g.index(u), v);
         } else {
-            int l, r;
-            cin >> l >> r;
-            cout << bit.get(l, r) << '\n';
+            ll res = 0;
+            auto f = [&](int a, int b) { res += bit.get(a, b); };
+            g.getsubtree(u, f);
+            cout << res << '\n';
         }
     }
 }
@@ -106,14 +115,13 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Test/BinaryIndexedTree.test.cpp"
-#define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
+#line 1 "Test/HLDsubtree.test.cpp"
 #include <bits/stdc++.h>
 #define all(vec) vec.begin(), vec.end()
 #define pb push_back
 #define eb emplace_back
-#define fs first
-#define sc second
+#define fi first
+#define se second
 using namespace std;
 using ll = long long;
 using P = pair<ll, ll>;
@@ -131,7 +139,10 @@ template <class T>
 void printv(const vector<T> &v) {
     for (int i = 0; i < v.size(); i++) cout << v[i] << (i + 1 == v.size() ? '\n' : ' ');
 }
-
+template <class T>
+void readv(vector<T> &v) {
+    for (int i = 0; i < v.size(); i++) cin >> v[i];
+}
 #define call_from_test
 #line 1 "DataStructure/BinaryIndexedTree.cpp"
 //Point Add Range Sum
@@ -152,30 +163,105 @@ struct BinaryIndexedTree {
         return get(r-1) - get(l-1);
     }
 };
-#line 28 "Test/BinaryIndexedTree.test.cpp"
+#line 1 "Graph/HeavyLightDecomposition.cpp"
+//Path Sum and Subtree Sum
+struct HLD {
+    int n;
+    vector<vector<int>> G;
+    vector<int> sz, rt, id, par, out;
+    int pos, cnt;
+    HLD(int n) : n(n), G(n), sz(n, 1), rt(n, -1), id(n), par(n, -1), out(n), cnt(0) {}
+    void addedge(const int &u, const int &v) {
+        G[u].emplace_back(v);
+        G[v].emplace_back(u);
+        cnt++;
+        if (cnt == n - 1) {
+            build();
+        }
+    }
+    void build() {
+        szdfs(0, -1);
+        id[0] = 0;
+        rt[0] = 0;
+        pos = 0;
+        hld(0, -1);
+    }
+    void szdfs(int i, int p) {
+        for (auto &e : G[i]) {
+            if (e == p) continue;
+            szdfs(e, i);
+            par[e] = i;
+            sz[i] += sz[e];
+            if (sz[e] > sz[G[i][0]]) {
+                swap(G[i][0], e);
+            }
+        }
+    }
+    void hld(int i, int p) {
+        id[i] = pos;
+        pos++;
+        for (auto &e : G[i]) {
+            if (e == p) continue;
+            if (e == G[i][0]) {
+                rt[e] = rt[i];
+            } else {
+                rt[e] = e;
+            }
+            hld(e, i);
+        }
+        out[i] = pos;
+    }
+    template <class F>
+    void getpath(int u, int v, const F &f) { //f:[a,b)
+        while (1) {
+            if (id[u] > id[v]) swap(u, v);
+            if (rt[u] == rt[v]) {
+                f(id[u], id[v] + 1);
+                break;
+            } else {
+                f(id[rt[v]], id[v] + 1);
+                v = par[rt[v]];
+            }
+        }
+    }
+    template <class F>
+    void getsubtree(const int &u, const F &f) { //f:[a,b)
+        f(id[u], out[u]);
+    }
+    inline int index(const int &i) {
+        return id[i];
+    }
+};
+#line 31 "Test/HLDsubtree.test.cpp"
 #undef call_from_test
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
     int n, q;
     cin >> n >> q;
+    V<ll> a(n);
+    readv(a);
+    HLD g(n);
+    for (int i = 1; i < n; i++) {
+        int p;
+        cin >> p;
+        g.addedge(p, i);
+    }
     BinaryIndexedTree<ll> bit(n);
     for (int i = 0; i < n; i++) {
-        ll a;
-        cin >> a;
-        bit.add(i, a);
+        bit.add(g.index(i), a[i]);
     }
     while (q--) {
-        int t;
-        cin >> t;
+        int t, u, v;
+        cin >> t >> u;
         if (t == 0) {
-            int p, x;
-            cin >> p >> x;
-            bit.add(p, x);
+            cin >> v;
+            bit.add(g.index(u), v);
         } else {
-            int l, r;
-            cin >> l >> r;
-            cout << bit.get(l, r) << '\n';
+            ll res = 0;
+            auto f = [&](int a, int b) { res += bit.get(a, b); };
+            g.getsubtree(u, f);
+            cout << res << '\n';
         }
     }
 }

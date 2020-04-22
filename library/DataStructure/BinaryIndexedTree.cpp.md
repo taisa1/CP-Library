@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: DataStructure/BinaryIndexedTree.cpp
+# :question: DataStructure/BinaryIndexedTree.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -39,6 +39,8 @@ layout: default
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/Test/BinaryIndexedTree.test.cpp.html">Test/BinaryIndexedTree.test.cpp</a>
+* :x: <a href="../../verify/Test/HLDpath.test.cpp.html">Test/HLDpath.test.cpp</a>
+* :x: <a href="../../verify/Test/HLDsubtree.test.cpp.html">Test/HLDsubtree.test.cpp</a>
 
 
 ## Code
