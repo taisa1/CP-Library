@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: DataStructure/PartiallyPersistentUnionFind.cpp
+# :x: DataStructure/PartiallyPersistentUnionFind.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/PartiallyPersistentUnionFind.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 01:10:06+09:00
+    - Last commit date: 2020-04-23 12:44:51+09:00
 
 
+
+
+## Verified with
+
+* :x: <a href="../../verify/Test/PartiallyPersistentUF.test.cpp.html">Test/PartiallyPersistentUF.test.cpp</a>
 
 
 ## Code
@@ -42,31 +47,27 @@ layout: default
 {% raw %}
 ```cpp
 struct UnionFind {
-    int t;
-    vector<int> par, siz, tim;
-    UnionFind(int n) : par(n), tim(n, INF) {
-        siz.assign(n, INF);
+    vector<int> par, sz, tim;
+    UnionFind(int n) : par(n), sz(n, 1), tim(n, -1) {
         iota(par.begin(), par.end(), 0);
-        t = -1;
     }
-    int find(int x, int ti) {
-        while (x != par[x] && ti >= tim[par[x]]) {
-            x = par[x];
-        }
+    //時刻tのunionの後のrootを求める
+    inline int find(int x, int t) {
+        while (par[x] != x && tim[x] <= t) x = par[x];
         return x;
     }
-    bool unite(int u, int v) {
+    //与えられるtは広義単調増加
+    bool unite(int u, int v, int t) {
         u = find(u, t), v = find(v, t);
-        t++;
         if (u == v) return false;
-        if (siz[u] < siz[v]) swap(u, v);
+        if (sz[u] < sz[v]) swap(u, v);
         par[v] = u;
-        siz[u] += siz[v];
         tim[v] = t;
         return true;
     }
-    //ti回目(0-indexed)のunite後の状態を調べる
-    bool same(int u, int v, int ti) { return find(u, ti) == find(v, ti); }
+    inline bool same(int u, int v, int t) {
+        return find(u, t) == find(v, t);
+    }
 };
 ```
 {% endraw %}
@@ -76,31 +77,27 @@ struct UnionFind {
 ```cpp
 #line 1 "DataStructure/PartiallyPersistentUnionFind.cpp"
 struct UnionFind {
-    int t;
-    vector<int> par, siz, tim;
-    UnionFind(int n) : par(n), tim(n, INF) {
-        siz.assign(n, INF);
+    vector<int> par, sz, tim;
+    UnionFind(int n) : par(n), sz(n, 1), tim(n, -1) {
         iota(par.begin(), par.end(), 0);
-        t = -1;
     }
-    int find(int x, int ti) {
-        while (x != par[x] && ti >= tim[par[x]]) {
-            x = par[x];
-        }
+    //時刻tのunionの後のrootを求める
+    inline int find(int x, int t) {
+        while (par[x] != x && tim[x] <= t) x = par[x];
         return x;
     }
-    bool unite(int u, int v) {
+    //与えられるtは広義単調増加
+    bool unite(int u, int v, int t) {
         u = find(u, t), v = find(v, t);
-        t++;
         if (u == v) return false;
-        if (siz[u] < siz[v]) swap(u, v);
+        if (sz[u] < sz[v]) swap(u, v);
         par[v] = u;
-        siz[u] += siz[v];
         tim[v] = t;
         return true;
     }
-    //ti回目(0-indexed)のunite後の状態を調べる
-    bool same(int u, int v, int ti) { return find(u, ti) == find(v, ti); }
+    inline bool same(int u, int v, int t) {
+        return find(u, t) == find(v, t);
+    }
 };
 
 ```
