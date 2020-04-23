@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: DataStructure/PartiallyPersistentUnionFind.cpp
+# :heavy_check_mark: DataStructure/PartiallyPersistentUnionFind.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/PartiallyPersistentUnionFind.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-23 12:44:51+09:00
+    - Last commit date: 2020-04-23 13:20:39+09:00
 
 
 
 
 ## Verified with
 
-* :x: <a href="../../verify/Test/PartiallyPersistentUF.test.cpp.html">Test/PartiallyPersistentUF.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Test/PartiallyPersistentUF.test.cpp.html">Test/PartiallyPersistentUF.test.cpp</a>
 
 
 ## Code
@@ -63,6 +63,7 @@ struct UnionFind {
         if (sz[u] < sz[v]) swap(u, v);
         par[v] = u;
         tim[v] = t;
+        sz[u] += sz[v];
         return true;
     }
     inline bool same(int u, int v, int t) {
@@ -93,6 +94,7 @@ struct UnionFind {
         if (sz[u] < sz[v]) swap(u, v);
         par[v] = u;
         tim[v] = t;
+        sz[u] += sz[v];
         return true;
     }
     inline bool same(int u, int v, int t) {

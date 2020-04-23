@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: Test/PartiallyPersistentUF.test.cpp
+# :heavy_check_mark: Test/PartiallyPersistentUF.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/PartiallyPersistentUF.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-23 13:07:25+09:00
+    - Last commit date: 2020-04-23 13:20:39+09:00
 
 
 * see: <a href="https://yukicoder.me/problems/no/416">https://yukicoder.me/problems/no/416</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :x: <a href="../../library/DataStructure/PartiallyPersistentUnionFind.cpp.html">DataStructure/PartiallyPersistentUnionFind.cpp</a>
+* :heavy_check_mark: <a href="../../library/DataStructure/PartiallyPersistentUnionFind.cpp.html">DataStructure/PartiallyPersistentUnionFind.cpp</a>
 
 
 ## Code
@@ -108,7 +108,7 @@ int main() {
         }
         if (!uf.same(0, i, q)) {
             cout << 0 << '\n';
-            return 0;
+            continue;
         }
         int ok = 0, ng = q;
         while (ng - ok > 1) {
@@ -172,6 +172,7 @@ struct UnionFind {
         if (sz[u] < sz[v]) swap(u, v);
         par[v] = u;
         tim[v] = t;
+        sz[u] += sz[v];
         return true;
     }
     inline bool same(int u, int v, int t) {
@@ -214,7 +215,7 @@ int main() {
         }
         if (!uf.same(0, i, q)) {
             cout << 0 << '\n';
-            return 0;
+            continue;
         }
         int ok = 0, ng = q;
         while (ng - ok > 1) {
