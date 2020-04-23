@@ -1,2 +1,2 @@
-# Library
-https://taisa1.github.io/Library/
+# CP-Library
+https://taisa1.github.io/CP-Library/
