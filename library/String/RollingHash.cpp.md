@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: String/RollingHash.cpp
+# :heavy_check_mark: String/RollingHash.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -34,6 +34,11 @@ layout: default
     - Last commit date: 2020-04-11 22:25:31+09:00
 
 
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/Test/RollingHash.test.cpp.html">Test/RollingHash.test.cpp</a>
 
 
 ## Code

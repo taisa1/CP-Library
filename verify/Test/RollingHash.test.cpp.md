@@ -25,21 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: Test/PartiallyPersistentUF.test.cpp
+# :heavy_check_mark: Test/RollingHash.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Test/PartiallyPersistentUF.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-23 13:07:25+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Test/RollingHash.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-04-23 12:58:47+09:00
 
 
-* see: <a href="https://yukicoder.me/problems/no/416">https://yukicoder.me/problems/no/416</a>
+* see: <a href="https://judge.yosupo.jp/problem/zalgorithm">https://judge.yosupo.jp/problem/zalgorithm</a>
 
 
 ## Depends on
 
-* :x: <a href="../../library/DataStructure/PartiallyPersistentUnionFind.cpp.html">DataStructure/PartiallyPersistentUnionFind.cpp</a>
+* :heavy_check_mark: <a href="../../library/String/RollingHash.cpp.html">String/RollingHash.cpp</a>
 
 
 ## Code
@@ -47,7 +47,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "https://yukicoder.me/problems/no/416"
+#define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
 #include <bits/stdc++.h>
 #define all(vec) vec.begin(), vec.end()
 #define pb push_back
@@ -72,55 +72,29 @@ void printv(const vector<T> &v) {
     for (int i = 0; i < v.size(); i++) cout << v[i] << (i + 1 == v.size() ? '\n' : ' ');
 }
 #define call_from_test
-#include "../DataStructure/PartiallyPersistentUnionFind.cpp"
+#include "../String/RollingHash.cpp"
 #undef call_from_test
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    int n, m, q;
-    cin >> n >> m >> q;
-    set<P> st;
-    for (int i = 0; i < m; i++) {
-        int a, b;
-        cin >> a >> b;
-        --a;
-        --b;
-        st.insert(P(a, b));
-    }
-    V<int> c(q), d(q);
-    for (int i = 0; i < q; i++) {
-        cin >> c[i] >> d[i];
-        --c[i];
-        --d[i];
-        st.erase(P(c[i], d[i]));
-    }
-    UnionFind uf(n);
-    for (auto &e : st) {
-        uf.unite(e.first, e.second, 0);
-    }
-    for (int i = q - 1; i >= 0; i--) {
-        uf.unite(c[i], d[i], q - i);
-    }
-    for (int i = 1; i < n; i++) {
-        if (uf.same(0, i, 0)) {
-            cout << -1 << '\n';
-            continue;
-        }
-        if (!uf.same(0, i, q)) {
-            cout << 0 << '\n';
-            return 0;
-        }
-        int ok = 0, ng = q;
+    string s;
+    cin >> s;
+    int n = s.length();
+    V<int> a(n);
+    RollingHash ro(s);
+    for (int i = 0; i < n; i++) {
+        int ok = i - 1, ng = n;
         while (ng - ok > 1) {
             int mid = (ok + ng) / 2;
-            if (uf.same(0, i, q - mid)) {
+            if (ro.get(i, mid) == ro.get(0, mid - i)) {
                 ok = mid;
             } else {
                 ng = mid;
             }
         }
-        cout << ok + 1 << '\n';
+        a[i] = ok - i + 1;
     }
+    printv(a);
 }
 ```
 {% endraw %}
@@ -128,8 +102,8 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Test/PartiallyPersistentUF.test.cpp"
-#define PROBLEM "https://yukicoder.me/problems/no/416"
+#line 1 "Test/RollingHash.test.cpp"
+#define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
 #include <bits/stdc++.h>
 #define all(vec) vec.begin(), vec.end()
 #define pb push_back
@@ -154,79 +128,66 @@ void printv(const vector<T> &v) {
     for (int i = 0; i < v.size(); i++) cout << v[i] << (i + 1 == v.size() ? '\n' : ' ');
 }
 #define call_from_test
-#line 1 "DataStructure/PartiallyPersistentUnionFind.cpp"
-struct UnionFind {
-    vector<int> par, sz, tim;
-    UnionFind(int n) : par(n), sz(n, 1), tim(n, -1) {
-        iota(par.begin(), par.end(), 0);
+#line 1 "String/RollingHash.cpp"
+using ull = uint64_t;
+const int bases[64] = {257, 262, 266, 275, 276, 281, 285, 290, 296, 302, 306,
+                       310, 311, 313, 323, 333, 344, 345, 350, 357, 367, 370,
+                       373, 402, 423, 425, 431, 440, 442, 443, 454, 457, 458,
+                       462, 471, 478, 481, 487, 489, 492, 499, 501, 502, 503,
+                       506, 514, 524, 532, 535, 541, 550, 552, 557, 559, 562,
+                       563, 567, 570, 571, 580, 592, 597, 604, 612};
+const ull rmod = 0x1fffffffffffffff;
+const ull base = bases[chrono::duration_cast<chrono::microseconds>(chrono::system_clock::now().time_since_epoch()).count() & 63];
+const ull mask30 = (1UL << 30) - 1, mask31 = (1UL << 31) - 1;
+struct RollingHash {
+    vector<ull> hash, pow;
+    inline ull mul(const ull &a, const ull &b) const {
+        ull mid = (a & mask31) * (b >> 31) + (a >> 31) * (b & mask31);
+        ull res = (a >> 31) * (b >> 31) * 2 + (mid >> 30) + ((mid & mask30) << 31);
+        res += (a & mask31) * (b & mask31);
+        res = (res >> 61) + (res & rmod);
+        if (res >= rmod) res -= rmod;
+        return res;
     }
-    //時刻tのunionの後のrootを求める
-    inline int find(int x, int t) {
-        while (par[x] != x && tim[x] <= t) x = par[x];
-        return x;
+    RollingHash(const string &s) {
+        hash.resize(s.length() + 1);
+        pow.resize(s.length() + 1);
+        pow[0] = 1;
+        for (int i = 0; i < s.length(); i++) {
+            hash[i + 1] = mul(hash[i], base) + s[i];
+            pow[i + 1] = mul(pow[i], base);
+            if (hash[i + 1] >= rmod) hash[i + 1] -= rmod;
+        }
     }
-    //与えられるtは広義単調増加
-    bool unite(int u, int v, int t) {
-        u = find(u, t), v = find(v, t);
-        if (u == v) return false;
-        if (sz[u] < sz[v]) swap(u, v);
-        par[v] = u;
-        tim[v] = t;
-        return true;
-    }
-    inline bool same(int u, int v, int t) {
-        return find(u, t) == find(v, t);
+    ull get(int l, int r) { //[l,r]
+        ull res = hash[r + 1] + rmod - mul(hash[l], pow[r + 1 - l]);
+        if (res >= rmod) res -= rmod;
+        return res;
     }
 };
-#line 27 "Test/PartiallyPersistentUF.test.cpp"
+#line 27 "Test/RollingHash.test.cpp"
 #undef call_from_test
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    int n, m, q;
-    cin >> n >> m >> q;
-    set<P> st;
-    for (int i = 0; i < m; i++) {
-        int a, b;
-        cin >> a >> b;
-        --a;
-        --b;
-        st.insert(P(a, b));
-    }
-    V<int> c(q), d(q);
-    for (int i = 0; i < q; i++) {
-        cin >> c[i] >> d[i];
-        --c[i];
-        --d[i];
-        st.erase(P(c[i], d[i]));
-    }
-    UnionFind uf(n);
-    for (auto &e : st) {
-        uf.unite(e.first, e.second, 0);
-    }
-    for (int i = q - 1; i >= 0; i--) {
-        uf.unite(c[i], d[i], q - i);
-    }
-    for (int i = 1; i < n; i++) {
-        if (uf.same(0, i, 0)) {
-            cout << -1 << '\n';
-            continue;
-        }
-        if (!uf.same(0, i, q)) {
-            cout << 0 << '\n';
-            return 0;
-        }
-        int ok = 0, ng = q;
+    string s;
+    cin >> s;
+    int n = s.length();
+    V<int> a(n);
+    RollingHash ro(s);
+    for (int i = 0; i < n; i++) {
+        int ok = i - 1, ng = n;
         while (ng - ok > 1) {
             int mid = (ok + ng) / 2;
-            if (uf.same(0, i, q - mid)) {
+            if (ro.get(i, mid) == ro.get(0, mid - i)) {
                 ok = mid;
             } else {
                 ng = mid;
             }
         }
-        cout << ok + 1 << '\n';
+        a[i] = ok - i + 1;
     }
+    printv(a);
 }
 
 ```

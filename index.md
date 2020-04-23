@@ -96,7 +96,7 @@ layout: default
 ### String
 
 * :warning: <a href="library/String/MP.cpp.html">String/MP.cpp</a>
-* :warning: <a href="library/String/RollingHash.cpp.html">String/RollingHash.cpp</a>
+* :heavy_check_mark: <a href="library/String/RollingHash.cpp.html">String/RollingHash.cpp</a>
 
 
 <div id="94df2a6972ca1fa79411645fe9b42339"></div>
@@ -122,6 +122,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/Test/LineCHT.test.cpp.html">Test/LineCHT.test.cpp</a>
 * :x: <a href="verify/Test/PartiallyPersistentUF.test.cpp.html">Test/PartiallyPersistentUF.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/QuickFind.test.cpp.html">Test/QuickFind.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Test/RollingHash.test.cpp.html">Test/RollingHash.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/SCC.test.cpp.html">Test/SCC.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/SWAG.test.cpp.html">Test/SWAG.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/SegmentTree.test.cpp.html">Test/SegmentTree.test.cpp</a>
