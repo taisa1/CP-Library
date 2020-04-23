@@ -59,7 +59,7 @@ int main() {
         }
         if (!uf.same(0, i, q)) {
             cout << 0 << '\n';
-            return 0;
+            continue;
         }
         int ok = 0, ng = q;
         while (ng - ok > 1) {

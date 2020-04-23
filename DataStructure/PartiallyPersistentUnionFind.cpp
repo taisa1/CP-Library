@@ -15,6 +15,7 @@ struct UnionFind {
         if (sz[u] < sz[v]) swap(u, v);
         par[v] = u;
         tim[v] = t;
+        sz[u] += sz[v];
         return true;
     }
     inline bool same(int u, int v, int t) {
