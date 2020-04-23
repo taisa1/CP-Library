@@ -57,6 +57,10 @@ int main() {
             cout << -1 << '\n';
             continue;
         }
+        if (!uf.same(0, i, q)) {
+            cout << 0 << '\n';
+            return 0;
+        }
         int ok = 0, ng = q;
         while (ng - ok > 1) {
             int mid = (ok + ng) / 2;
