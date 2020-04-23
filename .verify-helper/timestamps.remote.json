@@ -10,6 +10,7 @@
 "Test/LazySegmentTree.test.cpp": "2020-04-18 23:30:40 +0900",
 "Test/LineCHT.test.cpp": "2020-04-18 13:22:22 +0900",
 "Test/QuickFind.test.cpp": "2020-04-19 16:34:59 +0900",
+"Test/RollingHash.test.cpp": "2020-04-23 12:58:47 +0900",
 "Test/SCC.test.cpp": "2020-04-18 13:22:22 +0900",
 "Test/SWAG.test.cpp": "2020-04-18 23:30:40 +0900",
 "Test/SegmentTree.test.cpp": "2020-04-18 23:30:40 +0900",
