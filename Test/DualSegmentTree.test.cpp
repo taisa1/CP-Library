@@ -24,7 +24,7 @@ void printv(const vector<T> &v) {
 }
 #define call_from_test
 #include "../DataStructure/DualSegmentTree.cpp"
-#include "../Math/ModInt.cpp"
+#include "../Math/Modint.cpp"
 #undef call_from_test
 struct T {
     int a, b;

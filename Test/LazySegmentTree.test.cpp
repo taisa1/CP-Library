@@ -24,7 +24,7 @@ void printv(const vector<T> &v) {
 }
 #define call_from_test
 #include "../DataStructure/LazySegmentTree.cpp"
-#include "../Math/ModInt.cpp"
+#include "../Math/Modint.cpp"
 #undef call_from_test
 struct E {
     mint a, b;
