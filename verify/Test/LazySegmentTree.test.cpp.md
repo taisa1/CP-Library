@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/LazySegmentTree.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 23:30:40+09:00
+    - Last commit date: 2020-04-24 18:38:27+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/range_affine_range_sum">https://judge.yosupo.jp/problem/range_affine_range_sum</a>
@@ -40,7 +40,7 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../../library/DataStructure/LazySegmentTree.cpp.html">DataStructure/LazySegmentTree.cpp</a>
-* :heavy_check_mark: <a href="../../library/Math/ModInt.cpp.html">Math/ModInt.cpp</a>
+* :heavy_check_mark: <a href="../../library/Math/Modint.cpp.html">Math/Modint.cpp</a>
 
 
 ## Code
@@ -74,7 +74,7 @@ void printv(const vector<T> &v) {
 }
 #define call_from_test
 #include "../DataStructure/LazySegmentTree.cpp"
-#include "../Math/ModInt.cpp"
+#include "../Math/Modint.cpp"
 #undef call_from_test
 struct E {
     mint a, b;
@@ -248,7 +248,7 @@ struct Segtree {
         return find(a, b, x, 1, 0, n);
     }
 };
-#line 1 "Math/ModInt.cpp"
+#line 1 "Math/Modint.cpp"
 //from http://noshi91.hatenablog.com/entry/2019/03/31/174006
 template <std::uint_fast64_t Modulus>
 class modint {

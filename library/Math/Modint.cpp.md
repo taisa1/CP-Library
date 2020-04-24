@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Math/ModInt.cpp
+# :heavy_check_mark: Math/Modint.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#a49950aa047c2292e989e368a97a3aae">Math</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Math/ModInt.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 23:30:40+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Math/Modint.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-04-24 17:48:23+09:00
 
 
 
@@ -131,7 +131,7 @@ using mint = modint<MOD>;
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Math/ModInt.cpp"
+#line 1 "Math/Modint.cpp"
 //from http://noshi91.hatenablog.com/entry/2019/03/31/174006
 template <std::uint_fast64_t Modulus>
 class modint {

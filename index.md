@@ -88,7 +88,8 @@ layout: default
 * :warning: <a href="library/Math/Combination.cpp.html">Math/Combination.cpp</a>
 * :warning: <a href="library/Math/GaussJordan.cpp.html">Math/GaussJordan.cpp</a>
 * :warning: <a href="library/Math/Matrix.cpp.html">Math/Matrix.cpp</a>
-* :heavy_check_mark: <a href="library/Math/ModInt.cpp.html">Math/ModInt.cpp</a>
+* :heavy_check_mark: <a href="library/Math/Modint.cpp.html">Math/Modint.cpp</a>
+* :warning: <a href="library/Math/RuntimeModint.cpp.html">Math/RuntimeModint.cpp</a>
 
 
 <div id="27118326006d3829667a400ad23d5d98"></div>

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/DualSegmentTree.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 23:39:09+09:00
+    - Last commit date: 2020-04-24 18:38:27+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_D">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_D</a>
@@ -40,7 +40,7 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../../library/DataStructure/DualSegmentTree.cpp.html">DataStructure/DualSegmentTree.cpp</a>
-* :heavy_check_mark: <a href="../../library/Math/ModInt.cpp.html">Math/ModInt.cpp</a>
+* :heavy_check_mark: <a href="../../library/Math/Modint.cpp.html">Math/Modint.cpp</a>
 
 
 ## Code
@@ -74,7 +74,7 @@ void printv(const vector<T> &v) {
 }
 #define call_from_test
 #include "../DataStructure/DualSegmentTree.cpp"
-#include "../Math/ModInt.cpp"
+#include "../Math/Modint.cpp"
 #undef call_from_test
 struct T {
     int a, b;
@@ -179,7 +179,7 @@ struct Segtree {
         return res;
     }
 };
-#line 1 "Math/ModInt.cpp"
+#line 1 "Math/Modint.cpp"
 //from http://noshi91.hatenablog.com/entry/2019/03/31/174006
 template <std::uint_fast64_t Modulus>
 class modint {
