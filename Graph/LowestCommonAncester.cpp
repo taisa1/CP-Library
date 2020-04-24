@@ -1,9 +1,10 @@
+const int LOG = 30;
 struct LCA {
     vector<vector<int>> G, par;
     vector<int> dep;
     int n, cnt;
-    LCA(int n) : n(n), G(n), par(30, vector<int>(n, -1)), dep(n), cnt(0) {}
-    void addedge(int u, int v) {
+    LCA(const int &n) : n(n), G(n), par(LOG, vector<int>(n, -1)), dep(n), cnt(0) {}
+    void addedge(const int &u, const int &v) {
         G[u].emplace_back(v);
         G[v].emplace_back(u);
         cnt++;
@@ -22,7 +23,7 @@ struct LCA {
     //辺追加後に自動でbuild
     void build() {
         dfs(0, -1);
-        for (int i = 1; i < 30; i++) {
+        for (int i = 1; i < LOG; i++) {
             for (int j = 0; j < n; j++) {
                 if (par[i - 1][j] != -1) {
                     par[i][j] = par[i - 1][par[i - 1][j]];

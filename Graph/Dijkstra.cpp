@@ -1,7 +1,7 @@
 template <class T>
 struct Dijkstra {
     int n;
-    vector<vector<pair<T, T>>> G;
+    vector<vector<pair<T, int>>> G;
     Dijkstra(int n) : n(n), G(n) {}
     void addedge(const int &u, const int &v, const T &c) { G[u].emplace_back(v, c); }
     vector<T> dijkstra(const int &st) {
@@ -11,7 +11,7 @@ struct Dijkstra {
         q.emplace(0, st);
         while (!q.empty()) {
             int v = q.top().second;
-            ll dd = q.top().first;
+            T dd = q.top().first;
             q.pop();
             if (d[v] < dd) continue;
             for (auto &e : G[v]) {

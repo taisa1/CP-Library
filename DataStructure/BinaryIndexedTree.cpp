@@ -3,8 +3,8 @@ template <class T>
 struct BinaryIndexedTree {
     int n;
     vector<T> dat;
-    BinaryIndexedTree(int n_) : n(n_ + 1), dat(n_ + 1) {}
-    void add(int k, T x) {
+    BinaryIndexedTree(const int &n) : n(n + 1), dat(n + 1) {}
+    void add(int k, const T &x) {
         for (++k; k < n; k += k & -k) dat[k] += x;
     }
     T get(int k) {
@@ -12,7 +12,7 @@ struct BinaryIndexedTree {
         for (++k; k > 0; k -= k & -k) res += dat[k];
         return res;
     }
-    inline T get(int l, int r) { //0-indexed [l,r)
-        return get(r-1) - get(l-1);
+    inline T get(const int &l, const int &r) { //0-indexed [l,r)
+        return get(r - 1) - get(l - 1);
     }
 };
