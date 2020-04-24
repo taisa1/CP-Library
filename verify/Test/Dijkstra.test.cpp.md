@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/Dijkstra.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-21 15:29:15+09:00
+    - Last commit date: 2020-04-24 20:12:32+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A</a>
@@ -130,7 +130,7 @@ void printv(const vector<T> &v) {
 template <class T>
 struct Dijkstra {
     int n;
-    vector<vector<pair<T, T>>> G;
+    vector<vector<pair<T, int>>> G;
     Dijkstra(int n) : n(n), G(n) {}
     void addedge(const int &u, const int &v, const T &c) { G[u].emplace_back(v, c); }
     vector<T> dijkstra(const int &st) {
@@ -140,7 +140,7 @@ struct Dijkstra {
         q.emplace(0, st);
         while (!q.empty()) {
             int v = q.top().second;
-            ll dd = q.top().first;
+            T dd = q.top().first;
             q.pop();
             if (d[v] < dd) continue;
             for (auto &e : G[v]) {

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/LCA.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 23:30:40+09:00
+    - Last commit date: 2020-04-24 20:12:32+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/lca">https://judge.yosupo.jp/problem/lca</a>
@@ -124,12 +124,13 @@ void printv(const vector<T> &v) {
 }
 #define call_from_test
 #line 1 "Graph/LowestCommonAncester.cpp"
+const int LOG = 30;
 struct LCA {
     vector<vector<int>> G, par;
     vector<int> dep;
     int n, cnt;
-    LCA(int n) : n(n), G(n), par(30, vector<int>(n, -1)), dep(n), cnt(0) {}
-    void addedge(int u, int v) {
+    LCA(const int &n) : n(n), G(n), par(LOG, vector<int>(n, -1)), dep(n), cnt(0) {}
+    void addedge(const int &u, const int &v) {
         G[u].emplace_back(v);
         G[v].emplace_back(u);
         cnt++;
@@ -148,7 +149,7 @@ struct LCA {
     //辺追加後に自動でbuild
     void build() {
         dfs(0, -1);
-        for (int i = 1; i < 30; i++) {
+        for (int i = 1; i < LOG; i++) {
             for (int j = 0; j < n; j++) {
                 if (par[i - 1][j] != -1) {
                     par[i][j] = par[i - 1][par[i - 1][j]];

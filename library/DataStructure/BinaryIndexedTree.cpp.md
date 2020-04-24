@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/BinaryIndexedTree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 11:20:57+09:00
+    - Last commit date: 2020-04-24 20:12:32+09:00
 
 
 
@@ -53,8 +53,8 @@ template <class T>
 struct BinaryIndexedTree {
     int n;
     vector<T> dat;
-    BinaryIndexedTree(int n_) : n(n_ + 1), dat(n_ + 1) {}
-    void add(int k, T x) {
+    BinaryIndexedTree(const int &n) : n(n + 1), dat(n + 1) {}
+    void add(int k, const T &x) {
         for (++k; k < n; k += k & -k) dat[k] += x;
     }
     T get(int k) {
@@ -62,8 +62,8 @@ struct BinaryIndexedTree {
         for (++k; k > 0; k -= k & -k) res += dat[k];
         return res;
     }
-    inline T get(int l, int r) { //0-indexed [l,r)
-        return get(r-1) - get(l-1);
+    inline T get(const int &l, const int &r) { //0-indexed [l,r)
+        return get(r - 1) - get(l - 1);
     }
 };
 ```
@@ -78,8 +78,8 @@ template <class T>
 struct BinaryIndexedTree {
     int n;
     vector<T> dat;
-    BinaryIndexedTree(int n_) : n(n_ + 1), dat(n_ + 1) {}
-    void add(int k, T x) {
+    BinaryIndexedTree(const int &n) : n(n + 1), dat(n + 1) {}
+    void add(int k, const T &x) {
         for (++k; k < n; k += k & -k) dat[k] += x;
     }
     T get(int k) {
@@ -87,8 +87,8 @@ struct BinaryIndexedTree {
         for (++k; k > 0; k -= k & -k) res += dat[k];
         return res;
     }
-    inline T get(int l, int r) { //0-indexed [l,r)
-        return get(r-1) - get(l-1);
+    inline T get(const int &l, const int &r) { //0-indexed [l,r)
+        return get(r - 1) - get(l - 1);
     }
 };
 

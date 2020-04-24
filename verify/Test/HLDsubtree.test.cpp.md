@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/HLDsubtree.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-23 01:33:59+09:00
+    - Last commit date: 2020-04-24 20:12:32+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/vertex_add_subtree_sum">https://judge.yosupo.jp/problem/vertex_add_subtree_sum</a>
@@ -153,8 +153,8 @@ template <class T>
 struct BinaryIndexedTree {
     int n;
     vector<T> dat;
-    BinaryIndexedTree(int n_) : n(n_ + 1), dat(n_ + 1) {}
-    void add(int k, T x) {
+    BinaryIndexedTree(const int &n) : n(n + 1), dat(n + 1) {}
+    void add(int k, const T &x) {
         for (++k; k < n; k += k & -k) dat[k] += x;
     }
     T get(int k) {
@@ -162,8 +162,8 @@ struct BinaryIndexedTree {
         for (++k; k > 0; k -= k & -k) res += dat[k];
         return res;
     }
-    inline T get(int l, int r) { //0-indexed [l,r)
-        return get(r-1) - get(l-1);
+    inline T get(const int &l, const int &r) { //0-indexed [l,r)
+        return get(r - 1) - get(l - 1);
     }
 };
 #line 1 "Graph/HeavyLightDecomposition.cpp"

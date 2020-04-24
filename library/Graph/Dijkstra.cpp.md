@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/Dijkstra.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-21 15:29:15+09:00
+    - Last commit date: 2020-04-24 20:12:32+09:00
 
 
 
@@ -49,7 +49,7 @@ layout: default
 template <class T>
 struct Dijkstra {
     int n;
-    vector<vector<pair<T, T>>> G;
+    vector<vector<pair<T, int>>> G;
     Dijkstra(int n) : n(n), G(n) {}
     void addedge(const int &u, const int &v, const T &c) { G[u].emplace_back(v, c); }
     vector<T> dijkstra(const int &st) {
@@ -59,7 +59,7 @@ struct Dijkstra {
         q.emplace(0, st);
         while (!q.empty()) {
             int v = q.top().second;
-            ll dd = q.top().first;
+            T dd = q.top().first;
             q.pop();
             if (d[v] < dd) continue;
             for (auto &e : G[v]) {
@@ -82,7 +82,7 @@ struct Dijkstra {
 template <class T>
 struct Dijkstra {
     int n;
-    vector<vector<pair<T, T>>> G;
+    vector<vector<pair<T, int>>> G;
     Dijkstra(int n) : n(n), G(n) {}
     void addedge(const int &u, const int &v, const T &c) { G[u].emplace_back(v, c); }
     vector<T> dijkstra(const int &st) {
@@ -92,7 +92,7 @@ struct Dijkstra {
         q.emplace(0, st);
         while (!q.empty()) {
             int v = q.top().second;
-            ll dd = q.top().first;
+            T dd = q.top().first;
             q.pop();
             if (d[v] < dd) continue;
             for (auto &e : G[v]) {
