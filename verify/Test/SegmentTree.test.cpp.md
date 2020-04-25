@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/SegmentTree.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-24 18:38:27+09:00
+    - Last commit date: 2020-04-25 22:15:31+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/point_set_range_composite">https://judge.yosupo.jp/problem/point_set_range_composite</a>
@@ -78,15 +78,16 @@ void printv(const vector<T> &v) {
 #undef call_from_test
 struct T {
     mint a, b;
+    inline static T id() {
+        return T{1, 0};
+    }
     inline static T f(const T &x, const T &y) {
         return T{x.a * y.a, y.a * x.b + y.b};
     }
     inline static void g(T &a, const T &b) {
         a = b;
     }
-    static T e;
 };
-T T::e = T{1, 0};
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(0);
@@ -158,14 +159,14 @@ struct Segtree {
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, T::e);
+        dat.resize(2 * n, T::id());
     }
     Segtree(int n_, const vector<T> &a) {
         n = 1;
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, T::e);
+        dat.resize(2 * n, T::id());
         for (int i = 0; i < a.size(); i++) {
             dat[i + n] = a[i];
         }
@@ -184,7 +185,7 @@ struct Segtree {
     }
     T get(const int &a, const int &b, int k, int l, int r) {
         if (b <= l || r <= a) {
-            return T::e;
+            return T::id();
         }
         if (a <= l && r <= b) {
             return dat[k];
@@ -194,7 +195,7 @@ struct Segtree {
     }
     inline T get(const int &a, const int &b) { //[a,b)
         if (a >= b) {
-            return T::e;
+            return T::id();
         }
         return get(a, b, 1, 0, n);
     }
@@ -299,15 +300,16 @@ using mint = modint<MOD>;
 #undef call_from_test
 struct T {
     mint a, b;
+    inline static T id() {
+        return T{1, 0};
+    }
     inline static T f(const T &x, const T &y) {
         return T{x.a * y.a, y.a * x.b + y.b};
     }
     inline static void g(T &a, const T &b) {
         a = b;
     }
-    static T e;
 };
-T T::e = T{1, 0};
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(0);

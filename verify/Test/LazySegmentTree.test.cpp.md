@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/LazySegmentTree.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-24 18:38:27+09:00
+    - Last commit date: 2020-04-25 22:15:31+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/range_affine_range_sum">https://judge.yosupo.jp/problem/range_affine_range_sum</a>
@@ -78,24 +78,26 @@ void printv(const vector<T> &v) {
 #undef call_from_test
 struct E {
     mint a, b;
+    inline static E id() {
+        return E{1, 0};
+    }
     inline void h(const E &y) {
         a = a * y.a;
         b = y.a * b + y.b;
     }
-    static E e;
 };
 struct T {
     mint a;
+    inline static T id() {
+        return T{0};
+    }
     inline static T f(const T &x, const T &y) {
         return T{x.a + y.a};
     }
     inline void g(const E &x, ll len) {
         a = x.a * a + x.b * len;
     }
-    static T e;
 };
-E E::e = E{1, 0};
-T T::e = T{0};
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(0);
@@ -166,8 +168,8 @@ struct Segtree {
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, T::e);
-        laz.resize(2 * n, E::e);
+        dat.resize(2 * n, T::id());
+        laz.resize(2 * n, E::id());
         len.resize(2 * n, 1);
         for (int i = n - 1; i > 0; i--) len[i] = len[i << 1] + len[i << 1 | 1];
     }
@@ -176,8 +178,8 @@ struct Segtree {
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, T::e);
-        laz.resize(2 * n, E::e);
+        dat.resize(2 * n, T::id());
+        laz.resize(2 * n, E::id());
         len.resize(2 * n, 1);
         for (int i = 0; i < a.size(); i++) dat[i + n] = a[i];
         for (int i = n - 1; i > 0; i--) {
@@ -191,7 +193,7 @@ struct Segtree {
             laz[k << 1].h(laz[k]);
             laz[k << 1 | 1].h(laz[k]);
         }
-        laz[k] = E::e;
+        laz[k] = E::id();
     }
     void upd(const int &a, const int &b, const E &x, int k, int l, int r) {
         eval(k);
@@ -214,7 +216,7 @@ struct Segtree {
     T get(const int &a, const int &b, int k, int l, int r) {
         eval(k);
         if (b <= l || r <= a) {
-            return T::e;
+            return T::id();
         }
         if (a <= l && r <= b) {
             return dat[k];
@@ -223,7 +225,7 @@ struct Segtree {
     }
     inline T get(const int &a, const int &b) {
         if (a >= b) {
-            return T::e;
+            return T::id();
         }
         return get(a, b, 1, 0, n);
     }
@@ -329,24 +331,26 @@ using mint = modint<MOD>;
 #undef call_from_test
 struct E {
     mint a, b;
+    inline static E id() {
+        return E{1, 0};
+    }
     inline void h(const E &y) {
         a = a * y.a;
         b = y.a * b + y.b;
     }
-    static E e;
 };
 struct T {
     mint a;
+    inline static T id() {
+        return T{0};
+    }
     inline static T f(const T &x, const T &y) {
         return T{x.a + y.a};
     }
     inline void g(const E &x, ll len) {
         a = x.a * a + x.b * len;
     }
-    static T e;
 };
-E E::e = E{1, 0};
-T T::e = T{0};
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(0);

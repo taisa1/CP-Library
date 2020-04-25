@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/DualSegmentTree.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-24 18:38:27+09:00
+    - Last commit date: 2020-04-25 22:15:31+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_D">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_D</a>
@@ -78,13 +78,14 @@ void printv(const vector<T> &v) {
 #undef call_from_test
 struct T {
     int a, b;
+    inline static T id() {
+        return T{-1, (1LL << 31) - 1LL};
+    }
     inline static T f(const T &x, const T &y) {
         return x.a > y.a ? x : y;
     }
     inline void g(const T &x) { a = x.a, b = x.b; }
-    static T e;
 };
-T T::e = T{-1, (1LL << 31) - 1LL};
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(0);
@@ -139,7 +140,7 @@ void printv(const vector<T> &v) {
 #define call_from_test
 #line 1 "DataStructure/DualSegmentTree.cpp"
 //Range Update Point Get
-template <typename T>
+template <class T>
 struct Segtree {
     vector<T> dat;
     int n;
@@ -149,7 +150,7 @@ struct Segtree {
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, T::e);
+        dat.resize(2 * n, T::id());
     }
     void upd(const int &a, const int &b, const T &x, int k, int l, int r) {
         if (b <= l || r <= a) {
@@ -260,13 +261,14 @@ using mint = modint<MOD>;
 #undef call_from_test
 struct T {
     int a, b;
+    inline static T id() {
+        return T{-1, (1LL << 31) - 1LL};
+    }
     inline static T f(const T &x, const T &y) {
         return x.a > y.a ? x : y;
     }
     inline void g(const T &x) { a = x.a, b = x.b; }
-    static T e;
 };
-T T::e = T{-1, (1LL << 31) - 1LL};
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(0);

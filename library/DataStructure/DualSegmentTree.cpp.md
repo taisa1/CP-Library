@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/DualSegmentTree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 23:39:09+09:00
+    - Last commit date: 2020-04-25 22:15:31+09:00
 
 
 
@@ -47,7 +47,7 @@ layout: default
 {% raw %}
 ```cpp
 //Range Update Point Get
-template <typename T>
+template <class T>
 struct Segtree {
     vector<T> dat;
     int n;
@@ -57,7 +57,7 @@ struct Segtree {
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, T::e);
+        dat.resize(2 * n, T::id());
     }
     void upd(const int &a, const int &b, const T &x, int k, int l, int r) {
         if (b <= l || r <= a) {
@@ -96,7 +96,7 @@ struct Segtree {
 ```cpp
 #line 1 "DataStructure/DualSegmentTree.cpp"
 //Range Update Point Get
-template <typename T>
+template <class T>
 struct Segtree {
     vector<T> dat;
     int n;
@@ -106,7 +106,7 @@ struct Segtree {
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, T::e);
+        dat.resize(2 * n, T::id());
     }
     void upd(const int &a, const int &b, const T &x, int k, int l, int r) {
         if (b <= l || r <= a) {

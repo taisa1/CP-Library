@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/SegmentTree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 12:56:31+09:00
+    - Last commit date: 2020-04-25 22:15:31+09:00
 
 
 
@@ -56,14 +56,14 @@ struct Segtree {
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, T::e);
+        dat.resize(2 * n, T::id());
     }
     Segtree(int n_, const vector<T> &a) {
         n = 1;
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, T::e);
+        dat.resize(2 * n, T::id());
         for (int i = 0; i < a.size(); i++) {
             dat[i + n] = a[i];
         }
@@ -82,7 +82,7 @@ struct Segtree {
     }
     T get(const int &a, const int &b, int k, int l, int r) {
         if (b <= l || r <= a) {
-            return T::e;
+            return T::id();
         }
         if (a <= l && r <= b) {
             return dat[k];
@@ -92,7 +92,7 @@ struct Segtree {
     }
     inline T get(const int &a, const int &b) { //[a,b)
         if (a >= b) {
-            return T::e;
+            return T::id();
         }
         return get(a, b, 1, 0, n);
     }
@@ -133,14 +133,14 @@ struct Segtree {
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, T::e);
+        dat.resize(2 * n, T::id());
     }
     Segtree(int n_, const vector<T> &a) {
         n = 1;
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, T::e);
+        dat.resize(2 * n, T::id());
         for (int i = 0; i < a.size(); i++) {
             dat[i + n] = a[i];
         }
@@ -159,7 +159,7 @@ struct Segtree {
     }
     T get(const int &a, const int &b, int k, int l, int r) {
         if (b <= l || r <= a) {
-            return T::e;
+            return T::id();
         }
         if (a <= l && r <= b) {
             return dat[k];
@@ -169,7 +169,7 @@ struct Segtree {
     }
     inline T get(const int &a, const int &b) { //[a,b)
         if (a >= b) {
-            return T::e;
+            return T::id();
         }
         return get(a, b, 1, 0, n);
     }
