@@ -25,12 +25,12 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: DataStructure/Treap.cpp
+# :warning: DataStructure/ImplicitTreap.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
-* <a href="{{ site.github.repository_url }}/blob/master/DataStructure/Treap.cpp">View this file on GitHub</a>
+* <a href="{{ site.github.repository_url }}/blob/master/DataStructure/ImplicitTreap.cpp">View this file on GitHub</a>
     - Last commit date: 2020-04-25 22:22:04+09:00
 
 
@@ -51,24 +51,29 @@ struct Xorshift {
         return w = (w ^ (w >> 19)) ^ (t ^ (t >> 8));
     }
 };
-template <class T>
+template <class T, class M>
 struct Treap {
     Xorshift rnd;
     struct Node {
         T key;
         unsigned int pri;
+        M val, acc;
         int siz;
         Node *l, *r;
-        Node(T key, int pri) : key(key), pri(pri), siz(1), l(nullptr), r(nullptr) {}
+        Node(T key, int pri, M val) : key(key), pri(pri), siz(1), l(nullptr), r(nullptr), val(val), acc(val) {}
     } *root = nullptr;
     using Tree = Node *;
     inline T nxt(T x) { return x + 1; }
     inline int size(Tree t) {
         return !t ? 0 : t->siz;
     }
+    inline M acc(Tree t) {
+        return !t ? M::id() : t->acc;
+    }
     inline void eval(Tree t) {
         if (!t) return;
         t->siz = 1 + size(t->l) + size(t->r);
+        t->acc = M::f(M::f(acc(t->l), t->val), acc(t->r));
     }
     Tree merge(Tree l, Tree r) { //l内のkey < r内のkey
         if (!l || !r) {
@@ -142,8 +147,16 @@ struct Treap {
             return find_by_order(t->r, x - size(t->l) - 1);
         }
     }
-    inline void insert(const T &x) {
-        Tree nd = new Node(x, rnd.get());
+    M get(Tree &t, int l, int r) { //[l,r)
+        Tree tl, tm, tr;
+        tie(tl, tm) = split(t, l);
+        tie(tm, tr) = split(tm, r);
+        M res = acc(tm);
+        t = merge(tl, merge(tm, tr));
+        return res;
+    }
+    inline void insert(const T &x, const M &m) {
+        Tree nd = new Node(x, rnd.get(), m);
         insert(root, nd);
     }
     inline void erase(const T &x) {
@@ -158,6 +171,9 @@ struct Treap {
     inline T find_by_order(const int &x) {
         return find_by_order(root, x);
     }
+    inline M get(int l, int r) { //[l,r)
+        return get(root, l, r);
+    }
 };
 ```
 {% endraw %}
@@ -165,7 +181,7 @@ struct Treap {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "DataStructure/Treap.cpp"
+#line 1 "DataStructure/ImplicitTreap.cpp"
 struct Xorshift {
     unsigned int get() {
         static unsigned int x = 123456789, y = 362436069, z = 521288629, w = 88675123;
@@ -176,24 +192,29 @@ struct Xorshift {
         return w = (w ^ (w >> 19)) ^ (t ^ (t >> 8));
     }
 };
-template <class T>
+template <class T, class M>
 struct Treap {
     Xorshift rnd;
     struct Node {
         T key;
         unsigned int pri;
+        M val, acc;
         int siz;
         Node *l, *r;
-        Node(T key, int pri) : key(key), pri(pri), siz(1), l(nullptr), r(nullptr) {}
+        Node(T key, int pri, M val) : key(key), pri(pri), siz(1), l(nullptr), r(nullptr), val(val), acc(val) {}
     } *root = nullptr;
     using Tree = Node *;
     inline T nxt(T x) { return x + 1; }
     inline int size(Tree t) {
         return !t ? 0 : t->siz;
     }
+    inline M acc(Tree t) {
+        return !t ? M::id() : t->acc;
+    }
     inline void eval(Tree t) {
         if (!t) return;
         t->siz = 1 + size(t->l) + size(t->r);
+        t->acc = M::f(M::f(acc(t->l), t->val), acc(t->r));
     }
     Tree merge(Tree l, Tree r) { //l内のkey < r内のkey
         if (!l || !r) {
@@ -267,8 +288,16 @@ struct Treap {
             return find_by_order(t->r, x - size(t->l) - 1);
         }
     }
-    inline void insert(const T &x) {
-        Tree nd = new Node(x, rnd.get());
+    M get(Tree &t, int l, int r) { //[l,r)
+        Tree tl, tm, tr;
+        tie(tl, tm) = split(t, l);
+        tie(tm, tr) = split(tm, r);
+        M res = acc(tm);
+        t = merge(tl, merge(tm, tr));
+        return res;
+    }
+    inline void insert(const T &x, const M &m) {
+        Tree nd = new Node(x, rnd.get(), m);
         insert(root, nd);
     }
     inline void erase(const T &x) {
@@ -282,6 +311,9 @@ struct Treap {
     }
     inline T find_by_order(const int &x) {
         return find_by_order(root, x);
+    }
+    inline M get(int l, int r) { //[l,r)
+        return get(root, l, r);
     }
 };
 

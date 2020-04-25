@@ -41,6 +41,7 @@ layout: default
 * :heavy_check_mark: <a href="library/DataStructure/BinaryIndexedTree.cpp.html">DataStructure/BinaryIndexedTree.cpp</a>
 * :warning: <a href="library/DataStructure/BinaryTrie.cpp.html">DataStructure/BinaryTrie.cpp</a>
 * :heavy_check_mark: <a href="library/DataStructure/DualSegmentTree.cpp.html">DataStructure/DualSegmentTree.cpp</a>
+* :warning: <a href="library/DataStructure/ImplicitTreap.cpp.html">DataStructure/ImplicitTreap.cpp</a>
 * :heavy_check_mark: <a href="library/DataStructure/LazySegmentTree.cpp.html">DataStructure/LazySegmentTree.cpp</a>
 * :heavy_check_mark: <a href="library/DataStructure/LiChaoTree.cpp.html">DataStructure/LiChaoTree.cpp</a>
 * :warning: <a href="library/DataStructure/Median.cpp.html">DataStructure/Median.cpp</a>
