@@ -28,24 +28,26 @@ void printv(const vector<T> &v) {
 #undef call_from_test
 struct E {
     mint a, b;
+    inline static E id() {
+        return E{1, 0};
+    }
     inline void h(const E &y) {
         a = a * y.a;
         b = y.a * b + y.b;
     }
-    static E e;
 };
 struct T {
     mint a;
+    inline static T id() {
+        return T{0};
+    }
     inline static T f(const T &x, const T &y) {
         return T{x.a + y.a};
     }
     inline void g(const E &x, ll len) {
         a = x.a * a + x.b * len;
     }
-    static T e;
 };
-E E::e = E{1, 0};
-T T::e = T{0};
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(0);

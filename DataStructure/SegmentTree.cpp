@@ -8,14 +8,14 @@ struct Segtree {
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, T::e);
+        dat.resize(2 * n, T::id());
     }
     Segtree(int n_, const vector<T> &a) {
         n = 1;
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, T::e);
+        dat.resize(2 * n, T::id());
         for (int i = 0; i < a.size(); i++) {
             dat[i + n] = a[i];
         }
@@ -34,7 +34,7 @@ struct Segtree {
     }
     T get(const int &a, const int &b, int k, int l, int r) {
         if (b <= l || r <= a) {
-            return T::e;
+            return T::id();
         }
         if (a <= l && r <= b) {
             return dat[k];
@@ -44,7 +44,7 @@ struct Segtree {
     }
     inline T get(const int &a, const int &b) { //[a,b)
         if (a >= b) {
-            return T::e;
+            return T::id();
         }
         return get(a, b, 1, 0, n);
     }

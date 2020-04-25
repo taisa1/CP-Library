@@ -28,13 +28,14 @@ void printv(const vector<T> &v) {
 #undef call_from_test
 struct T {
     int a, b;
+    inline static T id() {
+        return T{-1, (1LL << 31) - 1LL};
+    }
     inline static T f(const T &x, const T &y) {
         return x.a > y.a ? x : y;
     }
     inline void g(const T &x) { a = x.a, b = x.b; }
-    static T e;
 };
-T T::e = T{-1, (1LL << 31) - 1LL};
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(0);

@@ -1,5 +1,5 @@
 //Range Update Point Get
-template <typename T>
+template <class T>
 struct Segtree {
     vector<T> dat;
     int n;
@@ -9,7 +9,7 @@ struct Segtree {
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, T::e);
+        dat.resize(2 * n, T::id());
     }
     void upd(const int &a, const int &b, const T &x, int k, int l, int r) {
         if (b <= l || r <= a) {

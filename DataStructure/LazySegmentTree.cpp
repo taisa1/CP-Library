@@ -10,8 +10,8 @@ struct Segtree {
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, T::e);
-        laz.resize(2 * n, E::e);
+        dat.resize(2 * n, T::id());
+        laz.resize(2 * n, E::id());
         len.resize(2 * n, 1);
         for (int i = n - 1; i > 0; i--) len[i] = len[i << 1] + len[i << 1 | 1];
     }
@@ -20,8 +20,8 @@ struct Segtree {
         while (n < n_) {
             n <<= 1;
         }
-        dat.resize(2 * n, T::e);
-        laz.resize(2 * n, E::e);
+        dat.resize(2 * n, T::id());
+        laz.resize(2 * n, E::id());
         len.resize(2 * n, 1);
         for (int i = 0; i < a.size(); i++) dat[i + n] = a[i];
         for (int i = n - 1; i > 0; i--) {
@@ -35,7 +35,7 @@ struct Segtree {
             laz[k << 1].h(laz[k]);
             laz[k << 1 | 1].h(laz[k]);
         }
-        laz[k] = E::e;
+        laz[k] = E::id();
     }
     void upd(const int &a, const int &b, const E &x, int k, int l, int r) {
         eval(k);
@@ -58,7 +58,7 @@ struct Segtree {
     T get(const int &a, const int &b, int k, int l, int r) {
         eval(k);
         if (b <= l || r <= a) {
-            return T::e;
+            return T::id();
         }
         if (a <= l && r <= b) {
             return dat[k];
@@ -67,7 +67,7 @@ struct Segtree {
     }
     inline T get(const int &a, const int &b) {
         if (a >= b) {
-            return T::e;
+            return T::id();
         }
         return get(a, b, 1, 0, n);
     }
