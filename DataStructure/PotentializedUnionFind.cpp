@@ -8,8 +8,9 @@ struct UnionFind {
     }
     inline int find(int x) {
         if (x == par[x]) return x;
+        int root = find(par[x]);
         val[x] += val[par[x]];
-        return par[x] = find(par[x]);
+        return par[x] = root;
     }
     inline T value(int x) { //W(x)-W(root)
         find(x);

@@ -31,7 +31,7 @@ int main() {
     int n, m;
     while (1) {
         cin >> n >> m;
-        if (n == 0) return 0;
+        if (n == 0) break;
         UnionFind<int> uf(n);
         for (int i = 0; i < m; i++) {
             char c;
