@@ -1,4 +1,4 @@
-//Point Add Range Sum
+//@docs Docs/BinaryIndexedTree.md
 template <class T>
 struct BinaryIndexedTree {
     int n;
