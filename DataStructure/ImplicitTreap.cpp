@@ -1,3 +1,4 @@
+//@docs Docs/ImplicitTreap.md
 struct Xorshift {
     unsigned int get() {
         static unsigned int x = 123456789, y = 362436069, z = 521288629, w = 88675123;

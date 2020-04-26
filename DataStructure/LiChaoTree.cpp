@@ -1,3 +1,4 @@
+//@docs Docs/LiChaoTree.md
 struct T {
     ll a, b;
 };

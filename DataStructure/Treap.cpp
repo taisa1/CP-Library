@@ -1,3 +1,4 @@
+//@docs Treap.md
 struct Xorshift {
     unsigned int get() {
         static unsigned int x = 123456789, y = 362436069, z = 521288629, w = 88675123;
@@ -99,6 +100,17 @@ struct Treap {
             return find_by_order(t->r, x - size(t->l) - 1);
         }
     }
+    Tree lower_bound(Tree t, const T &x) {
+        if (t->key >= x) {
+            if (!t->l) {
+                return t;
+            } else {
+                return lower_bound(t->l, x);
+            }
+        } else {
+            return lower_bound(t->r, x);
+        }
+    }
     inline void insert(const T &x) {
         Tree nd = new Node(x, rnd.get());
         insert(root, nd);
@@ -114,5 +126,8 @@ struct Treap {
     }
     inline T find_by_order(const int &x) {
         return find_by_order(root, x);
+    }
+    Tree lower_bound(const T &x) {
+        return lower_bound(root, x);
     }
 };

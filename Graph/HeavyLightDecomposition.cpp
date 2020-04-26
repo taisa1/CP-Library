@@ -1,4 +1,4 @@
-//Path Sum and Subtree Sum
+//@docs Docs/HeavyLightDecomposition.md
 struct HLD {
     int n;
     vector<vector<int>> G;

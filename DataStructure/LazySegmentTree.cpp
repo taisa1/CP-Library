@@ -1,4 +1,4 @@
-//Range Update Range Get
+//@docs Docs/LazySegmentTree.md
 template <class T, class E>
 struct Segtree {
     int n, h;
