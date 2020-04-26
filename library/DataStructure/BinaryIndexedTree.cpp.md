@@ -31,10 +31,16 @@ layout: default
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/BinaryIndexedTree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-24 20:12:32+09:00
+    - Last commit date: 2020-04-26 13:55:32+09:00
 
 
 
+
+## Description
+数列 A を管理する。全て 0-indexed。
+add(k,x) : A_k に x を加算する。 O(log N)
+get(k) : A の [0,k] における和を返す。 O(log N)
+get(l,r) : A の [l,r) における和を返す。 O(log N)
 
 ## Verified with
 
@@ -48,7 +54,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-//Point Add Range Sum
+//@docs Docs/BinaryIndexedTree.md
 template <class T>
 struct BinaryIndexedTree {
     int n;
@@ -73,7 +79,7 @@ struct BinaryIndexedTree {
 {% raw %}
 ```cpp
 #line 1 "DataStructure/BinaryIndexedTree.cpp"
-//Point Add Range Sum
+//@docs Docs/BinaryIndexedTree.md
 template <class T>
 struct BinaryIndexedTree {
     int n;

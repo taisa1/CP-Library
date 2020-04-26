@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/BinaryIndexedTree.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-24 20:12:32+09:00
+    - Last commit date: 2020-04-26 13:55:32+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/point_add_range_sum">https://judge.yosupo.jp/problem/point_add_range_sum</a>
@@ -134,7 +134,7 @@ void printv(const vector<T> &v) {
 
 #define call_from_test
 #line 1 "DataStructure/BinaryIndexedTree.cpp"
-//Point Add Range Sum
+//@docs Docs/BinaryIndexedTree.md
 template <class T>
 struct BinaryIndexedTree {
     int n;
