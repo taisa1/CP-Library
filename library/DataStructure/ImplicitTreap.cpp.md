@@ -31,9 +31,21 @@ layout: default
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/ImplicitTreap.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-25 22:22:04+09:00
+    - Last commit date: 2020-04-27 01:54:08+09:00
 
 
+
+
+## Description
+モノイドを Treap 上で管理する。  
+各ノードは、ある区間を表し、区間内の演算結果を持つ。    
+eval(t) : ノード t について、ノードに持つ情報を再計算する。  
+insert(x,m) : Treap に key=x,val=m なるノードを挿入する。  
+erase(x) : Treap 内の key=x なるノードを全て削除する。  
+count(x) : Treap 内の key=x なるノードの個数を返す。  
+order_of_key(x) : Treap 内で、 key が x 未満のノードの個数を返す。  
+find_by_order(x) : Treap 内で、 x 番目に大きい key を返す。  
+get(l,r) : Treap内で、 key が [l,r) の範囲内であるノードについての演算結果を返す。
 
 
 ## Code
@@ -41,6 +53,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+//@docs Docs/ImplicitTreap.md
 struct Xorshift {
     unsigned int get() {
         static unsigned int x = 123456789, y = 362436069, z = 521288629, w = 88675123;
@@ -182,6 +195,7 @@ struct Treap {
 {% raw %}
 ```cpp
 #line 1 "DataStructure/ImplicitTreap.cpp"
+//@docs Docs/ImplicitTreap.md
 struct Xorshift {
     unsigned int get() {
         static unsigned int x = 123456789, y = 362436069, z = 521288629, w = 88675123;

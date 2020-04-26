@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/LineCHT.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 13:22:22+09:00
+    - Last commit date: 2020-04-27 01:54:08+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/line_add_get_min">https://judge.yosupo.jp/problem/line_add_get_min</a>
@@ -138,6 +138,7 @@ void printv(const vector<T> &v) {
 }
 #define call_from_test
 #line 1 "DataStructure/LiChaoTree.cpp"
+//@docs Docs/LiChaoTree.md
 struct T {
     ll a, b;
 };

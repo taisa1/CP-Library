@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/HLDpath.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-26 13:55:32+09:00
+    - Last commit date: 2020-04-27 01:54:08+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/vertex_add_path_sum">https://judge.yosupo.jp/problem/vertex_add_path_sum</a>
@@ -166,7 +166,7 @@ struct BinaryIndexedTree {
     }
 };
 #line 1 "Graph/HeavyLightDecomposition.cpp"
-//Path Sum and Subtree Sum
+//@docs Docs/HeavyLightDecomposition.md
 struct HLD {
     int n;
     vector<vector<int>> G;

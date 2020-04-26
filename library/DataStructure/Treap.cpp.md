@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/Treap.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-25 22:22:04+09:00
+    - Last commit date: 2020-04-27 01:54:08+09:00
 
 
 
@@ -41,6 +41,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+//@docs Treap.md
 struct Xorshift {
     unsigned int get() {
         static unsigned int x = 123456789, y = 362436069, z = 521288629, w = 88675123;
@@ -142,6 +143,17 @@ struct Treap {
             return find_by_order(t->r, x - size(t->l) - 1);
         }
     }
+    Tree lower_bound(Tree t, const T &x) {
+        if (t->key >= x) {
+            if (!t->l) {
+                return t;
+            } else {
+                return lower_bound(t->l, x);
+            }
+        } else {
+            return lower_bound(t->r, x);
+        }
+    }
     inline void insert(const T &x) {
         Tree nd = new Node(x, rnd.get());
         insert(root, nd);
@@ -157,6 +169,9 @@ struct Treap {
     }
     inline T find_by_order(const int &x) {
         return find_by_order(root, x);
+    }
+    Tree lower_bound(const T &x) {
+        return lower_bound(root, x);
     }
 };
 ```
@@ -166,6 +181,7 @@ struct Treap {
 {% raw %}
 ```cpp
 #line 1 "DataStructure/Treap.cpp"
+//@docs Treap.md
 struct Xorshift {
     unsigned int get() {
         static unsigned int x = 123456789, y = 362436069, z = 521288629, w = 88675123;
@@ -267,6 +283,17 @@ struct Treap {
             return find_by_order(t->r, x - size(t->l) - 1);
         }
     }
+    Tree lower_bound(Tree t, const T &x) {
+        if (t->key >= x) {
+            if (!t->l) {
+                return t;
+            } else {
+                return lower_bound(t->l, x);
+            }
+        } else {
+            return lower_bound(t->r, x);
+        }
+    }
     inline void insert(const T &x) {
         Tree nd = new Node(x, rnd.get());
         insert(root, nd);
@@ -282,6 +309,9 @@ struct Treap {
     }
     inline T find_by_order(const int &x) {
         return find_by_order(root, x);
+    }
+    Tree lower_bound(const T &x) {
+        return lower_bound(root, x);
     }
 };
 

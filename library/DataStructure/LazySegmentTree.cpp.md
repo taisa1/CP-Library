@@ -31,9 +31,17 @@ layout: default
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/LazySegmentTree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-26 12:31:28+09:00
+    - Last commit date: 2020-04-27 01:54:08+09:00
 
 
+
+
+## Description
+モノイド列 A を二分木上で管理する。全て 0-indexed。  
+setval(k,x) : A_k を x に変更する。  
+upd(a,b,x) : [a,b) に x を作用させる。 O(log N)  
+get(a,b) : [a,b) の演算結果を返す。 O(log N)  
+find(a,b,x) : [a,b) において、値が x 以下であるような最も左の index を求める。 O(log N)  
 
 
 ## Verified with
@@ -46,7 +54,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-//Range Update Range Get
+//@docs Docs/LazySegmentTree.md
 template <class T, class E>
 struct Segtree {
     int n, h;
@@ -158,7 +166,7 @@ struct Segtree {
 {% raw %}
 ```cpp
 #line 1 "DataStructure/LazySegmentTree.cpp"
-//Range Update Range Get
+//@docs Docs/LazySegmentTree.md
 template <class T, class E>
 struct Segtree {
     int n, h;

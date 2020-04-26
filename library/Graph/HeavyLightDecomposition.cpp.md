@@ -31,10 +31,17 @@ layout: default
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/HeavyLightDecomposition.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-23 01:30:59+09:00
+    - Last commit date: 2020-04-27 01:54:08+09:00
 
 
 
+
+## Description
+木をHL分解する。  
+addedge(u,v) : 木に辺 (u,v) を追加する。 N-1 辺追加した時点で自動で build() を呼び、HL分解を行う。    
+getpath(u,v,f) : (u,v) パス上の全頂点について、関数 f を適用する。   
+getsubtree(u) : u の部分木内の全頂点について、関数 f を適用する。  
+index(i) : i のHL分解後の index を返す。  
 
 ## Verified with
 
@@ -47,7 +54,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-//Path Sum and Subtree Sum
+//@docs Docs/HeavyLightDecomposition.md
 struct HLD {
     int n;
     vector<vector<int>> G;
@@ -122,7 +129,7 @@ struct HLD {
 {% raw %}
 ```cpp
 #line 1 "Graph/HeavyLightDecomposition.cpp"
-//Path Sum and Subtree Sum
+//@docs Docs/HeavyLightDecomposition.md
 struct HLD {
     int n;
     vector<vector<int>> G;
