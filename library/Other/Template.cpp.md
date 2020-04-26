@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Utility/Template.cpp
+# :warning: Other/Template.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#94df2a6972ca1fa79411645fe9b42339">Utility</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Utility/Template.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 01:10:06+09:00
+* category: <a href="../../index.html#6311ae17c1ee52b36e68aaf4ad066387">Other</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Other/Template.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-04-26 12:31:28+09:00
 
 
 
@@ -74,7 +74,7 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Utility/Template.cpp"
+#line 1 "Other/Template.cpp"
 #include <bits/stdc++.h>
 #define all(vec) vec.begin(), vec.end()
 #define pb push_back

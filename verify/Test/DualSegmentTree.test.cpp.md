@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/DualSegmentTree.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-25 22:15:31+09:00
+    - Last commit date: 2020-04-26 12:31:28+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_D">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_D</a>
@@ -84,7 +84,7 @@ struct T {
     inline static T f(const T &x, const T &y) {
         return x.a > y.a ? x : y;
     }
-    inline void g(const T &x) { a = x.a, b = x.b; }
+    inline static T g(const T &x, const T &y) { return y; }
 };
 int main() {
     cin.tie(0);
@@ -157,7 +157,7 @@ struct Segtree {
             return;
         }
         if (a <= l && r <= b) {
-            dat[k].g(x);
+            dat[k] = T::g(dat[k], x);
             return;
         }
         upd(a, b, x, k << 1, l, (l + r) >> 1);
@@ -267,7 +267,7 @@ struct T {
     inline static T f(const T &x, const T &y) {
         return x.a > y.a ? x : y;
     }
-    inline void g(const T &x) { a = x.a, b = x.b; }
+    inline static T g(const T &x, const T &y) { return y; }
 };
 int main() {
     cin.tie(0);

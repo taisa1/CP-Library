@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Utility/TernarySearch.cpp
+# :warning: Other/Random.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#94df2a6972ca1fa79411645fe9b42339">Utility</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Utility/TernarySearch.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 01:10:06+09:00
+* category: <a href="../../index.html#6311ae17c1ee52b36e68aaf4ad066387">Other</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Other/Random.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-04-26 12:31:28+09:00
 
 
 
@@ -41,20 +41,14 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-auto calc = [&](auto x) {
-    return 0;
-};
-//整数値での三分探索
-auto TernarySearch = [&](auto lb, auto ub) { //[lb,ub]
-    using T = decltype(lb);
-    T ok = lb - 1, ng = ub;
-    while (ng - ok > 1) {
-        T mid = (ok + ng) / 2;
-        if (calc(mid + 1) - calc(mid) < 0) { //上に凸なら>
-            ok = mid;
-        } else {
-            ng = mid;
-        }
+struct Xorshift {
+    unsigned int get() {
+        static unsigned int x = 123456789, y = 362436069, z = 521288629, w = 88675123;
+        unsigned int t = x ^ (x << 11);
+        x = y;
+        y = z;
+        z = w;
+        return w = (w ^ (w >> 19)) ^ (t ^ (t >> 8));
     }
 };
 ```
@@ -63,21 +57,15 @@ auto TernarySearch = [&](auto lb, auto ub) { //[lb,ub]
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Utility/TernarySearch.cpp"
-auto calc = [&](auto x) {
-    return 0;
-};
-//整数値での三分探索
-auto TernarySearch = [&](auto lb, auto ub) { //[lb,ub]
-    using T = decltype(lb);
-    T ok = lb - 1, ng = ub;
-    while (ng - ok > 1) {
-        T mid = (ok + ng) / 2;
-        if (calc(mid + 1) - calc(mid) < 0) { //上に凸なら>
-            ok = mid;
-        } else {
-            ng = mid;
-        }
+#line 1 "Other/Random.cpp"
+struct Xorshift {
+    unsigned int get() {
+        static unsigned int x = 123456789, y = 362436069, z = 521288629, w = 88675123;
+        unsigned int t = x ^ (x << 11);
+        x = y;
+        y = z;
+        z = w;
+        return w = (w ^ (w >> 19)) ^ (t ^ (t >> 8));
     }
 };
 

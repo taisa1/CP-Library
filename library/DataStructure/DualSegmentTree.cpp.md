@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/DualSegmentTree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-25 22:15:31+09:00
+    - Last commit date: 2020-04-26 12:31:28+09:00
 
 
 
@@ -64,7 +64,7 @@ struct Segtree {
             return;
         }
         if (a <= l && r <= b) {
-            dat[k].g(x);
+            dat[k] = T::g(dat[k], x);
             return;
         }
         upd(a, b, x, k << 1, l, (l + r) >> 1);
@@ -113,7 +113,7 @@ struct Segtree {
             return;
         }
         if (a <= l && r <= b) {
-            dat[k].g(x);
+            dat[k] = T::g(dat[k], x);
             return;
         }
         upd(a, b, x, k << 1, l, (l + r) >> 1);

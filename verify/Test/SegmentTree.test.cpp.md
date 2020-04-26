@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/SegmentTree.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-25 22:15:31+09:00
+    - Last commit date: 2020-04-26 12:31:28+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/point_set_range_composite">https://judge.yosupo.jp/problem/point_set_range_composite</a>
@@ -84,8 +84,8 @@ struct T {
     inline static T f(const T &x, const T &y) {
         return T{x.a * y.a, y.a * x.b + y.b};
     }
-    inline static void g(T &a, const T &b) {
-        a = b;
+    inline static T g(const T &a, const T &b) {
+        return b;
     }
 };
 int main() {
@@ -176,7 +176,7 @@ struct Segtree {
     }
     void upd(int k, const T &x) {
         k += n;
-        T::g(dat[k], x);
+        dat[k] = T::g(dat[k], x);
         k >>= 1;
         while (k > 0) {
             dat[k] = T::f(dat[k << 1], dat[k << 1 | 1]);
@@ -306,8 +306,8 @@ struct T {
     inline static T f(const T &x, const T &y) {
         return T{x.a * y.a, y.a * x.b + y.b};
     }
-    inline static void g(T &a, const T &b) {
-        a = b;
+    inline static T g(const T &a, const T &b) {
+        return b;
     }
 };
 int main() {

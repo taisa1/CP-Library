@@ -93,21 +93,22 @@ layout: default
 * :warning: <a href="library/Math/RuntimeModint.cpp.html">Math/RuntimeModint.cpp</a>
 
 
+<div id="6311ae17c1ee52b36e68aaf4ad066387"></div>
+
+### Other
+
+* :warning: <a href="library/Other/Monoid.cpp.html">Other/Monoid.cpp</a>
+* :warning: <a href="library/Other/Random.cpp.html">Other/Random.cpp</a>
+* :warning: <a href="library/Other/Template.cpp.html">Other/Template.cpp</a>
+* :warning: <a href="library/Other/TernarySearch.cpp.html">Other/TernarySearch.cpp</a>
+
+
 <div id="27118326006d3829667a400ad23d5d98"></div>
 
 ### String
 
 * :warning: <a href="library/String/MP.cpp.html">String/MP.cpp</a>
 * :heavy_check_mark: <a href="library/String/RollingHash.cpp.html">String/RollingHash.cpp</a>
-
-
-<div id="94df2a6972ca1fa79411645fe9b42339"></div>
-
-### Utility
-
-* :warning: <a href="library/Utility/Random.cpp.html">Utility/Random.cpp</a>
-* :warning: <a href="library/Utility/Template.cpp.html">Utility/Template.cpp</a>
-* :warning: <a href="library/Utility/TernarySearch.cpp.html">Utility/TernarySearch.cpp</a>
 
 
 ## Verify Files
