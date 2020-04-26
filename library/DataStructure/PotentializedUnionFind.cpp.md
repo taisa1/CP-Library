@@ -25,12 +25,12 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: DataStructure/UnionFind.cpp
+# :x: DataStructure/PotentializedUnionFind.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
-* <a href="{{ site.github.repository_url }}/blob/master/DataStructure/UnionFind.cpp">View this file on GitHub</a>
+* <a href="{{ site.github.repository_url }}/blob/master/DataStructure/PotentializedUnionFind.cpp">View this file on GitHub</a>
     - Last commit date: 2020-04-26 13:26:56+09:00
 
 
@@ -38,7 +38,7 @@ layout: default
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/Test/UnionFind.test.cpp.html">Test/UnionFind.test.cpp</a>
+* :x: <a href="../../verify/Test/PotentializedUF.test.cpp.html">Test/PotentializedUF.test.cpp</a>
 
 
 ## Code
@@ -46,21 +46,31 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+template <class T>
 struct UnionFind {
     vector<int> par, sz;
-    UnionFind(int n) : par(n),sz(n,1) {
+    vector<T> val;
+    UnionFind(int n) : par(n), sz(n, 1) {
         iota(par.begin(), par.end(), 0);
+        val.resize(n);
     }
     inline int find(int x) {
         if (x == par[x]) return x;
+        val[x] += val[par[x]];
         return par[x] = find(par[x]);
     }
-    bool unite(int u, int v) {
+    inline T value(int x) { //W(x)-W(root)
+        find(x);
+        return val[x];
+    }
+    bool unite(int u, int v, T w) { //W(v)=W(u)+w
+        w += value(u), w -= value(v);
         u = find(u), v = find(v);
         if (u == v) return false;
-        if (sz[u] < sz[v]) swap(u, v);
-        par[v] = u;
+        if (sz[u] < sz[v]) swap(u, v), w *= -1;
         sz[u] += sz[v];
+        par[v] = u;
+        val[v] = w;
         return true;
     }
     inline int size(int x) {
@@ -77,22 +87,32 @@ struct UnionFind {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "DataStructure/UnionFind.cpp"
+#line 1 "DataStructure/PotentializedUnionFind.cpp"
+template <class T>
 struct UnionFind {
     vector<int> par, sz;
-    UnionFind(int n) : par(n),sz(n,1) {
+    vector<T> val;
+    UnionFind(int n) : par(n), sz(n, 1) {
         iota(par.begin(), par.end(), 0);
+        val.resize(n);
     }
     inline int find(int x) {
         if (x == par[x]) return x;
+        val[x] += val[par[x]];
         return par[x] = find(par[x]);
     }
-    bool unite(int u, int v) {
+    inline T value(int x) { //W(x)-W(root)
+        find(x);
+        return val[x];
+    }
+    bool unite(int u, int v, T w) { //W(v)=W(u)+w
+        w += value(u), w -= value(v);
         u = find(u), v = find(v);
         if (u == v) return false;
-        if (sz[u] < sz[v]) swap(u, v);
-        par[v] = u;
+        if (sz[u] < sz[v]) swap(u, v), w *= -1;
         sz[u] += sz[v];
+        par[v] = u;
+        val[v] = w;
         return true;
     }
     inline int size(int x) {

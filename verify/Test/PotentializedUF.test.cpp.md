@@ -25,21 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Test/UnionFind.test.cpp
+# :x: Test/PotentializedUF.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Test/UnionFind.test.cpp">View this file on GitHub</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Test/PotentializedUF.test.cpp">View this file on GitHub</a>
     - Last commit date: 2020-04-26 13:26:56+09:00
 
 
-* see: <a href="https://judge.yosupo.jp/problem/unionfind">https://judge.yosupo.jp/problem/unionfind</a>
+* see: <a href="https://onlinejudge.u-aizu.ac.jp/problems/1330">https://onlinejudge.u-aizu.ac.jp/problems/1330</a>
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/DataStructure/UnionFind.cpp.html">DataStructure/UnionFind.cpp</a>
+* :x: <a href="../../library/DataStructure/PotentializedUnionFind.cpp.html">DataStructure/PotentializedUnionFind.cpp</a>
 
 
 ## Code
@@ -47,7 +47,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/1330"
 #include <bits/stdc++.h>
 #define all(vec) vec.begin(), vec.end()
 #define pb push_back
@@ -59,7 +59,7 @@ using ll = long long;
 using P = pair<ll, ll>;
 template <class T>
 using V = vector<T>;
-constexpr ll INF = (1LL << 30) - 1LL;
+constexpr ll INF = (1LL << 60) - 1LL;
 constexpr ll MOD = 998244353LL;
 constexpr int dx[4] = {0, 1, 0, -1}, dy[4] = {1, 0, -1, 0};
 template <class T>
@@ -72,24 +72,35 @@ void printv(const vector<T> &v) {
     for (int i = 0; i < v.size(); i++) cout << v[i] << (i + 1 == v.size() ? '\n' : ' ');
 }
 #define call_from_test
-#include "../DataStructure/UnionFind.cpp"
+#include "../DataStructure/PotentializedUnionFind.cpp"
 #undef call_from_test
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    int n, q;
-    cin >> n >> q;
-    UnionFind uf(n);
-    while (q--) {
-        int t, u, v;
-        cin >> t >> u >> v;
-        if (t == 0) {
-            uf.unite(u, v);
-        } else {
-            if (uf.find(u) == uf.find(v)) {
-                cout << 1 << '\n';
+    int n, m;
+    while (1) {
+        cin >> n >> m;
+        if (n == 0) return 0;
+        UnionFind<int> uf(n);
+        for (int i = 0; i < m; i++) {
+            char c;
+            cin >> c;
+            if (c == '!') {
+                int a, b, w;
+                cin >> a >> b >> w;
+                --a;
+                --b;
+                uf.unite(a, b, w);
             } else {
-                cout << 0 << '\n';
+                int a, b;
+                cin >> a >> b;
+                --a;
+                --b;
+                if (uf.same(a, b)) {
+                    cout << uf.value(b) - uf.value(a) << '\n';
+                } else {
+                    cout << "UNKNOWN\n";
+                }
             }
         }
     }
@@ -100,8 +111,8 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Test/UnionFind.test.cpp"
-#define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
+#line 1 "Test/PotentializedUF.test.cpp"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/1330"
 #include <bits/stdc++.h>
 #define all(vec) vec.begin(), vec.end()
 #define pb push_back
@@ -113,7 +124,7 @@ using ll = long long;
 using P = pair<ll, ll>;
 template <class T>
 using V = vector<T>;
-constexpr ll INF = (1LL << 30) - 1LL;
+constexpr ll INF = (1LL << 60) - 1LL;
 constexpr ll MOD = 998244353LL;
 constexpr int dx[4] = {0, 1, 0, -1}, dy[4] = {1, 0, -1, 0};
 template <class T>
@@ -126,22 +137,32 @@ void printv(const vector<T> &v) {
     for (int i = 0; i < v.size(); i++) cout << v[i] << (i + 1 == v.size() ? '\n' : ' ');
 }
 #define call_from_test
-#line 1 "DataStructure/UnionFind.cpp"
+#line 1 "DataStructure/PotentializedUnionFind.cpp"
+template <class T>
 struct UnionFind {
     vector<int> par, sz;
-    UnionFind(int n) : par(n),sz(n,1) {
+    vector<T> val;
+    UnionFind(int n) : par(n), sz(n, 1) {
         iota(par.begin(), par.end(), 0);
+        val.resize(n);
     }
     inline int find(int x) {
         if (x == par[x]) return x;
+        val[x] += val[par[x]];
         return par[x] = find(par[x]);
     }
-    bool unite(int u, int v) {
+    inline T value(int x) { //W(x)-W(root)
+        find(x);
+        return val[x];
+    }
+    bool unite(int u, int v, T w) { //W(v)=W(u)+w
+        w += value(u), w -= value(v);
         u = find(u), v = find(v);
         if (u == v) return false;
-        if (sz[u] < sz[v]) swap(u, v);
-        par[v] = u;
+        if (sz[u] < sz[v]) swap(u, v), w *= -1;
         sz[u] += sz[v];
+        par[v] = u;
+        val[v] = w;
         return true;
     }
     inline int size(int x) {
@@ -151,24 +172,35 @@ struct UnionFind {
         return find(u) == find(v);
     }
 };
-#line 27 "Test/UnionFind.test.cpp"
+#line 27 "Test/PotentializedUF.test.cpp"
 #undef call_from_test
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    int n, q;
-    cin >> n >> q;
-    UnionFind uf(n);
-    while (q--) {
-        int t, u, v;
-        cin >> t >> u >> v;
-        if (t == 0) {
-            uf.unite(u, v);
-        } else {
-            if (uf.find(u) == uf.find(v)) {
-                cout << 1 << '\n';
+    int n, m;
+    while (1) {
+        cin >> n >> m;
+        if (n == 0) return 0;
+        UnionFind<int> uf(n);
+        for (int i = 0; i < m; i++) {
+            char c;
+            cin >> c;
+            if (c == '!') {
+                int a, b, w;
+                cin >> a >> b >> w;
+                --a;
+                --b;
+                uf.unite(a, b, w);
             } else {
-                cout << 0 << '\n';
+                int a, b;
+                cin >> a >> b;
+                --a;
+                --b;
+                if (uf.same(a, b)) {
+                    cout << uf.value(b) - uf.value(a) << '\n';
+                } else {
+                    cout << "UNKNOWN\n";
+                }
             }
         }
     }
