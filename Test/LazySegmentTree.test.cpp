@@ -28,24 +28,27 @@ void printv(const vector<T> &v) {
 #undef call_from_test
 struct E {
     mint a, b;
+    E() {}
+    E(mint a, mint b) : a(a), b(b) {}
     inline static E id() {
-        return E{1, 0};
+        return E(1, 0);
     }
-    inline void h(const E &y) {
-        a = a * y.a;
-        b = y.a * b + y.b;
+    inline static E f(const E &x, const E &y) {
+        return E(x.a * y.a, y.a * x.b + y.b);
     }
 };
 struct T {
     mint a;
+    T() {}
+    T(mint a) : a(a) {}
     inline static T id() {
-        return T{0};
+        return T(0);
     }
     inline static T f(const T &x, const T &y) {
-        return T{x.a + y.a};
+        return T(x.a + y.a);
     }
-    inline void g(const E &x, ll len) {
-        a = x.a * a + x.b * len;
+    inline static T g(const T &x, const E &y, ll len) {
+        return T(y.a * x.a + y.b * len);
     }
 };
 int main() {
@@ -64,7 +67,7 @@ int main() {
         if (t == 0) {
             int l, r, c, d;
             cin >> l >> r >> c >> d;
-            E x = E{c, d};
+            E x = E(c, d);
             seg.upd(l, r, x);
         } else {
             int l, r;

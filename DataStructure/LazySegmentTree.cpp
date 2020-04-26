@@ -1,14 +1,16 @@
 //Range Update Range Get
 template <class T, class E>
 struct Segtree {
-    int n;
+    int n, h;
     vector<T> dat;
     vector<E> laz;
     vector<ll> len;
     Segtree(int n_) {
         n = 1;
+        h = 1;
         while (n < n_) {
             n <<= 1;
+            h++;
         }
         dat.resize(2 * n, T::id());
         laz.resize(2 * n, E::id());
@@ -30,10 +32,10 @@ struct Segtree {
         }
     }
     inline void eval(int k) {
-        dat[k].g(laz[k], len[k]);
+        dat[k] = T::g(dat[k], laz[k], len[k]);
         if (k < n) {
-            laz[k << 1].h(laz[k]);
-            laz[k << 1 | 1].h(laz[k]);
+            laz[k << 1] = E::f(laz[k << 1], laz[k]);
+            laz[k << 1 | 1] = E::f(laz[k << 1 | 1], laz[k]);
         }
         laz[k] = E::id();
     }
@@ -41,19 +43,13 @@ struct Segtree {
         eval(k);
         if (b <= l || r <= a) return;
         if (a <= l && r <= b) {
-            laz[k].h(x);
+            laz[k] = E::f(laz[k], x);
             eval(k);
             return;
         }
         upd(a, b, x, k << 1, l, (l + r) >> 1);
         upd(a, b, x, k << 1 | 1, (l + r) >> 1, r);
         dat[k] = T::f(dat[k << 1], dat[k << 1 | 1]);
-    }
-    inline void upd(const int &a, const int &b, const E &x) {
-        if (a >= b) {
-            return;
-        }
-        upd(a, b, x, 1, 0, n);
     }
     T get(const int &a, const int &b, int k, int l, int r) {
         eval(k);
@@ -64,12 +60,6 @@ struct Segtree {
             return dat[k];
         }
         return T::f(get(a, b, k << 1, l, (l + r) >> 1), get(a, b, k << 1 | 1, (l + r) >> 1, r));
-    }
-    inline T get(const int &a, const int &b) {
-        if (a >= b) {
-            return T::id();
-        }
-        return get(a, b, 1, 0, n);
     }
     int find(const int &a, const int &b, const T &x, int k, int l, int r) {
         eval(k);
@@ -84,6 +74,27 @@ struct Segtree {
             return il;
         }
         return find(a, b, x, k << 1 | 1, (l + r) >> 1, r);
+    }
+    void setval(int k, const T &x) {
+        k += n;
+        for (int i = h; i >= 0; i--) eval(k >> i);
+        dat[k] = x;
+        while (k > 1) {
+            k >>= 1;
+            dat[k] = T::f(dat[k << 1], dat[k << 1 | 1]);
+        }
+    }
+    inline void upd(const int &a, const int &b, const E &x) {
+        if (a >= b) {
+            return;
+        }
+        upd(a, b, x, 1, 0, n);
+    }
+    inline T get(const int &a, const int &b) {
+        if (a >= b) {
+            return T::id();
+        }
+        return get(a, b, 1, 0, n);
     }
     inline int find(const int &a, const int &b, const T &x) { //[a,b)における、値<=x なる最左のindexを求める
         if (a >= b) {

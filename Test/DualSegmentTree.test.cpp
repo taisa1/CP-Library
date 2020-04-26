@@ -34,7 +34,7 @@ struct T {
     inline static T f(const T &x, const T &y) {
         return x.a > y.a ? x : y;
     }
-    inline void g(const T &x) { a = x.a, b = x.b; }
+    inline static T g(const T &x, const T &y) { return y; }
 };
 int main() {
     cin.tie(0);

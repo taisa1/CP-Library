@@ -16,7 +16,7 @@ struct Segtree {
             return;
         }
         if (a <= l && r <= b) {
-            dat[k].g(x);
+            dat[k] = T::g(dat[k], x);
             return;
         }
         upd(a, b, x, k << 1, l, (l + r) >> 1);

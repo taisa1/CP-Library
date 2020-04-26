@@ -25,7 +25,7 @@ struct Segtree {
     }
     void upd(int k, const T &x) {
         k += n;
-        T::g(dat[k], x);
+        dat[k] = T::g(dat[k], x);
         k >>= 1;
         while (k > 0) {
             dat[k] = T::f(dat[k << 1], dat[k << 1 | 1]);

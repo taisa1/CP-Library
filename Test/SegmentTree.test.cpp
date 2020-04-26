@@ -34,8 +34,8 @@ struct T {
     inline static T f(const T &x, const T &y) {
         return T{x.a * y.a, y.a * x.b + y.b};
     }
-    inline static void g(T &a, const T &b) {
-        a = b;
+    inline static T g(const T &a, const T &b) {
+        return b;
     }
 };
 int main() {
