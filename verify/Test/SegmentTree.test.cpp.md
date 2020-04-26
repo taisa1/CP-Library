@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/SegmentTree.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-26 12:31:28+09:00
+    - Last commit date: 2020-04-26 16:04:18+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/point_set_range_composite">https://judge.yosupo.jp/problem/point_set_range_composite</a>
@@ -149,7 +149,7 @@ void printv(const vector<T> &v) {
 }
 #define call_from_test
 #line 1 "DataStructure/SegmentTree.cpp"
-//Point Update Range Get
+//@docs Docs/SegmentTree.md
 template <class T>
 struct Segtree {
     int n;

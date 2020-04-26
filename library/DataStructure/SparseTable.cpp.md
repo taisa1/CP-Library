@@ -31,10 +31,15 @@ layout: default
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/SparseTable.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-24 20:12:32+09:00
+    - Last commit date: 2020-04-26 16:04:18+09:00
 
 
 
+
+## Description
+数列の最小値を管理するデータ構造。0-indexed。  
+build(a) : 数列 a から Sparse Table を作成する。 O(NlogN)  
+get(l,r) : [l,r) における数列 a の最小値を求める。 O(1)  
 
 ## Verified with
 
@@ -46,6 +51,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+//@docs Docs/SparseTable.md
 const int LOG = 30;
 template <class T>
 struct SparseTable {
@@ -84,6 +90,7 @@ struct SparseTable {
 {% raw %}
 ```cpp
 #line 1 "DataStructure/SparseTable.cpp"
+//@docs Docs/SparseTable.md
 const int LOG = 30;
 template <class T>
 struct SparseTable {

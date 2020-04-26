@@ -31,9 +31,17 @@ layout: default
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/UnionFind.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-26 13:26:56+09:00
+    - Last commit date: 2020-04-26 16:04:18+09:00
 
 
+
+
+## Description
+集合を管理する。  
+find(x) : x の属する集合の index を返す。 O(α(N))  
+unite(u,v) : u,v それぞれが属する集合を併合する。 O(α(N))  
+size(x) : x の属する集合のサイズを返す。 O(1)  
+same(u,v) : u,v が同じ集合に属するか判定する。 O(α(N))  
 
 
 ## Verified with
@@ -46,9 +54,10 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+//@docs Docs/UnionFind.md
 struct UnionFind {
     vector<int> par, sz;
-    UnionFind(int n) : par(n),sz(n,1) {
+    UnionFind(int n) : par(n), sz(n, 1) {
         iota(par.begin(), par.end(), 0);
     }
     inline int find(int x) {
@@ -78,9 +87,10 @@ struct UnionFind {
 {% raw %}
 ```cpp
 #line 1 "DataStructure/UnionFind.cpp"
+//@docs Docs/UnionFind.md
 struct UnionFind {
     vector<int> par, sz;
-    UnionFind(int n) : par(n),sz(n,1) {
+    UnionFind(int n) : par(n), sz(n, 1) {
         iota(par.begin(), par.end(), 0);
     }
     inline int find(int x) {

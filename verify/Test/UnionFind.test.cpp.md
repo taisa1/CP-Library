@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/UnionFind.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-26 13:26:56+09:00
+    - Last commit date: 2020-04-26 16:04:18+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/unionfind">https://judge.yosupo.jp/problem/unionfind</a>
@@ -127,9 +127,10 @@ void printv(const vector<T> &v) {
 }
 #define call_from_test
 #line 1 "DataStructure/UnionFind.cpp"
+//@docs Docs/UnionFind.md
 struct UnionFind {
     vector<int> par, sz;
-    UnionFind(int n) : par(n),sz(n,1) {
+    UnionFind(int n) : par(n), sz(n, 1) {
         iota(par.begin(), par.end(), 0);
     }
     inline int find(int x) {

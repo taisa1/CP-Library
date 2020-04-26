@@ -31,10 +31,16 @@ layout: default
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/SegmentTree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-26 12:31:28+09:00
+    - Last commit date: 2020-04-26 16:04:18+09:00
 
 
 
+
+## Description
+モノイド列 A を管理する。全て 0-indexed。  
+upd(k,x) : A_k に x を作用させる。 O(log N)   
+get(a,b) : [a,b) の演算結果を返す。 O(log N)  
+find(a,b,x) : [a,b) における、値が x 以下であるような最も左の index を返す。 O(log N)  
 
 ## Verified with
 
@@ -46,7 +52,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-//Point Update Range Get
+//@docs Docs/SegmentTree.md
 template <class T>
 struct Segtree {
     int n;
@@ -123,7 +129,7 @@ struct Segtree {
 {% raw %}
 ```cpp
 #line 1 "DataStructure/SegmentTree.cpp"
-//Point Update Range Get
+//@docs Docs/SegmentTree.md
 template <class T>
 struct Segtree {
     int n;
