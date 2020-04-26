@@ -31,10 +31,10 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/PotentializedUF.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-26 13:26:56+09:00
+    - Last commit date: 2020-04-26 13:30:55+09:00
 
 
-* see: <a href="https://onlinejudge.u-aizu.ac.jp/problems/1330">https://onlinejudge.u-aizu.ac.jp/problems/1330</a>
+* see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1330">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1330</a>
 
 
 ## Depends on
@@ -47,7 +47,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/1330"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1330"
 #include <bits/stdc++.h>
 #define all(vec) vec.begin(), vec.end()
 #define pb push_back
@@ -112,7 +112,7 @@ int main() {
 {% raw %}
 ```cpp
 #line 1 "Test/PotentializedUF.test.cpp"
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/1330"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1330"
 #include <bits/stdc++.h>
 #define all(vec) vec.begin(), vec.end()
 #define pb push_back
