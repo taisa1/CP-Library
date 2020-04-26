@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#6311ae17c1ee52b36e68aaf4ad066387">Other</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Other/Monoid.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-26 12:31:28+09:00
+    - Last commit date: 2020-04-26 12:37:13+09:00
 
 
 
@@ -41,7 +41,47 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-
+//segtree(example:RMQ)
+struct T {
+    ll x;
+    T() {}
+    T(ll x) : x(x) {}
+    inline static T id() {
+        return 1LL << 60;
+    }
+    inline static T f(const T &x, const T &y) {
+        return T(min(x.x, y.x));
+    }
+    inline static T g(const T &a, const T &b) {
+        return b;
+    }
+};
+//lazy segtree(example:RAQ+RMQ)
+struct E {
+    ll x;
+    E() {}
+    E(ll x) : x(x) {}
+    inline static E id() {
+        return E(0);
+    }
+    inline static E f(const E &x, const E &y) {
+        return E(x + y);
+    }
+};
+struct T {
+    ll x;
+    T() {}
+    T(ll x) : x(x) {}
+    inline static T id() {
+        return 1LL << 60;
+    }
+    inline static T f(const T &x, const T &y) {
+        return min(x.x, y.x);
+    }
+    inline static T g(const T &x, const E &y, const ll &len) {
+        return x.x + y.x;
+    }
+};
 ```
 {% endraw %}
 
@@ -49,7 +89,47 @@ layout: default
 {% raw %}
 ```cpp
 #line 1 "Other/Monoid.cpp"
-
+//segtree(example:RMQ)
+struct T {
+    ll x;
+    T() {}
+    T(ll x) : x(x) {}
+    inline static T id() {
+        return 1LL << 60;
+    }
+    inline static T f(const T &x, const T &y) {
+        return T(min(x.x, y.x));
+    }
+    inline static T g(const T &a, const T &b) {
+        return b;
+    }
+};
+//lazy segtree(example:RAQ+RMQ)
+struct E {
+    ll x;
+    E() {}
+    E(ll x) : x(x) {}
+    inline static E id() {
+        return E(0);
+    }
+    inline static E f(const E &x, const E &y) {
+        return E(x + y);
+    }
+};
+struct T {
+    ll x;
+    T() {}
+    T(ll x) : x(x) {}
+    inline static T id() {
+        return 1LL << 60;
+    }
+    inline static T f(const T &x, const T &y) {
+        return min(x.x, y.x);
+    }
+    inline static T g(const T &x, const E &y, const ll &len) {
+        return x.x + y.x;
+    }
+};
 
 ```
 {% endraw %}
