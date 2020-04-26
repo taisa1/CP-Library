@@ -46,7 +46,7 @@ layout: default
 * :heavy_check_mark: <a href="library/DataStructure/LiChaoTree.cpp.html">DataStructure/LiChaoTree.cpp</a>
 * :warning: <a href="library/DataStructure/Median.cpp.html">DataStructure/Median.cpp</a>
 * :heavy_check_mark: <a href="library/DataStructure/PartiallyPersistentUnionFind.cpp.html">DataStructure/PartiallyPersistentUnionFind.cpp</a>
-* :x: <a href="library/DataStructure/PotentializedUnionFind.cpp.html">DataStructure/PotentializedUnionFind.cpp</a>
+* :heavy_check_mark: <a href="library/DataStructure/PotentializedUnionFind.cpp.html">DataStructure/PotentializedUnionFind.cpp</a>
 * :heavy_check_mark: <a href="library/DataStructure/QuickFind.cpp.html">DataStructure/QuickFind.cpp</a>
 * :heavy_check_mark: <a href="library/DataStructure/SegmentTree.cpp.html">DataStructure/SegmentTree.cpp</a>
 * :heavy_check_mark: <a href="library/DataStructure/SlidingWindowAggregation.cpp.html">DataStructure/SlidingWindowAggregation.cpp</a>
@@ -125,7 +125,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/Test/LazySegmentTree.test.cpp.html">Test/LazySegmentTree.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/LineCHT.test.cpp.html">Test/LineCHT.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/PartiallyPersistentUF.test.cpp.html">Test/PartiallyPersistentUF.test.cpp</a>
-* :x: <a href="verify/Test/PotentializedUF.test.cpp.html">Test/PotentializedUF.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Test/PotentializedUF.test.cpp.html">Test/PotentializedUF.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/QuickFind.test.cpp.html">Test/QuickFind.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/RollingHash.test.cpp.html">Test/RollingHash.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Test/SCC.test.cpp.html">Test/SCC.test.cpp</a>

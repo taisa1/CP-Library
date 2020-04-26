@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: Test/PotentializedUF.test.cpp
+# :heavy_check_mark: Test/PotentializedUF.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/PotentializedUF.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-26 13:30:55+09:00
+    - Last commit date: 2020-04-26 13:39:09+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1330">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1330</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :x: <a href="../../library/DataStructure/PotentializedUnionFind.cpp.html">DataStructure/PotentializedUnionFind.cpp</a>
+* :heavy_check_mark: <a href="../../library/DataStructure/PotentializedUnionFind.cpp.html">DataStructure/PotentializedUnionFind.cpp</a>
 
 
 ## Code
@@ -80,7 +80,7 @@ int main() {
     int n, m;
     while (1) {
         cin >> n >> m;
-        if (n == 0) return 0;
+        if (n == 0) break;
         UnionFind<int> uf(n);
         for (int i = 0; i < m; i++) {
             char c;
@@ -148,8 +148,9 @@ struct UnionFind {
     }
     inline int find(int x) {
         if (x == par[x]) return x;
+        int root = find(par[x]);
         val[x] += val[par[x]];
-        return par[x] = find(par[x]);
+        return par[x] = root;
     }
     inline T value(int x) { //W(x)-W(root)
         find(x);
@@ -180,7 +181,7 @@ int main() {
     int n, m;
     while (1) {
         cin >> n >> m;
-        if (n == 0) return 0;
+        if (n == 0) break;
         UnionFind<int> uf(n);
         for (int i = 0; i < m; i++) {
             char c;
