@@ -1,6 +1,7 @@
+//@docs Docs/UnionFind.md
 struct UnionFind {
     vector<int> par, sz;
-    UnionFind(int n) : par(n),sz(n,1) {
+    UnionFind(int n) : par(n), sz(n, 1) {
         iota(par.begin(), par.end(), 0);
     }
     inline int find(int x) {

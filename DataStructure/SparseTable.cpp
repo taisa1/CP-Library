@@ -1,3 +1,4 @@
+//@docs Docs/SparseTable.md
 const int LOG = 30;
 template <class T>
 struct SparseTable {

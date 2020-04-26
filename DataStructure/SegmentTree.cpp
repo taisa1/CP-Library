@@ -1,4 +1,4 @@
-//Point Update Range Get
+//@docs Docs/SegmentTree.md
 template <class T>
 struct Segtree {
     int n;
