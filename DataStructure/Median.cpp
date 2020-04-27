@@ -1,4 +1,4 @@
-//Maintain Median
+//@docs Docs/Median.md
 template <class T>
 struct Median {
     priority_queue<T> smq;

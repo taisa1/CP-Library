@@ -1,3 +1,4 @@
+//@docs Docs/StronglyConnectedComponents.md
 struct SCC {
     int n;
     vector<int> ord, vis, cm;

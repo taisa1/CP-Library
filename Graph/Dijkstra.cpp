@@ -1,3 +1,4 @@
+//@docs Docs/Dijkstra.md
 template <class T>
 struct Dijkstra {
     int n;

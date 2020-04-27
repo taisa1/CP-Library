@@ -1,3 +1,4 @@
+//@docs : Docs/LowestCommonAncester.md
 const int LOG = 30;
 struct LCA {
     vector<vector<int>> G, par;
