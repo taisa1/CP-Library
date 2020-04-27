@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/SCC.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 13:22:22+09:00
+    - Last commit date: 2020-04-27 12:42:37+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/scc">https://judge.yosupo.jp/problem/scc</a>
@@ -127,6 +127,7 @@ void printv(const vector<T> &v) {
 
 #define call_from_test
 #line 1 "Graph/StronglyConnectedComponents.cpp"
+//@docs Docs/StronglyConnectedComponents.md
 struct SCC {
     int n;
     vector<int> ord, vis, cm;

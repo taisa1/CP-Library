@@ -31,10 +31,15 @@ layout: default
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/Dijkstra.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-24 20:12:32+09:00
+    - Last commit date: 2020-04-27 12:42:37+09:00
 
 
 
+
+## Description
+グラフ G を管理する。  
+addedge(u,v,c) : Gに有向辺 (u,v) を張る。  
+dijkstra(st) : G における、頂点 st から全ての点への最短路の長さを返す。  
 
 ## Verified with
 
@@ -46,6 +51,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+//@docs Docs/Dijkstra.md
 template <class T>
 struct Dijkstra {
     int n;
@@ -79,6 +85,7 @@ struct Dijkstra {
 {% raw %}
 ```cpp
 #line 1 "Graph/Dijkstra.cpp"
+//@docs Docs/Dijkstra.md
 template <class T>
 struct Dijkstra {
     int n;

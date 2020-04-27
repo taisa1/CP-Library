@@ -31,17 +31,22 @@ layout: default
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/Median.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-11 21:47:05+09:00
+    - Last commit date: 2020-04-27 12:42:37+09:00
 
 
 
+
+## Description
+集合の中央値を管理する。  
+push(x) : 集合に x を追加する。  
+get() : 集合の中央値を返す。  
 
 ## Code
 
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-//Maintain Median
+//@docs Docs/Median.md
 template <class T>
 struct Median {
     priority_queue<T> smq;
@@ -79,7 +84,7 @@ struct Median {
 {% raw %}
 ```cpp
 #line 1 "DataStructure/Median.cpp"
-//Maintain Median
+//@docs Docs/Median.md
 template <class T>
 struct Median {
     priority_queue<T> smq;

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/PartiallyPersistentUF.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-23 13:20:39+09:00
+    - Last commit date: 2020-04-27 12:42:37+09:00
 
 
 * see: <a href="https://yukicoder.me/problems/no/416">https://yukicoder.me/problems/no/416</a>
@@ -155,12 +155,13 @@ void printv(const vector<T> &v) {
 }
 #define call_from_test
 #line 1 "DataStructure/PartiallyPersistentUnionFind.cpp"
+//@docs Docs/PartiallyPersistentUnionFind.md
 struct UnionFind {
     vector<int> par, sz, tim;
     UnionFind(int n) : par(n), sz(n, 1), tim(n, -1) {
         iota(par.begin(), par.end(), 0);
     }
-    //時刻tのunionの後のrootを求める
+    //時刻tのuniteの後のrootを求める
     inline int find(int x, int t) {
         while (par[x] != x && tim[x] <= t) x = par[x];
         return x;

@@ -31,10 +31,17 @@ layout: default
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/StronglyConnectedComponents.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-18 13:22:22+09:00
+    - Last commit date: 2020-04-27 12:42:37+09:00
 
 
 
+
+## Description
+グラフ G の強連結成分を管理する。  
+addedge(u,v) : G に有向辺 (u,v) を追加する。  
+scc() : G を強連結成分分解する。  
+cmp[i] : i の属する強連結成分の index  
+bl[i] : i 番目の強連結成分に含まれる要素の集合  
 
 ## Verified with
 
@@ -46,6 +53,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+//@docs Docs/StronglyConnectedComponents.md
 struct SCC {
     int n;
     vector<int> ord, vis, cm;
@@ -98,6 +106,7 @@ struct SCC {
 {% raw %}
 ```cpp
 #line 1 "Graph/StronglyConnectedComponents.cpp"
+//@docs Docs/StronglyConnectedComponents.md
 struct SCC {
     int n;
     vector<int> ord, vis, cm;

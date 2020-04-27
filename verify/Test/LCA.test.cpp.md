@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/LCA.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-24 20:12:32+09:00
+    - Last commit date: 2020-04-27 12:42:37+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/lca">https://judge.yosupo.jp/problem/lca</a>
@@ -124,6 +124,7 @@ void printv(const vector<T> &v) {
 }
 #define call_from_test
 #line 1 "Graph/LowestCommonAncester.cpp"
+//@docs : Docs/LowestCommonAncester.md
 const int LOG = 30;
 struct LCA {
     vector<vector<int>> G, par;
