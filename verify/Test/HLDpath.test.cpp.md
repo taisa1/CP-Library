@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/HLDpath.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-27 01:54:08+09:00
+    - Last commit date: 2020-05-04 12:58:11+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/vertex_add_path_sum">https://judge.yosupo.jp/problem/vertex_add_path_sum</a>
@@ -105,7 +105,7 @@ int main() {
         } else {
             ll res = 0;
             auto f = [&](int a, int b) { res += bit.get(a, b); };
-            g.getpath(u, v, f);
+            g.getpath_v(u, v, f);
             cout << res << '\n';
         }
     }
@@ -214,11 +214,24 @@ struct HLD {
         out[i] = pos;
     }
     template <class F>
-    void getpath(int u, int v, const F &f) { //f:[a,b)
+    void getpath_v(int u, int v, const F &f) { //f:[a,b)
         while (1) {
             if (id[u] > id[v]) swap(u, v);
             if (rt[u] == rt[v]) {
                 f(id[u], id[v] + 1);
+                break;
+            } else {
+                f(id[rt[v]], id[v] + 1);
+                v = par[rt[v]];
+            }
+        }
+    }
+    template <class F>
+    void getpath_e(int u, int v, const F &f) { //f:[a,b)
+        while (1) {
+            if (id[u] > id[v]) swap(u, v);
+            if (rt[u] == rt[v]) {
+                if (u != v) f(id[u] + 1, id[v] + 1);
                 break;
             } else {
                 f(id[rt[v]], id[v] + 1);
@@ -261,7 +274,7 @@ int main() {
         } else {
             ll res = 0;
             auto f = [&](int a, int b) { res += bit.get(a, b); };
-            g.getpath(u, v, f);
+            g.getpath_v(u, v, f);
             cout << res << '\n';
         }
     }
