@@ -55,7 +55,7 @@ int main() {
         } else {
             ll res = 0;
             auto f = [&](int a, int b) { res += bit.get(a, b); };
-            g.getpath(u, v, f);
+            g.getpath_v(u, v, f);
             cout << res << '\n';
         }
     }

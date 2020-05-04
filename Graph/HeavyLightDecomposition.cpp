@@ -46,11 +46,24 @@ struct HLD {
         out[i] = pos;
     }
     template <class F>
-    void getpath(int u, int v, const F &f) { //f:[a,b)
+    void getpath_v(int u, int v, const F &f) { //f:[a,b)
         while (1) {
             if (id[u] > id[v]) swap(u, v);
             if (rt[u] == rt[v]) {
                 f(id[u], id[v] + 1);
+                break;
+            } else {
+                f(id[rt[v]], id[v] + 1);
+                v = par[rt[v]];
+            }
+        }
+    }
+    template <class F>
+    void getpath_e(int u, int v, const F &f) { //f:[a,b)
+        while (1) {
+            if (id[u] > id[v]) swap(u, v);
+            if (rt[u] == rt[v]) {
+                if (u != v) f(id[u] + 1, id[v] + 1);
                 break;
             } else {
                 f(id[rt[v]], id[v] + 1);
