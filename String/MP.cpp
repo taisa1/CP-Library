@@ -1,4 +1,4 @@
-//a[i]:[0,i-1]におけるprefix,suffixの共通部分の最大長
+//@docs Docs/MP.md
 vector<int> MP(string &s) {
     int j = -1;
     int n = s.length();

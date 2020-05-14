@@ -1,3 +1,4 @@
+//@docs Docs/PotentializedUnionFind.cpp
 template <class T>
 struct UnionFind {
     vector<int> par, sz;

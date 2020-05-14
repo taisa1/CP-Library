@@ -1,3 +1,4 @@
+//@docs Docs/QuickFind.md
 struct QuickFind {
     int n;
     vector<vector<int>> vs;
