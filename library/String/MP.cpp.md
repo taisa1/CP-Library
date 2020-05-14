@@ -31,17 +31,21 @@ layout: default
 
 * category: <a href="../../index.html#27118326006d3829667a400ad23d5d98">String</a>
 * <a href="{{ site.github.repository_url }}/blob/master/String/MP.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-11 21:47:05+09:00
+    - Last commit date: 2020-05-14 17:59:14+09:00
 
 
 
+
+## Description
+文字列 s について、部分文字列 s[1,i] の prefix と suffix がどこまで一致しているかを示す配列 a を求める。  
+計算量は O(|s|) 。  
 
 ## Code
 
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-//a[i]:[0,i-1]におけるprefix,suffixの共通部分の最大長
+//@docs Docs/MP.md
 vector<int> MP(string &s) {
     int j = -1;
     int n = s.length();
@@ -63,7 +67,7 @@ vector<int> MP(string &s) {
 {% raw %}
 ```cpp
 #line 1 "String/MP.cpp"
-//a[i]:[0,i-1]におけるprefix,suffixの共通部分の最大長
+//@docs Docs/MP.md
 vector<int> MP(string &s) {
     int j = -1;
     int n = s.length();

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/PotentializedUnionFind.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-26 13:39:09+09:00
+    - Last commit date: 2020-05-14 17:59:14+09:00
 
 
 
@@ -46,6 +46,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+//@docs Docs/PotentializedUnionFind.cpp
 template <class T>
 struct UnionFind {
     vector<int> par, sz;
@@ -89,6 +90,7 @@ struct UnionFind {
 {% raw %}
 ```cpp
 #line 1 "DataStructure/PotentializedUnionFind.cpp"
+//@docs Docs/PotentializedUnionFind.cpp
 template <class T>
 struct UnionFind {
     vector<int> par, sz;

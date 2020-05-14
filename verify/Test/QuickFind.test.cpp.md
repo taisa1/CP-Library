@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/QuickFind.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-19 16:34:59+09:00
+    - Last commit date: 2020-05-14 17:59:14+09:00
 
 
 * see: <a href="https://yukicoder.me/problems/no/416">https://yukicoder.me/problems/no/416</a>
@@ -148,6 +148,7 @@ void printv(const vector<T> &v) {
 }
 #define call_from_test
 #line 1 "DataStructure/QuickFind.cpp"
+//@docs Docs/QuickFind.md
 struct QuickFind {
     int n;
     vector<vector<int>> vs;

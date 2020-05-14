@@ -31,9 +31,18 @@ layout: default
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/QuickFind.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-19 16:34:59+09:00
+    - Last commit date: 2020-05-14 17:59:14+09:00
 
 
+
+
+## Description
+素集合を管理する。  
+find(x) : x の属する集合の root を返す。 O(1)  
+unite(u,v) : u,v それぞれが属する集合を併合する。 償却 O(log N)  
+size(x) : x の属する集合のサイズを返す。 O(1)  
+same(u,v) : u,v が同じ集合に属するか判定する。 O(1)  
+elements(u) : u を含む集合の vector を返す。 O(1)  
 
 
 ## Verified with
@@ -46,6 +55,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+//@docs Docs/QuickFind.md
 struct QuickFind {
     int n;
     vector<vector<int>> vs;
@@ -83,6 +93,7 @@ struct QuickFind {
 {% raw %}
 ```cpp
 #line 1 "DataStructure/QuickFind.cpp"
+//@docs Docs/QuickFind.md
 struct QuickFind {
     int n;
     vector<vector<int>> vs;

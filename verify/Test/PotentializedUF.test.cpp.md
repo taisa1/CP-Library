@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#0cbc6611f5540bd0809a388dc95a615b">Test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Test/PotentializedUF.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-26 13:39:09+09:00
+    - Last commit date: 2020-05-14 17:59:14+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1330">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1330</a>
@@ -138,6 +138,7 @@ void printv(const vector<T> &v) {
 }
 #define call_from_test
 #line 1 "DataStructure/PotentializedUnionFind.cpp"
+//@docs Docs/PotentializedUnionFind.cpp
 template <class T>
 struct UnionFind {
     vector<int> par, sz;
